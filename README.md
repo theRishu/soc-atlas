@@ -10,7 +10,7 @@ Welcome to **SOC Atlas**, a comprehensive, open-source cybersecurity knowledge b
 ## 🌐 View the Live Website
 You do not need to download or install anything to read the documentation. You can view the fully interactive, hosted version of **SOC Atlas** directly in your browser right here:
 
-👉 **[Link to your live Vercel / GitHub Pages site will go here]**
+👉 **[https://theRishu.github.io/soc-atlas/](https://theRishu.github.io/soc-atlas/)**
 
 ---
 
