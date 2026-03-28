@@ -1,0 +1,8 @@
+{
+  "version": 2,
+  "buildCommand": "bash ./build.sh",
+  "outputDirectory": "site",
+  "framework": null,
+  "cleanUrls": true,
+  "trailingSlash": false
+}
