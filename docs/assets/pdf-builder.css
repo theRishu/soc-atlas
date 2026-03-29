@@ -1,3 +1,20 @@
+.page-lead {
+  max-width: 72ch;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 1.15rem 0 0.9rem;
+}
+
+.hero-actions .md-button {
+  margin: 0;
+  min-width: 12.5rem;
+  justify-content: center;
+}
+
 .pdf-builder {
   margin: 2.75rem 0 1.2rem;
   padding: 1.6rem;
@@ -11,6 +28,13 @@
 
 .pdf-builder__header {
   margin-bottom: 1.25rem;
+}
+
+.pdf-builder__header-main {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 1rem;
 }
 
 .pdf-builder__eyebrow {
@@ -29,6 +53,25 @@
 .pdf-builder__intro {
   max-width: 68ch;
   margin: 0.7rem 0 0;
+}
+
+.pdf-builder__close {
+  flex: 0 0 auto;
+  border: 1px solid rgba(99, 91, 255, 0.16);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--md-default-fg-color);
+  font: inherit;
+  font-weight: 700;
+  padding: 0.72rem 1rem;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.pdf-builder__close:hover {
+  transform: translateY(-1px);
+  border-color: rgba(99, 91, 255, 0.36);
+  color: var(--md-primary-fg-color);
 }
 
 .pdf-builder__presets {
@@ -384,7 +427,8 @@
 [data-md-color-scheme="slate"] .pdf-builder__preset,
 [data-md-color-scheme="slate"] .pdf-builder__mode,
 [data-md-color-scheme="slate"] .pdf-builder__summary-card,
-[data-md-color-scheme="slate"] .pdf-builder__utility {
+[data-md-color-scheme="slate"] .pdf-builder__utility,
+[data-md-color-scheme="slate"] .pdf-builder__close {
   background: rgba(26, 31, 54, 0.9);
   border-color: rgba(122, 115, 255, 0.22);
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2);
@@ -446,6 +490,10 @@
   color: #eef2ff;
 }
 
+[data-md-color-scheme="slate"] .pdf-builder__close:hover {
+  color: #eef2ff;
+}
+
 [data-md-color-scheme="slate"] .pdf-builder__actions-main .md-button--primary {
   box-shadow: 0 16px 30px rgba(99, 91, 255, 0.28);
 }
@@ -457,6 +505,11 @@
 @media screen and (max-width: 59.9375em) {
   .pdf-builder {
     padding: 1.25rem;
+  }
+
+  .pdf-builder__header-main {
+    flex-direction: column;
+    align-items: stretch;
   }
 
   .pdf-builder__section-header {

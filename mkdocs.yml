@@ -24,15 +24,13 @@ theme:
     - search.highlight
     - content.code.copy
   palette:
-    - media: "(prefers-color-scheme: light)"
-      scheme: default
+    - scheme: default
       primary: teal
       accent: indigo
       toggle:
         icon: material/weather-night
         name: Switch to dark mode
-    - media: "(prefers-color-scheme: dark)"
-      scheme: slate
+    - scheme: slate
       primary: teal
       accent: indigo
       toggle:

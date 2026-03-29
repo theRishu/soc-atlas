@@ -3,6 +3,7 @@
   const STORAGE_KEY = "socatlas-pdf-sections";
   const MODE_STORAGE_KEY = "socatlas-pdf-mode";
   const IMAGE_STORAGE_KEY = "socatlas-pdf-images";
+  const ROOT_HASH = "#pdf-builder";
   const RECOMMENDED_PRESET_ID = "interview-core";
   const PRESETS = [
     {
@@ -195,20 +196,45 @@
     area.remove();
   }
 
-  function bindVisibility(root) {
-    const sync = () => {
-      const open = window.location.hash === "#pdf-builder";
-      root.hidden = !open;
+  function setBuilderVisibility(root, open) {
+    const wasHidden = root.hidden;
+    root.hidden = !open;
 
-      if (open) {
-        requestAnimationFrame(() => {
-          root.scrollIntoView({ block: "start", behavior: "smooth" });
-        });
-      }
+    if (open && wasHidden) {
+      requestAnimationFrame(() => {
+        root.scrollIntoView({ block: "start", behavior: "smooth" });
+      });
+    }
+  }
+
+  function closeBuilder(root) {
+    const url = new URL(window.location.href);
+    url.hash = "";
+    window.history.replaceState({}, "", `${url.pathname}${url.search}`);
+    setBuilderVisibility(root, false);
+
+    const trigger = document.querySelector('a[href="#pdf-builder"]');
+    if (trigger) {
+      trigger.focus();
+      trigger.scrollIntoView({ block: "center", behavior: "smooth" });
+    }
+  }
+
+  function bindVisibility(root) {
+    if (typeof root.__pdfBuilderCleanup === "function") {
+      root.__pdfBuilderCleanup();
+    }
+
+    const sync = () => {
+      setBuilderVisibility(root, window.location.hash === ROOT_HASH);
     };
 
     sync();
     window.addEventListener("hashchange", sync);
+    root.__pdfBuilderCleanup = () => {
+      window.removeEventListener("hashchange", sync);
+      delete root.__pdfBuilderCleanup;
+    };
   }
 
   function render(root, sections) {
@@ -231,13 +257,18 @@
 
     root.innerHTML = `
       <div class="pdf-builder__header">
-        <p class="pdf-builder__eyebrow">Download PDF</p>
-        <h2 class="pdf-builder__title">Build Your SOCAtlas PDF</h2>
-        <p class="pdf-builder__intro">
-          Pick a preset or choose sections yourself, then choose <strong>Color PDF</strong> or
-          <strong>Paper-friendly</strong>. When you click download, Chrome opens its native
-          <strong>Save as PDF</strong> dialog for a cleaner result.
-        </p>
+        <div class="pdf-builder__header-main">
+          <div>
+            <p class="pdf-builder__eyebrow">Download PDF</p>
+            <h2 class="pdf-builder__title">Build Your SOCAtlas PDF</h2>
+            <p class="pdf-builder__intro">
+              Interview Core is loaded first so most users can download fast. Change sections only if
+              you want a more focused pack, then choose <strong>Color PDF</strong> or
+              <strong>Paper-friendly</strong>.
+            </p>
+          </div>
+          <button type="button" class="pdf-builder__close" data-pdf-close>Hide options</button>
+        </div>
       </div>
 
       <div class="pdf-builder__presets" data-pdf-presets>
@@ -296,7 +327,7 @@
         </div>
         <label class="pdf-builder__filter">
           <span class="pdf-builder__filter-label">Find a section</span>
-          <input type="search" placeholder="Filter sections like networking or alerts" data-pdf-filter>
+          <input type="search" placeholder="Filter sections like networking, alerts, or quick points" data-pdf-filter>
         </label>
       </div>
 
@@ -317,7 +348,7 @@
         <div class="pdf-builder__actions-secondary">
           <button type="button" class="pdf-builder__utility" data-pdf-select-all>Select all</button>
           <button type="button" class="pdf-builder__utility" data-pdf-clear-all>Clear all</button>
-          <button type="button" class="pdf-builder__utility" data-pdf-copy>Copy setup link</button>
+          <button type="button" class="pdf-builder__utility" data-pdf-copy>Copy preview link</button>
         </div>
       </div>
 
@@ -343,7 +374,8 @@
     const filterInput = root.querySelector("[data-pdf-filter]");
     const filterEmpty = root.querySelector("[data-pdf-filter-empty]");
     const previewBase = preview.getAttribute("href") || "complete-guide.html";
-    const copyButtonLabel = "Copy setup link";
+    const copyButtonLabel = "Copy preview link";
+    const closeButton = root.querySelector("[data-pdf-close]");
 
     const updateSelectionStyles = () => {
       checkboxes.forEach((checkbox) => {
@@ -488,6 +520,10 @@
           copyButton.textContent = copyButtonLabel;
         }, 1600);
       }
+    });
+
+    closeButton.addEventListener("click", () => {
+      closeBuilder(root);
     });
 
     presetButtons.forEach((button) => {
