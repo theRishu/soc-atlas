@@ -648,6 +648,57 @@ html[data-pdf-export="download"] .pdf-export-canvas .md-typeset blockquote {
     });
   };
 
+  const prepareColorExportState = () => {
+    if (parseMode() !== "color") {
+      return () => {};
+    }
+
+    const body = document.body;
+    const html = document.documentElement;
+    const snapshot = {
+      bodyScheme: body.getAttribute("data-md-color-scheme"),
+      bodyPrimary: body.getAttribute("data-md-color-primary"),
+      bodyAccent: body.getAttribute("data-md-color-accent"),
+      bodyColorScheme: body.style.colorScheme,
+      htmlColorScheme: html.style.colorScheme,
+      bodyBackground: body.style.background,
+      bodyColor: body.style.color,
+    };
+
+    body.setAttribute("data-md-color-scheme", "default");
+    body.setAttribute("data-md-color-primary", snapshot.bodyPrimary || "teal");
+    body.setAttribute("data-md-color-accent", snapshot.bodyAccent || "indigo");
+    body.style.colorScheme = "light";
+    html.style.colorScheme = "light";
+    body.style.background = "#ffffff";
+    body.style.color = "rgba(0, 0, 0, 0.87)";
+
+    return () => {
+      if (snapshot.bodyScheme === null) {
+        body.removeAttribute("data-md-color-scheme");
+      } else {
+        body.setAttribute("data-md-color-scheme", snapshot.bodyScheme);
+      }
+
+      if (snapshot.bodyPrimary === null) {
+        body.removeAttribute("data-md-color-primary");
+      } else {
+        body.setAttribute("data-md-color-primary", snapshot.bodyPrimary);
+      }
+
+      if (snapshot.bodyAccent === null) {
+        body.removeAttribute("data-md-color-accent");
+      } else {
+        body.setAttribute("data-md-color-accent", snapshot.bodyAccent);
+      }
+
+      body.style.colorScheme = snapshot.bodyColorScheme;
+      html.style.colorScheme = snapshot.htmlColorScheme;
+      body.style.background = snapshot.bodyBackground;
+      body.style.color = snapshot.bodyColor;
+    };
+  };
+
   const collectPdfNavigation = (container) => {
     const contentRoot =
       container.querySelector(".pdf-export-canvas") ||
@@ -723,6 +774,7 @@ html[data-pdf-export="download"] .pdf-export-canvas .md-typeset blockquote {
 
   const triggerDownload = async () => {
     let exportShell = null;
+    let restoreColorExport = () => {};
     try {
       setStatus("Preparing your PDF file...");
       const html2pdf = await loadHtml2Pdf();
@@ -733,6 +785,8 @@ html[data-pdf-export="download"] .pdf-export-canvas .md-typeset blockquote {
       }
 
       document.documentElement.dataset.pdfExport = "download";
+      restoreColorExport = prepareColorExportState();
+      await waitForLayout();
       await waitForFonts();
       await waitForImages();
       await waitForLayout();
@@ -790,12 +844,14 @@ html[data-pdf-export="download"] .pdf-export-canvas .md-typeset blockquote {
       if (exportShell) {
         exportShell.remove();
       }
+      restoreColorExport();
       delete document.documentElement.dataset.pdfExport;
       setStatus("PDF downloaded. Check your browser downloads folder.");
     } catch (error) {
       if (exportShell) {
         exportShell.remove();
       }
+      restoreColorExport();
       delete document.documentElement.dataset.pdfExport;
       console.error(error);
       setStatus("Automatic PDF download failed. Opening the print dialog instead.");
