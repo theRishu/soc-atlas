@@ -9,7 +9,7 @@ dependencies = [
 ]
 
 [project.scripts]
-app = "mkdocs:main"
+app = "app:app"
 
 [tool.setuptools]
-py-modules = []
+py-modules = ["app"]
