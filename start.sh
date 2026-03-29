@@ -1,29 +1,32 @@
 #!/usr/bin/env bash
-# SOCAtlas - Local Development Script
-# Built to work universally for anyone downloading this repository.
+# SOCAtlas - Local Production Preview Script
 set -e
 
-echo "🛡️  Starting SOCAtlas Local Server..."
+PORT=8087
+echo "🛡️  Preparing SOCAtlas Production-Grade Preview..."
 
-# Check if Python is installed
-if ! command -v python3 &> /dev/null; then
-    echo "❌ Error: Python 3 is required. Please install Python 3."
-    exit 1
+# Locate build engine or fallback
+if ! command -v zensical &> /dev/null && ! python3 -m mkdocs --version &> /dev/null; then
+    echo "📦 Installing build engine..."
+    python3 -m pip install --upgrade pip
+    python3 -m pip install -r requirements.txt
 fi
 
-# Clean up previously running instances on the designated port
-PORT=8087
-echo "🧹 Releasing port $PORT (if occupied)..."
+# Release port
+echo "🧹 Releasing port $PORT..."
 lsof -ti:$PORT | xargs kill -9 2>/dev/null || true
 
-# Check if Zensical module is installed
-if ! python3 -m zensical serve --help &> /dev/null; then
-    echo "📦 Installing Zensical engine..."
-    python3 -m pip install --user --upgrade zensical
+# Perform a quick fresh build
+echo "🏗️  Building site into static HTML..."
+if python3 -m zensical build -f zensical.yml &> /dev/null; then
+    echo "✅ Zensical build complete."
+else
+    python3 -m mkdocs build -f zensical.yml -d site
+    echo "✅ MkDocs build complete."
 fi
 
-echo "🌐 SOCAtlas is running at: http://127.0.0.1:$PORT"
+echo "🌐 SOCAtlas living at: http://127.0.0.1:$PORT"
 echo "──────────────────────────────────────────"
 
-# Execute the core static site generator server
-python3 -m zensical serve -f zensical.yml -a "127.0.0.1:$PORT"
+# Serve the actual static output directory
+cd site && python3 -m http.server $PORT --bind 127.0.0.1
