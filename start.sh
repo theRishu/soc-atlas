@@ -12,7 +12,7 @@ echo "🛡️  Preparing SOCAtlas Production-Grade Preview..."
 if ! python3 -m mkdocs --version &> /dev/null; then
     echo "📦 Installing preview dependencies..."
     python3 -m pip install --upgrade pip
-    python3 -m pip install -r requirements.txt
+    python3 -m pip install -r deps.txt
 fi
 
 # Release port

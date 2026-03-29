@@ -12,7 +12,7 @@ echo "🛡️  Starting SOCAtlas Hot-Reloading Development Server..."
 # Check dependencies
 if ! python3 -m mkdocs --version &> /dev/null; then
     echo "📦 Installing development dependencies..."
-    python3 -m pip install -r requirements.txt
+    python3 -m pip install -r deps.txt
 fi
 
 # Release port

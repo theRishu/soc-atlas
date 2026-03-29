@@ -22,7 +22,7 @@ jobs:
           python-version: '3.11'
 
       - name: Install Dependencies
-        run: pip install -r requirements.txt
+        run: pip install -r deps.txt
 
       - name: Build the Static Site
         run: |
