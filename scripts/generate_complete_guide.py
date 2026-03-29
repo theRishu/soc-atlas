@@ -773,7 +773,6 @@ html[data-pdf-export="download"] .pdf-export-canvas .md-typeset blockquote {
   };
 
   const triggerDownload = async () => {
-    let exportShell = null;
     let restoreColorExport = () => {};
     try {
       setStatus("Preparing your PDF file...");
@@ -786,13 +785,10 @@ html[data-pdf-export="download"] .pdf-export-canvas .md-typeset blockquote {
 
       document.documentElement.dataset.pdfExport = "download";
       restoreColorExport = prepareColorExportState();
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
       await waitForLayout();
       await waitForFonts();
       await waitForImages();
-      await waitForLayout();
-      const exportNodes = buildExportClone(target);
-      exportShell = exportNodes.shell;
-      await waitForImagesWithin(exportNodes.clone);
       await waitForLayout();
 
       const worker = html2pdf()
@@ -821,6 +817,8 @@ html[data-pdf-export="download"] .pdf-export-canvas .md-typeset blockquote {
             scale: 2,
             useCORS: true,
             backgroundColor: "#ffffff",
+            scrollX: 0,
+            scrollY: 0,
           },
           jsPDF: {
             unit: "mm",
@@ -828,7 +826,7 @@ html[data-pdf-export="download"] .pdf-export-canvas .md-typeset blockquote {
             orientation: "portrait",
           },
         })
-        .from(exportNodes.clone);
+        .from(target);
 
       await worker.toContainer();
       const container = await worker.get("container");
@@ -841,16 +839,10 @@ html[data-pdf-export="download"] .pdf-export-canvas .md-typeset blockquote {
       injectPdfContents(pdf, pdfNavigation);
       await worker.save();
 
-      if (exportShell) {
-        exportShell.remove();
-      }
       restoreColorExport();
       delete document.documentElement.dataset.pdfExport;
       setStatus("PDF downloaded. Check your browser downloads folder.");
     } catch (error) {
-      if (exportShell) {
-        exportShell.remove();
-      }
       restoreColorExport();
       delete document.documentElement.dataset.pdfExport;
       console.error(error);
