@@ -102,6 +102,7 @@
 }
 
 .pdf-builder__mode input {
+  accent-color: var(--md-primary-fg-color);
   margin-top: 0.12rem;
 }
 
@@ -207,6 +208,7 @@
 }
 
 .pdf-builder__option input {
+  accent-color: var(--md-primary-fg-color);
   margin-top: 0.12rem;
 }
 
@@ -281,6 +283,70 @@
   margin-top: 0.7rem;
   color: #b42318;
   font-weight: 700;
+}
+
+[data-md-color-scheme="slate"] .pdf-builder {
+  border-color: rgba(122, 115, 255, 0.26);
+  background:
+    radial-gradient(circle at top right, rgba(122, 115, 255, 0.2), transparent 34%),
+    linear-gradient(180deg, rgba(18, 24, 42, 0.96), rgba(15, 20, 34, 0.92));
+  box-shadow: 0 24px 42px rgba(0, 0, 0, 0.34);
+}
+
+[data-md-color-scheme="slate"] .pdf-builder__preset,
+[data-md-color-scheme="slate"] .pdf-builder__mode,
+[data-md-color-scheme="slate"] .pdf-builder__summary-card,
+[data-md-color-scheme="slate"] .pdf-builder__utility {
+  background: rgba(26, 31, 54, 0.9);
+  border-color: rgba(122, 115, 255, 0.22);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2);
+}
+
+[data-md-color-scheme="slate"] .pdf-builder__summary-card {
+  background:
+    linear-gradient(180deg, rgba(26, 31, 54, 0.96), rgba(20, 26, 46, 0.92));
+}
+
+[data-md-color-scheme="slate"] .pdf-builder__stat {
+  background: rgba(99, 91, 255, 0.1);
+  border-color: rgba(122, 115, 255, 0.18);
+}
+
+[data-md-color-scheme="slate"] .pdf-builder__badge {
+  background: rgba(122, 115, 255, 0.16);
+  color: #eef2ff;
+}
+
+[data-md-color-scheme="slate"] .pdf-builder__option {
+  background: rgba(20, 26, 46, 0.94);
+  border-color: rgba(122, 115, 255, 0.2);
+  box-shadow: 0 12px 22px rgba(0, 0, 0, 0.24);
+}
+
+[data-md-color-scheme="slate"] .pdf-builder__preset:hover,
+[data-md-color-scheme="slate"] .pdf-builder__preset[data-active],
+[data-md-color-scheme="slate"] .pdf-builder__mode:hover,
+[data-md-color-scheme="slate"] .pdf-builder__mode[data-selected],
+[data-md-color-scheme="slate"] .pdf-builder__option:hover,
+[data-md-color-scheme="slate"] .pdf-builder__option[data-selected] {
+  border-color: rgba(122, 115, 255, 0.46);
+  box-shadow: 0 18px 32px rgba(0, 0, 0, 0.34);
+}
+
+[data-md-color-scheme="slate"] .pdf-builder__preset[data-active] {
+  background: linear-gradient(180deg, rgba(99, 91, 255, 0.18), rgba(26, 31, 54, 0.94));
+}
+
+[data-md-color-scheme="slate"] .pdf-builder__utility:hover {
+  color: #eef2ff;
+}
+
+[data-md-color-scheme="slate"] .pdf-builder__actions-main .md-button--primary {
+  box-shadow: 0 16px 30px rgba(99, 91, 255, 0.28);
+}
+
+[data-md-color-scheme="slate"] .pdf-builder__empty {
+  color: #ffb4a8;
 }
 
 @media screen and (max-width: 59.9375em) {
