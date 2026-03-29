@@ -19,4 +19,15 @@ else
     python3 -m mkdocs build -f zensical.yml -d site
 fi
 
+# FLAT ARCHITECTURE SYMLINKER: Automatically fix all 404s by aliasing nested files to root
+echo "🔗 Creating flat-link aliases for all documentation..."
+cd site
+find . -maxdepth 3 -name "index.html" | while read -r file; do
+    dir=$(dirname "$file" | sed 's|^./||')
+    if [ "$dir" != "." ]; then
+        ln -sf "$dir/index.html" "${dir}.html"
+    fi
+done
+cd ..
+
 echo "✅ Compilation successful! The 'site/' folder is ready for global hosting."
