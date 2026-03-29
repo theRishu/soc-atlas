@@ -1,4 +1,3 @@
 zensical
 mkdocs-material
 pymdown-extensions
-mkdocs-lucide-icons
