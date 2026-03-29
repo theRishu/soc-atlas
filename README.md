@@ -11,7 +11,7 @@ Welcome to **SOCAtlas**, a comprehensive, open-source cybersecurity knowledge ba
 You do not need to download or install anything to read the documentation. You can view the fully interactive, hosted version of **SOCAtlas** directly in your browser right here:
 
 👉 **[https://socatlas.vercel.app/](https://socatlas.vercel.app/)**
-*(Backup: [https://theRishu.github.io/soc-atlas/](https://theRishu.github.io/soc-atlas/))*
+*(Backup: [https://theRishu.github.io/socatlas/](https://theRishu.github.io/socatlas/))*
 
 ---
 
