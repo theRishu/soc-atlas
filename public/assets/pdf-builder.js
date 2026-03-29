@@ -219,11 +219,11 @@
     root.innerHTML = `
       <div class="pdf-builder__header">
         <p class="pdf-builder__eyebrow">Download PDF</p>
-        <h2 class="pdf-builder__title">Choose What Goes Into Your PDF</h2>
+        <h2 class="pdf-builder__title">Build Your SOCAtlas PDF</h2>
         <p class="pdf-builder__intro">
-          Click <strong>Download as PDF</strong>, choose what you want to include, and Chrome will open its native
-          Save as PDF dialog for a more reliable export.
-          Use a smart preset or hand-pick the sections, then choose color or paper-friendly output.
+          Pick a preset or choose sections yourself, then choose <strong>Color PDF</strong> or
+          <strong>Paper-friendly</strong>. When you click download, Chrome opens its native
+          <strong>Save as PDF</strong> dialog for a cleaner result.
         </p>
       </div>
 
@@ -278,20 +278,20 @@
       <div class="pdf-builder__actions">
         <div class="pdf-builder__actions-main">
           <a class="md-button pdf-builder__action" href="complete-guide.html" target="_blank" rel="noopener" data-pdf-preview>
-            Preview selection
+            Preview guide
           </a>
           <a class="md-button md-button--primary pdf-builder__action" href="complete-guide.html?download=1" target="_blank" rel="noopener" data-pdf-download>
-            Download as PDF
+            Open Save as PDF
           </a>
         </div>
         <div class="pdf-builder__actions-secondary">
           <button type="button" class="pdf-builder__utility" data-pdf-select-all>Select all</button>
           <button type="button" class="pdf-builder__utility" data-pdf-clear-all>Clear all</button>
-          <button type="button" class="pdf-builder__utility" data-pdf-copy>Copy share link</button>
+          <button type="button" class="pdf-builder__utility" data-pdf-copy>Copy setup link</button>
         </div>
       </div>
 
-      <p class="pdf-builder__hint">Opens Chrome's Save as PDF dialog. Paper-friendly removes accent colors, and images can be turned off for a lighter export.</p>
+      <p class="pdf-builder__hint">Tip: keep <strong>Background graphics</strong> on for Color PDF, and turn it off in Chrome for the cleanest Paper-friendly export.</p>
       <p class="pdf-builder__empty" data-pdf-empty hidden>Select at least one section to build a PDF.</p>
     `;
 
@@ -309,7 +309,7 @@
     const copyButton = root.querySelector("[data-pdf-copy]");
     const imagesToggle = root.querySelector("[data-pdf-images]");
     const previewBase = preview.getAttribute("href") || "complete-guide.html";
-    const copyButtonLabel = "Copy share link";
+    const copyButtonLabel = "Copy setup link";
 
     const updateSelectionStyles = () => {
       checkboxes.forEach((checkbox) => {

@@ -41,9 +41,13 @@ cd "$ROOT_DIR"
 
 echo "📦 Syncing static output to public/ for Vercel..."
 mkdir -p "$PUBLIC_DIR"
+
 if command -v rsync &> /dev/null; then
     rsync -a --delete "$SITE_DIR"/ "$PUBLIC_DIR"/
 else
+    # Fall back to a fresh copy when rsync is unavailable.
+    echo "⚠️  rsync not found. Performing fresh sync with rm + cp..."
+    rm -rf "$PUBLIC_DIR"/*
     cp -R "$SITE_DIR"/. "$PUBLIC_DIR"/
 fi
 

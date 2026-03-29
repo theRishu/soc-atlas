@@ -565,8 +565,8 @@ html[data-pdf-export="download"] .pdf-export-canvas .md-typeset blockquote {
     try {
       setStatus(
         parseMode() === "paper"
-          ? "Opening Chrome print dialog with paper-friendly styling."
-          : "Opening Chrome print dialog. Choose Save as PDF."
+          ? "Opening Chrome print dialog with paper-friendly styling. Turn off Background graphics in Chrome for the cleanest result."
+          : "Opening Chrome print dialog. Choose Save as PDF and keep Background graphics on for the richest color output."
       );
       document.documentElement.dataset.pdfExport = "download";
       restoreExportState = prepareExportState();
@@ -578,7 +578,7 @@ html[data-pdf-export="download"] .pdf-export-canvas .md-typeset blockquote {
       await waitForLayout();
       window.addEventListener("afterprint", () => {
         cleanup();
-        setStatus("Use Save as PDF in Chrome if the file was not saved yet.");
+        setStatus("Print dialog closed. If nothing saved yet, open Download as PDF again and choose Save as PDF in Chrome.");
       }, { once: true });
       triggerPrint();
     } catch (error) {

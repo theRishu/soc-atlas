@@ -51,6 +51,8 @@
     
       <link rel="stylesheet" href="assets/pdf-builder.css">
     
+      <link rel="stylesheet" href="assets/mobile-overflow-fixes.css">
+    
     <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -7355,8 +7357,8 @@ html[data-pdf-export="download"] .pdf-export-canvas .md-typeset blockquote {
     try {
       setStatus(
         parseMode() === "paper"
-          ? "Opening Chrome print dialog with paper-friendly styling."
-          : "Opening Chrome print dialog. Choose Save as PDF."
+          ? "Opening Chrome print dialog with paper-friendly styling. Turn off Background graphics in Chrome for the cleanest result."
+          : "Opening Chrome print dialog. Choose Save as PDF and keep Background graphics on for the richest color output."
       );
       document.documentElement.dataset.pdfExport = "download";
       restoreExportState = prepareExportState();
@@ -7368,7 +7370,7 @@ html[data-pdf-export="download"] .pdf-export-canvas .md-typeset blockquote {
       await waitForLayout();
       window.addEventListener("afterprint", () => {
         cleanup();
-        setStatus("Use Save as PDF in Chrome if the file was not saved yet.");
+        setStatus("Print dialog closed. If nothing saved yet, open Download as PDF again and choose Save as PDF in Chrome.");
       }, { once: true });
       triggerPrint();
     } catch (error) {
@@ -7430,7 +7432,7 @@ html[data-pdf-export="download"] .pdf-export-canvas .md-typeset blockquote {
 <li>
 <p><strong>Preparing for SOC roles?</strong></p>
 <p>Focus on SIEM, EDR, IDS, IPS, incident response, IOCs, IOAs, and the MITRE ATT&amp;CK framework — exactly what SOC analysts use daily.</p>
-<p><a href="#guide-section-detection-defense">Go to detection and defense</a></p>
+<p><a href="#guide-page-defense-siem-soar">Go to detection and defense</a></p>
 </li>
 <li>
 <p><strong>Need fast revision?</strong></p>
@@ -7483,7 +7485,7 @@ html[data-pdf-export="download"] .pdf-export-canvas .md-typeset blockquote {
 </tr>
 <tr>
 <td>5</td>
-<td><a href="#guide-section-detection-defense">SIEM, SOC &amp; EDR</a> and <a href="#guide-page-defense-incident-response">Incident Response</a></td>
+<td><a href="#guide-page-defense-siem-soar">SIEM &amp; SOAR</a>, <a href="#guide-page-defense-soc">SOC Operations</a>, <a href="#guide-page-defense-edr-xdr">EDR &amp; XDR</a>, and <a href="#guide-page-defense-incident-response">Incident Response</a></td>
 <td>The tools and playbooks defenders use</td>
 </tr>
 </tbody>
@@ -17046,6 +17048,8 @@ All the victim computers update their ARP cache and start sending their internet
       <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
       
         <script src="assets/pdf-builder.js"></script>
+      
+        <script src="assets/mobile-table-cards.js"></script>
       
     
   </body>

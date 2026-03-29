@@ -99,10 +99,10 @@ body {
   }
 
   .md-typeset table[data-mobile-cards="true"] tr {
-    border: 1px solid var(--site-border-color);
-    border-radius: var(--site-radius-md);
-    background: var(--site-surface-strong);
-    box-shadow: var(--site-shadow-sm);
+    border: 1px solid var(--site-border-color, rgba(15, 23, 42, 0.14));
+    border-radius: var(--site-radius-md, 0.95rem);
+    background: var(--site-surface-strong, var(--md-default-bg-color));
+    box-shadow: var(--site-shadow-sm, 0 12px 24px rgba(15, 23, 42, 0.08));
     padding: 1rem;
   }
 
@@ -139,7 +139,7 @@ body {
     padding-top: 0;
     padding-bottom: 0.75rem;
     margin-bottom: 0.35rem;
-    border-bottom: 1px solid var(--site-border-color);
+    border-bottom: 1px solid var(--site-border-color, rgba(15, 23, 42, 0.14));
     font-weight: 800;
   }
 

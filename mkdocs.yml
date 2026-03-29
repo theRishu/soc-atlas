@@ -69,9 +69,11 @@ plugins:
 
 extra_css:
   - assets/pdf-builder.css
+  - assets/mobile-overflow-fixes.css
 
 extra_javascript:
   - assets/pdf-builder.js
+  - assets/mobile-table-cards.js
 
 nav:
   - Home: index.md

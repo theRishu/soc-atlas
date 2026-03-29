@@ -541,8 +541,8 @@ html[data-pdf-export="download"] .pdf-export-canvas .md-typeset blockquote {
     try {
       setStatus(
         parseMode() === "paper"
-          ? "Opening Chrome print dialog with paper-friendly styling."
-          : "Opening Chrome print dialog. Choose Save as PDF."
+          ? "Opening Chrome print dialog with paper-friendly styling. Turn off Background graphics in Chrome for the cleanest result."
+          : "Opening Chrome print dialog. Choose Save as PDF and keep Background graphics on for the richest color output."
       );
       document.documentElement.dataset.pdfExport = "download";
       restoreExportState = prepareExportState();
@@ -554,7 +554,7 @@ html[data-pdf-export="download"] .pdf-export-canvas .md-typeset blockquote {
       await waitForLayout();
       window.addEventListener("afterprint", () => {
         cleanup();
-        setStatus("Use Save as PDF in Chrome if the file was not saved yet.");
+        setStatus("Print dialog closed. If nothing saved yet, open Download as PDF again and choose Save as PDF in Chrome.");
       }, { once: true });
       triggerPrint();
     } catch (error) {
@@ -627,7 +627,7 @@ SOCAtlas helps you master cybersecurity concepts in a clear order and revise the
 
     Focus on SIEM, EDR, IDS, IPS, incident response, IOCs, IOAs, and the MITRE ATT&CK framework — exactly what SOC analysts use daily.
 
-    [Go to detection and defense](#guide-section-detection-defense)
+    [Go to detection and defense](#guide-page-defense-siem-soar)
 
 -   __Need fast revision?__
 
@@ -658,7 +658,7 @@ Follow this four-step structure and you will sound confident and clear in any te
 | 2 | [CIA Triad](#guide-page-fundamentals-cia-triad), [Encryption](#guide-page-fundamentals-encryption), [Hashing](#guide-page-fundamentals-hashing) | The three pillars interviewers always test |
 | 3 | [Networking Basics](#guide-page-networking-basics) and [OSI & TCP/IP Models](#guide-page-networking-osi-tcpip) | Everything connects through the network |
 | 4 | [Vulnerabilities & Risk](#guide-page-threats-vulnerabilities) and [Modern Malware](#guide-page-threats-cyber-threats) | Know what you are defending against |
-| 5 | [SIEM, SOC & EDR](#guide-section-detection-defense) and [Incident Response](#guide-page-defense-incident-response) | The tools and playbooks defenders use |
+| 5 | [SIEM & SOAR](#guide-page-defense-siem-soar), [SOC Operations](#guide-page-defense-soc), [EDR & XDR](#guide-page-defense-edr-xdr), and [Incident Response](#guide-page-defense-incident-response) | The tools and playbooks defenders use |
 
 ##### Fast revision before an interview
 

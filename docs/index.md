@@ -9,6 +9,8 @@ SOCAtlas helps you master cybersecurity concepts in a clear order and revise the
 [Open 1200 Quick Points](quick/basics.md){ .md-button }
 [Download as PDF](#pdf-builder){ .md-button }
 </div>
+
+Choose sections, switch between color or paper-friendly output, and let Chrome open `Save as PDF` for the cleanest export.
 <!-- complete-guide:omit:end -->
 
 !!! note "What you will find here"
@@ -41,7 +43,7 @@ SOCAtlas helps you master cybersecurity concepts in a clear order and revise the
 
     Focus on SIEM, EDR, IDS, IPS, incident response, IOCs, IOAs, and the MITRE ATT&CK framework — exactly what SOC analysts use daily.
 
-    [Go to detection and defense](defense/siem_soc_edr.md)
+    [Go to detection and defense](defense/siem_soar.md)
 
 -   __Need fast revision?__
 
@@ -72,7 +74,7 @@ Follow this four-step structure and you will sound confident and clear in any te
 | 2 | [CIA Triad](fundamentals/cia_triad.md), [Encryption](fundamentals/encryption.md), [Hashing](fundamentals/hashing.md) | The three pillars interviewers always test |
 | 3 | [Networking Basics](networking/basics.md) and [OSI & TCP/IP Models](networking/osi_tcpip.md) | Everything connects through the network |
 | 4 | [Vulnerabilities & Risk](threats/vulnerabilities.md) and [Modern Malware](threats/cyber_threats.md) | Know what you are defending against |
-| 5 | [SIEM, SOC & EDR](defense/siem_soc_edr.md) and [Incident Response](defense/incident_response.md) | The tools and playbooks defenders use |
+| 5 | [SIEM & SOAR](defense/siem_soar.md), [SOC Operations](defense/soc.md), [EDR & XDR](defense/edr_xdr.md), and [Incident Response](defense/incident_response.md) | The tools and playbooks defenders use |
 
 ### Fast revision before an interview
 
