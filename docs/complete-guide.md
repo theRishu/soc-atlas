@@ -6,6 +6,12 @@
   margin: 12mm;
 }
 
+html[data-pdf-mode="color"],
+html[data-pdf-mode="color"] * {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
 @media print {
   .md-header,
   .md-tabs,
@@ -47,6 +53,55 @@
   .md-typeset .admonition {
     break-inside: avoid-page;
   }
+
+  html[data-pdf-mode="paper"],
+  html[data-pdf-mode="paper"] body,
+  html[data-pdf-mode="paper"] .md-main,
+  html[data-pdf-mode="paper"] .md-content,
+  html[data-pdf-mode="paper"] .md-content__inner,
+  html[data-pdf-mode="paper"] .md-typeset {
+    background: #ffffff !important;
+    color: #000000 !important;
+    box-shadow: none !important;
+  }
+
+  html[data-pdf-mode="paper"] .md-typeset *,
+  html[data-pdf-mode="paper"] .md-typeset p,
+  html[data-pdf-mode="paper"] .md-typeset li,
+  html[data-pdf-mode="paper"] .md-typeset td,
+  html[data-pdf-mode="paper"] .md-typeset th,
+  html[data-pdf-mode="paper"] .md-typeset blockquote,
+  html[data-pdf-mode="paper"] .md-typeset code,
+  html[data-pdf-mode="paper"] .md-typeset h1,
+  html[data-pdf-mode="paper"] .md-typeset h2,
+  html[data-pdf-mode="paper"] .md-typeset h3,
+  html[data-pdf-mode="paper"] .md-typeset h4 {
+    color: #000000 !important;
+    text-shadow: none !important;
+  }
+
+  html[data-pdf-mode="paper"] .md-typeset a {
+    color: #000000 !important;
+    text-decoration: underline !important;
+  }
+
+  html[data-pdf-mode="paper"] .md-typeset .admonition,
+  html[data-pdf-mode="paper"] .md-typeset details,
+  html[data-pdf-mode="paper"] .md-typeset .admonition-title,
+  html[data-pdf-mode="paper"] .md-typeset summary,
+  html[data-pdf-mode="paper"] .md-typeset code,
+  html[data-pdf-mode="paper"] .md-typeset table:not([class]),
+  html[data-pdf-mode="paper"] .md-typeset th,
+  html[data-pdf-mode="paper"] .md-typeset td,
+  html[data-pdf-mode="paper"] .md-typeset blockquote {
+    background: #ffffff !important;
+    border-color: #000000 !important;
+    box-shadow: none !important;
+  }
+
+  html[data-pdf-mode="paper"] .md-typeset img {
+    filter: grayscale(100%);
+  }
 }
 </style>
 
@@ -66,6 +121,11 @@
         .map((value) => value.trim().toLowerCase())
         .filter(Boolean)
     )];
+  };
+
+  const parseMode = () => {
+    const mode = new URLSearchParams(window.location.search).get("mode");
+    return mode === "paper" ? "paper" : "color";
   };
 
   const applySelection = (selected) => {
@@ -115,7 +175,12 @@
       title.insertAdjacentElement("afterend", note);
     }
 
-    note.textContent = `Included in this PDF: ${labels.join(", ")}`;
+    const modeLabel = parseMode() === "paper" ? "Paper-friendly" : "Color PDF";
+    note.textContent = `Included in this PDF: ${labels.join(", ")} • ${modeLabel}`;
+  };
+
+  const applyMode = () => {
+    document.documentElement.dataset.pdfMode = parseMode();
   };
 
   const triggerPrint = () => {
@@ -123,6 +188,7 @@
   };
 
   const init = () => {
+    applyMode();
     applySelection(parseSelection());
 
     if (new URLSearchParams(window.location.search).get("download") === "1") {

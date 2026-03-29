@@ -1,6 +1,7 @@
 (function () {
   const ROOT_SELECTOR = "[data-pdf-builder]";
   const STORAGE_KEY = "socatlas-pdf-sections";
+  const MODE_STORAGE_KEY = "socatlas-pdf-mode";
 
   function escapeHtml(value) {
     return value
@@ -43,8 +44,26 @@
     }
   }
 
+  function readSavedMode() {
+    try {
+      const saved = localStorage.getItem(MODE_STORAGE_KEY);
+      return saved === "paper" ? "paper" : "color";
+    } catch {
+      return "color";
+    }
+  }
+
+  function saveMode(mode) {
+    try {
+      localStorage.setItem(MODE_STORAGE_KEY, mode);
+    } catch {
+      // Ignore storage issues in private mode.
+    }
+  }
+
   function render(root, sections) {
     const selected = new Set(readSavedSelection(sections));
+    const selectedMode = readSavedMode();
     const options = sections
       .map(
         (section) => `
@@ -66,6 +85,18 @@
         Pick the SOCAtlas sections you want in the PDF. Keep everything checked for the full guide,
         or trim it down to just networking, alerts, attacks, or the exact areas you want to revise.
       </p>
+      <div class="pdf-builder__modes" role="radiogroup" aria-label="PDF style">
+        <label class="pdf-builder__mode">
+          <input type="radio" name="pdf-mode" value="color" ${selectedMode === "color" ? "checked" : ""}>
+          <span class="pdf-builder__mode-title">Color PDF</span>
+          <span class="pdf-builder__mode-meta">Keeps accents, highlights, and richer visual styling.</span>
+        </label>
+        <label class="pdf-builder__mode">
+          <input type="radio" name="pdf-mode" value="paper" ${selectedMode === "paper" ? "checked" : ""}>
+          <span class="pdf-builder__mode-title">Paper-friendly</span>
+          <span class="pdf-builder__mode-meta">Uses cleaner black-and-white print styling to save ink.</span>
+        </label>
+      </div>
       <p class="pdf-builder__summary" data-pdf-summary></p>
       <div class="pdf-builder__grid">
         ${options}
@@ -84,17 +115,18 @@
     `;
 
     const checkboxes = Array.from(root.querySelectorAll('input[type="checkbox"]'));
+    const modes = Array.from(root.querySelectorAll('input[name="pdf-mode"]'));
     const summary = root.querySelector("[data-pdf-summary]");
     const empty = root.querySelector("[data-pdf-empty]");
     const preview = root.querySelector("[data-pdf-preview]");
     const download = root.querySelector("[data-pdf-download]");
     const previewBase = preview.getAttribute("href") || "complete-guide.html";
-    const downloadBase = download.getAttribute("href") || "complete-guide.html?download=1";
 
     const update = () => {
       const selectedValues = checkboxes
         .filter((checkbox) => checkbox.checked)
         .map((checkbox) => checkbox.value);
+      const mode = modes.find((input) => input.checked)?.value || "color";
       const selectedSet = new Set(selectedValues);
       const selectedSections = sections.filter((section) => selectedSet.has(section.slug));
       const topicCount = selectedSections.reduce((sum, section) => sum + section.count, 0);
@@ -104,17 +136,15 @@
         params.set("sections", selectedValues.join(","));
       }
 
-      preview.href = selectedValues.length
-        ? `${previewBase}?${params.toString()}`
-        : previewBase;
+      params.set("mode", mode);
+
+      preview.href = `${previewBase}?${params.toString()}`;
 
       params.set("download", "1");
-      download.href = selectedValues.length
-        ? `${previewBase}?${params.toString()}`
-        : downloadBase;
+      download.href = `${previewBase}?${params.toString()}`;
 
       summary.textContent = selectedValues.length
-        ? `${pluralize(selectedValues.length, "section", "sections")} selected • ${pluralize(topicCount, "topic", "topics")} included`
+        ? `${pluralize(selectedValues.length, "section", "sections")} selected • ${pluralize(topicCount, "topic", "topics")} included • ${mode === "paper" ? "Paper-friendly" : "Color PDF"}`
         : "No sections selected yet";
 
       const disabled = selectedValues.length === 0;
@@ -126,6 +156,7 @@
       download.style.opacity = disabled ? "0.55" : "";
       empty.hidden = !disabled;
       saveSelection(selectedValues);
+      saveMode(mode);
     };
 
     root.querySelector("[data-pdf-select-all]").addEventListener("click", () => {
@@ -144,6 +175,10 @@
 
     checkboxes.forEach((checkbox) => {
       checkbox.addEventListener("change", update);
+    });
+
+    modes.forEach((input) => {
+      input.addEventListener("change", update);
     });
 
     update();
