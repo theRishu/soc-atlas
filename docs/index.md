@@ -1,6 +1,6 @@
-# Welcome to SOC Atlas
+# Welcome to SOCAtlas
 
-SOC Atlas helps you master cybersecurity concepts in a clear order and revise them instantly before interviews or operational shifts. It is built for SOC analysts, engineers, students, and anyone who demands practical explanations with real attack scenarios and tools.
+SOCAtlas helps you master cybersecurity concepts in a clear order and revise them instantly before interviews or operational shifts. It is built for SOC analysts, engineers, students, and anyone who demands practical explanations with real attack scenarios and tools.
 { .page-lead }
 
 <div class="hero-actions" markdown>
