@@ -19,23 +19,21 @@ else
     python3 -m mkdocs build -f zensical.yml -d site
 fi
 
-# FLAT ARCHITECTURE ALIASER: Physically mirror all nested index.html files at the root
-echo "📡 Aliasing all nested docs to the site root for global access..."
+# FINAL SOURCE-LEVEL FLATTENER: Physically move all nested docs to the root
+echo "📡 Relocating all documentation to the site root for absolute availability..."
 cd site
-find . -maxdepth 3 -name "index.html" | while read -r file; do
-    # Get the parent directory name (e.g., risk_threat_intel)
-    dir=$(dirname "$file" | sed 's|^./||')
+find . -name "*.html" -mindepth 2 | while read -r file; do
+    filename=$(basename "$file")
     
-    # If it's a nested doc, copy it to root so Vercel sees it at /dir
-    if [ "$dir" != "." ]; then
-        # Create a physical file at root (e.g., /risk_threat_intel.html)
-        cp "$file" "${dir}.html"
-        
-        # Also create a directory and copy to ensure /risk_threat_intel/ works
-        mkdir -p "$dir"
-        cp "$file" "$dir/index.html"
+    # If it's a documentation file (not index.html), move it to root
+    if [ "$filename" != "index.html" ]; then
+        cp -f "$file" "$filename"
+    else
+        # If it is an index.html, use the directory name as the root file name
+        dir_name=$(dirname "$file" | sed 's|^\./||; s|/|_|g')
+        cp -f "$file" "${dir_name}.html"
     fi
 done
 cd ..
 
-echo "✅ Compilation successful! All paths are now globally accessible."
+echo "✅ Build Complete: All documentation is now natively available at the root level."
