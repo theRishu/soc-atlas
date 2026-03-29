@@ -165,6 +165,22 @@
     area.remove();
   }
 
+  function bindVisibility(root) {
+    const sync = () => {
+      const open = window.location.hash === "#pdf-builder";
+      root.hidden = !open;
+
+      if (open) {
+        requestAnimationFrame(() => {
+          root.scrollIntoView({ block: "start", behavior: "smooth" });
+        });
+      }
+    };
+
+    sync();
+    window.addEventListener("hashchange", sync);
+  }
+
   function render(root, sections) {
     const selected = new Set(readSavedSelection(sections));
     const selectedMode = readSavedMode();
@@ -406,6 +422,7 @@
 
     updateSelectionStyles();
     update();
+    bindVisibility(root);
   }
 
   async function init(root) {

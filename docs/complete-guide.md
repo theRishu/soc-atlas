@@ -171,6 +171,27 @@ html[data-pdf-export="download"] .pdf-export-canvas .md-typeset h4 {
   letter-spacing: 0 !important;
 }
 
+html[data-pdf-export="download"] .pdf-export-canvas .md-typeset p,
+html[data-pdf-export="download"] .pdf-export-canvas .md-typeset blockquote,
+html[data-pdf-export="download"] .pdf-export-canvas .md-typeset pre,
+html[data-pdf-export="download"] .pdf-export-canvas .md-typeset .admonition,
+html[data-pdf-export="download"] .pdf-export-canvas .md-typeset details,
+html[data-pdf-export="download"] .pdf-export-canvas .md-typeset img,
+html[data-pdf-export="download"] .pdf-export-canvas .md-typeset h1,
+html[data-pdf-export="download"] .pdf-export-canvas .md-typeset h2,
+html[data-pdf-export="download"] .pdf-export-canvas .md-typeset h3,
+html[data-pdf-export="download"] .pdf-export-canvas .md-typeset h4 {
+  break-inside: avoid-page !important;
+  page-break-inside: avoid !important;
+}
+
+html[data-pdf-export="download"] .pdf-export-canvas .md-typeset p,
+html[data-pdf-export="download"] .pdf-export-canvas .md-typeset li,
+html[data-pdf-export="download"] .pdf-export-canvas .md-typeset blockquote {
+  orphans: 3;
+  widows: 3;
+}
+
 @media print {
   .md-header,
   .md-tabs,
@@ -465,7 +486,22 @@ html[data-pdf-export="download"] .pdf-export-canvas .md-typeset h4 {
         .set({
           filename: buildFilename(),
           margin: [10, 10, 10, 10],
-          pagebreak: { mode: ["css", "legacy"] },
+          pagebreak: {
+            mode: ["css", "legacy"],
+            avoid: [
+              "p",
+              "blockquote",
+              "pre",
+              ".admonition",
+              "details",
+              "img",
+              "h1",
+              "h2",
+              "h3",
+              "h4",
+              ".pdf-guide-note",
+            ],
+          },
           image: { type: "jpeg", quality: 0.96 },
           html2canvas: {
             scale: 2,
