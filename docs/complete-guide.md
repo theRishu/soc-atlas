@@ -28,6 +28,13 @@ html[data-pdf-mode="color"] * {
   print-color-adjust: exact;
 }
 
+html[data-pdf-mode="paper"],
+html[data-pdf-mode="paper"] * {
+  -webkit-print-color-adjust: economy !important;
+  print-color-adjust: economy !important;
+  color-adjust: economy !important;
+}
+
 html[data-pdf-mode="paper"] {
   --md-primary-fg-color: #000000 !important;
   --md-primary-fg-color--light: #000000 !important;
@@ -45,6 +52,7 @@ html[data-pdf-mode="paper"] .md-typeset {
   background: #ffffff !important;
   color: #000000 !important;
   box-shadow: none !important;
+  background-image: none !important;
 }
 
 html[data-pdf-mode="paper"] .md-typeset *,
@@ -60,6 +68,7 @@ html[data-pdf-mode="paper"] .md-typeset h3,
 html[data-pdf-mode="paper"] .md-typeset h4 {
   color: #000000 !important;
   text-shadow: none !important;
+  background-image: none !important;
 }
 
 html[data-pdf-mode="paper"] .md-typeset a {
@@ -72,6 +81,9 @@ html[data-pdf-mode="paper"] .md-typeset details,
 html[data-pdf-mode="paper"] .md-typeset .admonition-title,
 html[data-pdf-mode="paper"] .md-typeset summary,
 html[data-pdf-mode="paper"] .md-typeset code,
+html[data-pdf-mode="paper"] .md-typeset pre,
+html[data-pdf-mode="paper"] .md-typeset .highlight,
+html[data-pdf-mode="paper"] .md-typeset .highlighttable,
 html[data-pdf-mode="paper"] .md-typeset table:not([class]),
 html[data-pdf-mode="paper"] .md-typeset th,
 html[data-pdf-mode="paper"] .md-typeset td,
@@ -80,6 +92,8 @@ html[data-pdf-mode="paper"] .pdf-guide-note {
   background: #ffffff !important;
   border-color: #000000 !important;
   box-shadow: none !important;
+  color: #000000 !important;
+  background-image: none !important;
 }
 
 html[data-pdf-mode="paper"] .md-typeset img,
@@ -457,11 +471,7 @@ html[data-pdf-export="download"] .pdf-export-canvas .md-typeset blockquote {
       });
     });
 
-  const prepareColorExportState = () => {
-    if (parseMode() !== "color") {
-      return () => {};
-    }
-
+  const prepareExportState = () => {
     const body = document.body;
     const html = document.documentElement;
     const snapshot = {
@@ -473,14 +483,19 @@ html[data-pdf-export="download"] .pdf-export-canvas .md-typeset blockquote {
       bodyBackground: body.style.background,
       bodyColor: body.style.color,
     };
+    const mode = parseMode();
+    const defaultText =
+      mode === "paper" ? "#000000" : "rgba(0, 0, 0, 0.87)";
+    const primary = mode === "paper" ? "black" : (snapshot.bodyPrimary || "teal");
+    const accent = mode === "paper" ? "black" : (snapshot.bodyAccent || "indigo");
 
     body.setAttribute("data-md-color-scheme", "default");
-    body.setAttribute("data-md-color-primary", snapshot.bodyPrimary || "teal");
-    body.setAttribute("data-md-color-accent", snapshot.bodyAccent || "indigo");
+    body.setAttribute("data-md-color-primary", primary);
+    body.setAttribute("data-md-color-accent", accent);
     body.style.colorScheme = "light";
     html.style.colorScheme = "light";
     body.style.background = "#ffffff";
-    body.style.color = "rgba(0, 0, 0, 0.87)";
+    body.style.color = defaultText;
 
     return () => {
       if (snapshot.bodyScheme === null) {
@@ -509,7 +524,7 @@ html[data-pdf-export="download"] .pdf-export-canvas .md-typeset blockquote {
   };
 
   const triggerDownload = async () => {
-    let restoreColorExport = () => {};
+    let restoreExportState = () => {};
     let restoreTitle = () => {};
     let cleanedUp = false;
     const cleanup = () => {
@@ -518,15 +533,19 @@ html[data-pdf-export="download"] .pdf-export-canvas .md-typeset blockquote {
       }
 
       cleanedUp = true;
-      restoreColorExport();
+      restoreExportState();
       restoreTitle();
       delete document.documentElement.dataset.pdfExport;
     };
 
     try {
-      setStatus("Opening Chrome print dialog. Choose Save as PDF.");
+      setStatus(
+        parseMode() === "paper"
+          ? "Opening Chrome print dialog with paper-friendly styling."
+          : "Opening Chrome print dialog. Choose Save as PDF."
+      );
       document.documentElement.dataset.pdfExport = "download";
-      restoreColorExport = prepareColorExportState();
+      restoreExportState = prepareExportState();
       restoreTitle = prepareDownloadTitle();
       window.scrollTo({ top: 0, left: 0, behavior: "auto" });
       await waitForLayout();
