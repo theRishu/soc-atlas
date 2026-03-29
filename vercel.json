@@ -10,5 +10,15 @@
     }
   ],
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/networking/osi_tcpip",
+      "destination": "/networking/osi_tcpip/index.html"
+    },
+    {
+      "source": "/(v1|v2)?/(.*)",
+      "destination": "/$2"
+    }
+  ]
 }
