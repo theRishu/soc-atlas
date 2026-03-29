@@ -44,4 +44,15 @@ else
     cp -R "$SITE_DIR"/. "$PUBLIC_DIR"/
 fi
 
+echo "🚫 Writing Vercel skip config for gh-pages exports..."
+cat > "$SITE_DIR/vercel.json" <<'EOF'
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "buildCommand": "",
+  "installCommand": "",
+  "ignoreCommand": "echo \"Skipping Vercel deploy for gh-pages\"; exit 0"
+}
+EOF
+
 echo "✅ Build Complete."
