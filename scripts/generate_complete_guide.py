@@ -187,6 +187,31 @@ html[data-pdf-export="download"] .pdf-export-canvas .md-content__inner {
   background: #ffffff !important;
 }
 
+html[data-pdf-mode="color"][data-pdf-export="download"] .pdf-export-canvas,
+html[data-pdf-mode="color"][data-pdf-export="download"] .pdf-export-canvas .md-typeset,
+html[data-pdf-mode="color"][data-pdf-export="download"] .pdf-export-canvas .md-typeset p,
+html[data-pdf-mode="color"][data-pdf-export="download"] .pdf-export-canvas .md-typeset li,
+html[data-pdf-mode="color"][data-pdf-export="download"] .pdf-export-canvas .md-typeset td,
+html[data-pdf-mode="color"][data-pdf-export="download"] .pdf-export-canvas .md-typeset th,
+html[data-pdf-mode="color"][data-pdf-export="download"] .pdf-export-canvas .md-typeset blockquote,
+html[data-pdf-mode="color"][data-pdf-export="download"] .pdf-export-canvas .md-typeset h1,
+html[data-pdf-mode="color"][data-pdf-export="download"] .pdf-export-canvas .md-typeset h2,
+html[data-pdf-mode="color"][data-pdf-export="download"] .pdf-export-canvas .md-typeset h3,
+html[data-pdf-mode="color"][data-pdf-export="download"] .pdf-export-canvas .md-typeset h4 {
+  color: var(--md-default-fg-color) !important;
+}
+
+html[data-pdf-mode="color"][data-pdf-export="download"] .pdf-export-canvas .md-typeset a,
+html[data-pdf-mode="color"][data-pdf-export="download"] .pdf-export-canvas .md-typeset a code {
+  color: var(--md-typeset-a-color) !important;
+}
+
+html[data-pdf-mode="color"][data-pdf-export="download"] .pdf-export-canvas .md-typeset code,
+html[data-pdf-mode="color"][data-pdf-export="download"] .pdf-export-canvas .md-typeset pre,
+html[data-pdf-mode="color"][data-pdf-export="download"] .pdf-export-canvas .md-typeset pre code {
+  color: var(--md-code-fg-color) !important;
+}
+
 html[data-pdf-export="download"] .pdf-export-canvas .md-typeset h1,
 html[data-pdf-export="download"] .pdf-export-canvas .md-typeset h2,
 html[data-pdf-export="download"] .pdf-export-canvas .md-typeset h3,
@@ -523,6 +548,15 @@ html[data-pdf-export="download"] .pdf-export-canvas .md-typeset blockquote {
 
     const clone = target.cloneNode(true);
     clone.classList.add("pdf-export-canvas");
+    clone.setAttribute("data-md-color-scheme", "default");
+
+    if (document.body.dataset.mdColorPrimary) {
+      clone.setAttribute("data-md-color-primary", document.body.dataset.mdColorPrimary);
+    }
+
+    if (document.body.dataset.mdColorAccent) {
+      clone.setAttribute("data-md-color-accent", document.body.dataset.mdColorAccent);
+    }
 
     clone.querySelectorAll("#pdf-download-status").forEach((node) => node.remove());
 
