@@ -16,6 +16,9 @@ if ! python3 -m mkdocs --version &> /dev/null; then
     python3 -m pip install -r deps.txt
 fi
 
+echo "📚 Generating complete guide export..."
+python3 scripts/generate_complete_guide.py
+
 echo "🏗️  Building with MkDocs Material..."
 python3 -m mkdocs build -f mkdocs.yml -d "$SITE_DIR"
 

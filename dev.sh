@@ -15,6 +15,9 @@ if ! python3 -m mkdocs --version &> /dev/null; then
     python3 -m pip install -r deps.txt
 fi
 
+echo "📚 Generating complete guide export..."
+python3 scripts/generate_complete_guide.py
+
 # Release port
 if command -v lsof &> /dev/null; then
     lsof -ti:"$PORT" | xargs kill -9 2>/dev/null || true

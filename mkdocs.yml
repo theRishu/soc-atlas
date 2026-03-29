@@ -69,6 +69,7 @@ plugins:
 
 nav:
   - Home: index.md
+  - 📄 Download PDF: complete-guide.md
   - 🏛️ Fundamentals:
     - Introduction to Cybersecurity: fundamentals/introduction.md
     - CIA Triad & Founding Principles: fundamentals/cia_triad.md
