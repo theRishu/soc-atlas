@@ -19,15 +19,23 @@ else
     python3 -m mkdocs build -f zensical.yml -d site
 fi
 
-# FLAT ARCHITECTURE SYMLINKER: Automatically fix all 404s by aliasing nested files to root
-echo "🔗 Creating flat-link aliases for all documentation..."
+# FLAT ARCHITECTURE ALIASER: Physically mirror all nested index.html files at the root
+echo "📡 Aliasing all nested docs to the site root for global access..."
 cd site
 find . -maxdepth 3 -name "index.html" | while read -r file; do
+    # Get the parent directory name (e.g., risk_threat_intel)
     dir=$(dirname "$file" | sed 's|^./||')
+    
+    # If it's a nested doc, copy it to root so Vercel sees it at /dir
     if [ "$dir" != "." ]; then
-        ln -sf "$dir/index.html" "${dir}.html"
+        # Create a physical file at root (e.g., /risk_threat_intel.html)
+        cp "$file" "${dir}.html"
+        
+        # Also create a directory and copy to ensure /risk_threat_intel/ works
+        mkdir -p "$dir"
+        cp "$file" "$dir/index.html"
     fi
 done
 cd ..
 
-echo "✅ Compilation successful! The 'site/' folder is ready for global hosting."
+echo "✅ Compilation successful! All paths are now globally accessible."
