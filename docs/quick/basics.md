@@ -1,10 +1,10 @@
-# 1200 quick points
+# ⚡ Core Basics — Points 1–100
 
-This section is designed for fast revision. Each point gives you a short concept summary with practical context so you can revise quickly before interviews.
+The essential 100 concepts every security professional must know cold. These are the building blocks that come up in every interview, every shift, and every security conversation.
 { .page-lead }
 
-!!! note "Organization"
-    Points are grouped by primary domain (Fundamentals, Networking, Attacks, Defense, etc.) to keep related concepts together.
+!!! note "Format: No. → Concept → Interview Answer → Example / Tool"
+    Each row gives you the concept name, a one-sentence answer you can speak in an interview, and a concrete real-world example or tool.
 
 ---
 
