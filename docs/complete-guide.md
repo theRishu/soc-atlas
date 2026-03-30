@@ -6060,3 +6060,123 @@ The legal and compliance layer of cybersecurity is tested in every interview, ce
 | 1200. Continuous Improvement / Post-Mortem | The hallmark of a mature security programme: acknowledging that perfection is impossible, learning deeply from every incident, and engineering out the root causes. | Conducting a blameless post-mortem after an outage to ensure the automated detection rule is fixed for next time |
 
 </section>
+
+<section class="pdf-guide-section" data-pdf-section-group="career-roadmap" data-pdf-section-title="🚀 Career & Roadmap" markdown="1">
+
+<div id="guide-section-career-roadmap"></div>
+
+## 🚀 Career & Roadmap
+
+<div id="guide-page-career-roadmap"></div>
+
+### SOC Career Roadmap
+
+Transitioning into a Security Operations Center (SOC) role requires a blend of networking knowledge, OS fundamentals, and specialized security tool proficiency. This roadmap outlines the exact phases to go from zero to hire-ready.
+{ .page-lead }
+
+#### Phase 1: The Foundation (Month 1-2)
+Before touching security tools, you must understand the "plumbing" of the internet.
+- **Networking:** OSI Model, TCP/IP, DNS, DHCP, HTTP/S, and Subnetting.
+- **Operating Systems:** Linux command line (grep, awk, find, permissions) and Windows internals (Registry, Event Logs, Services).
+- **Virtualization:** Set up a home lab using VirtualBox or VMware. Install Kali Linux and a Windows Server trial.
+
+#### Phase 2: Security Concepts (Month 3)
+Learn the "why" behind defense.
+- **Frameworks:** NIST CSF, MITRE ATT&CK, and Cyber Kill Chain.
+- **Core Principles:** CIA Triad, Least Privilege, Defense in Depth.
+- **Attacks:** OWASP Top 10 (SQLi, XSS, CSRF) and common network attacks (Brute Force, MitM).
+
+#### Phase 3: The SOC Toolset (Month 4-5)
+The tools you will use every single shift.
+- **SIEM:** Learn to query logs in Splunk (Search Processing Language - SPL) or Microsoft Sentinel (Kusto Query Language - KQL).
+- **EDR:** Understand how CrowdStrike, SentinelOne, or Microsoft Defender for Endpoint detect behavior-based threats.
+- **Traffic Analysis:** Use Wireshark to analyze PCAP files and identify malicious patterns.
+
+#### Phase 4: Hands-on Practice (Month 6)
+Build a portfolio and prove your skills.
+- **TryHackMe / HackTheBox:** Complete the "SOC Level 1" and "Blue Team" paths.
+- **BTLO (Blue Team Labs Online):** Real-world investigation scenarios.
+- **Let'sDefend:** A simulated SOC environment with real alerts.
+
+#### Phase 5: Interview Prep (Month 7)
+- **Review Alert Playbooks:** Be able to explain exactly how you would triage a malware or phishing alert.
+- **1200 Quick Points:** Use the SOCAtlas Quick Revision path to master concise answers for technical questions.
+- **Soft Skills:** Practice explaining technical concepts to non-technical stakeholders (e.g., explaining a breach to a manager).
+
+<div id="guide-page-career-interview-prep"></div>
+
+### Interview Readiness
+
+Interviewing for a SOC role is not about knowing everything — it is about demonstrating a **systematic investigative mindset**. You must prove you can follow a process, document your logic, and prioritize alerts correctly.
+{ .page-lead }
+
+#### 🚦 Three Types of Interview Questions
+
+| Category | Goal | Example Question |
+|----------|------|------------------|
+| **Fundamental Knowledge** | Test your grasp of the basics. | "What is the difference between TCP and UDP?" |
+| **Scenario-Based** | Test your investigation process. | "We see 50 failed logins from an internal IP. What do you do?" |
+| **Cultural/Behavioral** | Test your fit within a high-pressure team. | "Explain a time you were wrong about a security alert." |
+
+#### 🧪 The "Investigation Framework"
+When asked a "What do you do?" question, NEVER start with containment. Always follow the **Triage → Investigation → Action** flow:
+1. **Verify (Triage):** Check the source, destination, and severity. Is this a false positive or true positive?
+2. **Contextualize (Investigation):** What is the source reputation? What is the user's role? What other alerts are firing around the same time?
+3. **Analyze (Mechanism):** Look for patterns — PowerShell encoded strings, large data transfers, or connections to unauthorized IPs.
+4. **Respond (Containment):** Isolate the host, disable the account, or block the IP *only after* verifying.
+
+#### 💼 Core Interview Questions (Quick Answers)
+
+!!! tip "Use the SOCAtlas Pattern: Define, Mechanism, Example, Control"
+
+- **"What happens when you type google.com?"**
+    - `DNS` resolution → `TCP 3-way handshake` → `TLS/SSL handshake` → `HTTP GET` request.
+- **"What is a SIEM?"**
+    - A centralized platform for `Security Information` (log storage) and `Event Management` (real-time correlation and alerting). Example: Splunk, Microsoft Sentinel.
+- **"Explain the OSI Model to a 5-year-old."**
+    - It is like the levels of building a toy house — you need a `Foundation` (cables), `Frames` (switches), `Address` (IPs), and `Final Paint` (the app you see).
+
+#### 🆘 If You Don't Know an Answer
+1. **Don't Guess:** Say "I haven't encountered that specific protocol/technique yet."
+2. **Show Your Methodology:** "However, I would investigate it by checking [Documentation/Google/PCAP] and looking for [Indicators]." This shows you can solve unknown problems.
+
+<div id="guide-page-career-tools-checklist"></div>
+
+### Tools Checklist
+
+What tools should you know? Every SOC is different, but they all use a common stack of defensive technologies. This checklist covers the industry standards.
+{ .page-lead }
+
+#### 📊 SIEM (Security Information & Event Management)
+The "Brain" of the SOC.
+- [ ] **Splunk:** Search Processing Language (SPL), dashboards, and alert logic.
+- [ ] **Microsoft Sentinel:** Kusto Query Language (KQL), workbooks, and playbooks.
+- [ ] **IBM QRadar / LogRhythm:** Core log correlation and investigation modules.
+- [ ] **ELK Stack (Elasticsearch, Logstash, Kibana):** Open-source log analysis and visualization.
+
+#### 🛡️ EDR (Endpoint Detection & Response)
+The "Eyes" on the host.
+- [ ] **CrowdStrike Falcon:** Process trees, RTR (Real Time Response), and Falcon Fusion.
+- [ ] **SentinelOne:** Static vs dynamic detection, rollbacks, and binary verification.
+- [ ] **Microsoft Defender for Endpoint:** Advanced hunting, device isolation, and timeline analysis.
+- [ ] **Carbon Black:** Cloud-native endpoint visibility and control.
+
+#### 🕸️ Network Security & Analysis
+- [ ] **Wireshark:** PCAP analysis, protocol disassembly, and flow graphing.
+- [ ] **Zeek / Suricata:** Network-based IDS/IPS logging and rule writing.
+- [ ] **Cisco Firepower / Palo Alto Networks:** Next-gen firewalls (NGFW) and App-ID rules.
+- [ ] **Burp Suite:** Web application proxying and automated vulnerability scanning.
+
+#### 📧 Email & Phishing
+- [ ] **Proofpoint / Mimecast:** Email gateway policies, rewritten URLs, and attachment sandboxing.
+- [ ] **Microsoft Defender for Office 365:** Global purge, spoofing detection, and user impact analysis.
+- [ ] **KnowBe4:** Phishing simulations and security awareness training.
+
+#### 🧪 Open Source & Investigation Tools
+- [ ] **VirusTotal:** Hash, IP, domain, and URL reputation.
+- [ ] **Cisco Talos Intelligence:** Global threat intelligence and reputation scoring.
+- [ ] **Any.run / Hatching Triage:** Interactive malware analysis and sandboxing.
+- [ ] **AbuseIPDB:** Community-driven IP reputation and blocklists.
+- [ ] **MXToolbox / Urlscan.io / CyberChef:** The Swiss army knives for security analysts.
+
+</section>

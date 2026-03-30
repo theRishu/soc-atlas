@@ -7,19 +7,6 @@ copyright: '&copy; 2025 SOCAtlas · Built for analysts, by analysts'
 
 theme:
   name: material
-  font:
-    text: Inter
-    code: JetBrains Mono
-  features:
-    - navigation.tabs
-    - navigation.tabs.sticky
-    - navigation.sections
-    - navigation.expand
-    - navigation.top
-    - navigation.footer
-    - search.suggest
-    - search.highlight
-    - content.code.copy
 
 markdown_extensions:
   - admonition
@@ -50,13 +37,14 @@ plugins:
   - search
 
 extra_css:
+  - assets/site-polish.css
   - assets/pdf-builder.css
   - assets/mobile-overflow-fixes.css
 
 extra_javascript:
-  - assets/default-theme.js
   - assets/pdf-builder.js
   - assets/mobile-table-cards.js
+  - assets/quick-tools.js
 
 nav:
   - Home: index.md
@@ -119,3 +107,7 @@ nav:
     - Advanced Topics (901–1000): quick/advanced.md
     - Incident & DR Operations (1001–1100): quick/incident.md
     - Expert Edge (1101–1200): quick/expert.md
+  - 🚀 Career & Roadmap:
+    - SOC Career Roadmap: career/roadmap.md
+    - Interview Readiness: career/interview_prep.md
+    - Tools Checklist: career/tools_checklist.md
