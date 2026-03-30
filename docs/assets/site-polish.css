@@ -14,9 +14,10 @@
 .md-header { background-color: var(--md-primary-fg-color); }
 h1, h2, h3 { font-weight: 800; letter-spacing: -0.02em; }
 
-/* 🛡️ NUCLEAR PURGE: All Mastery, Unlocking, and Autoplay UI */
+/* 🛡️ NUCLEAR PURGE: All Mastery, Unlocking, Autoplay UI, AND Sidebar Ticks */
 #soc-mastery-loader, [id^="guided-ctrl"], .mastery-dashboard:not(#socatlas-mastery-dashboard), 
-.quick-stats-card, #soc-splash-overlay, .soc-splash-overlay, .guided-footer-card, .guided-top-panel { 
+.quick-stats-card, #soc-splash-overlay, .soc-splash-overlay, .guided-footer-card, .guided-top-panel,
+.nav-check, span.nav-check, .md-nav__link .nav-check { 
   display: none !important; visibility: hidden !important; height: 0 !important; width: 0 !important; 
   margin: 0 !important; padding: 0 !important; opacity: 0 !important; pointer-events: none !important;
   z-index: -1000 !important; position: absolute !important; left: -9999px !important;
@@ -38,4 +39,3 @@ h1, h2, h3 { font-weight: 800; letter-spacing: -0.02em; }
 .md-typeset table:not([class]) { border-radius: 0.75rem; border: 1px solid #e2e8f0; }
 tr.point-mastered { background-color: #f0fdf4 !important; }
 .quick-point-check { transform: scale(1.2); cursor: pointer; accent-color: #0abf53; }
-.nav-check { font-weight: 800; font-size: 0.85em; margin-left: 0.4rem; }
