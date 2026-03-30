@@ -11,6 +11,7 @@ theme:
     - navigation.tracking
     - navigation.sections
     - navigation.tabs
+    - navigation.tabs.sticky
     - navigation.footer
     - navigation.instant
     - navigation.top
