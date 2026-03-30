@@ -1,79 +1,61 @@
-/* --- SOCAtlas Ultimate Typography & Design (Refined Navigation Edition) --- */
+/* --- SOCAtlas 'Classic Technical Book' Style (zguide mode) --- */
 
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap');
 
 :root {
-  --font-main: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-heading: 'Plus Jakarta Sans', sans-serif;
+  --font-main: 'Roboto', -apple-system, system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
   
-  --md-primary-fg-color: #4f46e5; /* Indigo 600 */
-  --md-primary-fg-color--dark: #3730a3;
-  --md-accent-fg-color: #10b981;
+  --md-primary-fg-color: #ffffff; /* White Header */
+  --md-primary-fg-color--dark: #f8fafc;
+  --md-accent-fg-color: #64748b;
 }
 
+/* 📖 Book-like Text Layout */
 body, .md-typeset { 
   font-family: var(--font-main); 
-  color: #1e293b; 
-  -webkit-font-smoothing: antialiased;
-  line-height: 1.6;
-  font-size: 0.8rem; /* Scaled down for more professional density */
+  color: #1a1a1a; 
+  line-height: 1.7;
+  font-size: 0.85rem;
 }
-
-h1, h2, h3, h4, .md-nav__title, .md-header__topic {
-  font-family: var(--font-heading);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  color: #0f172a;
-}
-
-h1 { font-size: 1.75rem; }
-h2 { font-size: 1.4rem; }
-h3 { font-size: 1.1rem; }
 
 .md-header { 
-  background-color: var(--md-primary-fg-color); 
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  background-color: #ffffff !important; 
+  color: #1a1a1a !important;
+  border-bottom: 2px solid #e2e8f0;
+  box-shadow: none !important;
 }
 
-.md-tabs { background-color: #f8fafc; border-bottom: 1px solid #e2e8f0; height: 2.2rem; }
-.md-tabs__link { color: #64748b !important; font-weight: 700; font-family: var(--font-heading); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.02em; }
-.md-tabs__link--active { color: var(--md-primary-fg-color) !important; }
+.md-header__title, .md-header__topic { color: #1a1a1a !important; font-weight: 800 !important; }
+.md-nav__title { color: #1a1a1a !important; font-weight: 800; border-bottom: 2px solid #f1f5f9; margin-bottom: 1rem; padding-bottom: 1rem; }
 
-/* 🧠 Knowledge Check Card Refinement */
-#soc-knowledge-check { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid #e2e8f0; }
-.knowledge-check-card {
-  padding: 1.25rem 1.5rem; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 1rem;
-  border-left: 4px solid var(--md-primary-fg-color);
+h1, h2, h3, h4 {
+  font-family: var(--font-main);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #000000;
+  border-bottom: none !important;
 }
-.card-badge { display: inline-block; padding: 0.2rem 0.6rem; background: #e0e7ff; color: #4338ca; border-radius: 99px; font-weight: 800; font-size: 0.6rem; text-transform: uppercase; margin-bottom: 0.25rem; }
-.knowledge-check-card h3 { margin: 0.25rem 0; color: #1e293b; font-size: 0.95rem; }
-.challenge-q { font-size: 0.9rem; font-weight: 600; color: #475569; font-style: italic; margin: 1rem 0; border-left: 2px solid #cbd5e1; padding-left: 1.25rem; line-height: 1.5; }
-.card-footer { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid rgba(0,0,0,0.05); }
-.card-footer span { font-weight: 600; color: #64748b; font-size: 0.75rem; }
-.card-footer a { margin: 0 !important; font-size: 0.7rem !important; padding: 0.4rem 0.8rem !important; }
 
-/* 🛡️ NUCLEAR PURGE: All Mastery, Unlocking, Autoplay UI, AND Sidebar Ticks */
+h1 { font-size: 2rem; margin-top: 0; }
+h2 { font-size: 1.5rem; margin-top: 2rem; border-bottom: 1px solid #f1f5f9 !important; padding-bottom: 0.5rem; }
+
+/* Purge Material Overlays and Clutter */
 #soc-mastery-loader, [id^="guided-ctrl"], .mastery-dashboard, 
 .quick-stats-card, #soc-splash-overlay, .soc-splash-overlay, .guided-footer-card, .guided-top-panel,
-.nav-check, span.nav-check, .md-nav__link .nav-check, #socatlas-mastery-dashboard { 
-  display: none !important; visibility: hidden !important; height: 0 !important; width: 0 !important; 
-  margin: 0 !important; padding: 0 !important; opacity: 0 !important; pointer-events: none !important;
-  z-index: -1000 !important; position: absolute !important; left: -9999px !important;
+.nav-check, span.nav-check, .md-nav__link .nav-check, #socatlas-mastery-dashboard, #soc-knowledge-check { 
+  display: none !important; visibility: hidden !important; 
 }
 
-/* Premium Table Styling */
+/* 📓 Classic Table Design */
 .md-typeset table:not([class]) { 
-  border-radius: 0.75rem; border: 1px solid #e2e8f0; overflow: hidden;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0; 
+  border-collapse: collapse;
 }
-.md-typeset thead { background-color: #f1f5f9; }
-.md-typeset th { font-family: var(--font-heading); font-weight: 700; text-transform: uppercase; font-size: 0.65rem; letter-spacing: 0.05em; color: #475569; }
+.md-typeset thead { background-color: #f8fafc; }
+.md-typeset th { border-bottom: 2px solid #e2e8f0; font-weight: 800; }
+.md-typeset td { border-bottom: 1px solid #f1f5f9; }
 
-tr.point-mastered { background-color: #f0fdf4 !important; }
-.quick-point-check { transform: scale(1.1); cursor: pointer; accent-color: #10b981; }
-
-.md-footer { border-top: 1px solid #e2e8f0; }
-.md-footer-nav__link { padding: 1rem 0; }
-.md-footer-nav__direction { font-family: var(--font-heading); text-transform: uppercase; font-weight: 700; font-size: 0.6rem; color: #94a3b8; letter-spacing: 0.02em; }
-.md-footer-nav__title { font-size: 0.9rem; font-weight: 700; }
+.md-footer { background-color: #ffffff; border-top: 2px solid #e2e8f0; padding: 2rem 0; }
+.md-footer-nav__direction { text-transform: uppercase; font-weight: 800; font-size: 0.7rem; color: #64748b; }
+.md-footer-nav__title { color: #000000; font-weight: 800; font-size: 1.1rem; }

@@ -7,10 +7,16 @@ copyright: '&copy; 2026 SOCAtlas (v3_Manual_Only)'
 
 theme:
   name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      primary: white
+      accent: grey
+    - media: "(prefers-color-scheme: dark)"
+      primary: grey
+      accent: grey
   features:
     - navigation.tracking
     - navigation.footer
-    - navigation.top
 
 markdown_extensions:
   - admonition
