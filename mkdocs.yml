@@ -18,6 +18,19 @@ theme:
     - navigation.tracking
     - navigation.footer
     - navigation.top
+  comments:
+    provider: giscus
+    repository: theRishu/socatlas
+    repository_id: R_kgDON-zFtw
+    category: Announcements
+    category_id: DIC_kwDON-zFt84CkIsY
+    mapping: pathname
+    strict: 0
+    reactions_enabled: 1
+    emit_metadata: 0
+    input_position: bottom
+    theme: light
+    lang: en
 
 markdown_extensions:
   - admonition
