@@ -8,15 +8,16 @@ copyright: '&copy; 2026 SOCAtlas (v3_Manual_Only)'
 theme:
   name: material
   palette:
-    - media: "(prefers-color-scheme: light)"
-      primary: white
-      accent: grey
-    - media: "(prefers-color-scheme: dark)"
-      primary: grey
-      accent: grey
+    - scheme: default
+      primary: indigo
+      accent: indigo
+    - scheme: slate
+      primary: indigo
+      accent: indigo
   features:
     - navigation.tracking
     - navigation.footer
+    - navigation.top
 
 markdown_extensions:
   - admonition
@@ -47,7 +48,6 @@ plugins:
   - search
 
 extra_css:
-  - assets/site-polish.css
   - assets/pdf-builder.css
   - assets/mobile-overflow-fixes.css
 
