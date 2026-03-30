@@ -1,8 +1,13 @@
 (function() {
-  /* --- SOCAtlas Pure Documentation Engine (v8.0 - Absolute Zero UI) --- */
+  /* --- SOCAtlas Absolute Purge Engine (v9.0 - Final) --- */
   
-  // All Progress Stats, Dashboards, Mastery Locks, and Ticks have been nuked.
-  // The system only handles silent "Auto-Next" navigation on manual scroll to bottom.
+  // 1. CLEAR ALL PREVIOUS PROGRESS TO KILL TICKS FOREVER
+  localStorage.removeItem('socatlas-progress-guided-pages');
+  localStorage.removeItem('socatlas-progress-quick-points');
+  localStorage.removeItem('socatlas-flow-enabled');
+  localStorage.clear(); // Nuclear option
+
+  console.log("SOCAtlas: Zero UI Mode Engaged. All progress data purged.");
 
   function getPathId(p) {
     if (!p) return 'none';
@@ -16,10 +21,8 @@
   function initStealthNext() {
     const pId = getPathId(window.location.pathname);
     if (pId === 'home' || pId === 'none' || window.location.pathname.includes('/quick/')) return;
-
     window.onscroll = () => {
         if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
-            // No progress marking, no ticks, no stats. Just move to next page.
             setTimeout(() => {
                 const next = document.querySelector('.md-footer__link--next');
                 if (next) next.click();
@@ -28,7 +31,15 @@
     };
   }
 
-  function start() { try { initStealthNext(); } catch (e) {} }
+  function start() { 
+    try { 
+        initStealthNext(); 
+        // Force-remove any existing tick elements just in case
+        document.querySelectorAll('.nav-check, .nav-checkmark, [class*="check"]').forEach(el => el.remove());
+    } catch (e) {} 
+  }
+  
   if (typeof window.document$ !== "undefined") window.document$.subscribe(start);
   else document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', start) : start();
+  setTimeout(start, 500);
 })();
