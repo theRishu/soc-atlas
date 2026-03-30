@@ -1,5 +1,5 @@
 (function() {
-  /* --- SOCAtlas Universal Progress Tracker --- */
+  /* --- SOCAtlas Universal Progress & Locking System --- */
   
   const STORAGE_PREFIX = 'socatlas-progress-';
   const QUICK_PATH_KEY = 'quick-points';
@@ -18,12 +18,39 @@
     } catch {}
   }
 
+  // --- Universal Path Normalizer ---
+  // Converts any URL (relative or absolute) to a unique root-relative ID
+  // e.g. "/socatlas/fundamentals/introduction.html" -> "fundamentals/introduction"
+  function getPathId(p) {
+    if (!p) return 'none';
+    let clean = p.split('#')[0].split('?')[0];
+    
+    // 1. Remove domain/protocol if present
+    if (clean.includes('://')) clean = new URL(clean).pathname;
+    
+    // 2. Remove base path segment if it exists (e.g. /socatlas/)
+    // This is useful for github pages or subpath deployments
+    const parts = clean.split('/').filter(Boolean);
+    if (parts[0] === 'socatlas') parts.shift();
+    
+    // 3. Clean extensions and precursors
+    clean = parts.join('/');
+    clean = clean.replace(/\.html$|\.md$/g, '');
+    
+    return clean || 'home';
+  }
+
   // --- 1. QUICK PATH LOGIC (Tables) ---
   function initQuickPath() {
     const content = document.querySelector('.md-content__inner');
     if (!content || !window.location.pathname.includes('/quick/')) return;
+    const pageId = getPathId(window.location.pathname);
+
+    // Prevent duplicate injection
+    if (document.getElementById('quick-stats-container')) return;
 
     const statsContainer = document.createElement('div');
+    statsContainer.id = 'quick-stats-container';
     statsContainer.className = 'quick-stats-card';
     statsContainer.innerHTML = `
       <div class="quick-stats-main">
@@ -44,7 +71,6 @@
     const firstTable = content.querySelector('table');
     content.insertBefore(statsContainer, firstTable || content.firstChild);
 
-    // Search wrap
     const searchWrapper = document.createElement('div');
     searchWrapper.className = 'quick-search-wrapper';
     searchWrapper.innerHTML = `
@@ -59,16 +85,19 @@
 
     tables.forEach((table, tIdx) => {
       const thead = table.querySelector('thead tr');
-      if (thead) {
+      if (thead && !thead.querySelector('.check-th')) {
         const th = document.createElement('th');
+        th.className = 'check-th';
         th.innerHTML = 'Done';
         th.style.width = '60px';
         thead.insertBefore(th, thead.firstChild);
       }
 
       table.querySelectorAll('tbody tr').forEach((row, rIdx) => {
+        if (row.querySelector('.quick-point-check')) return;
+        
         const pointMatch = row.cells[0]?.textContent.match(/^(\d+)/);
-        const pid = pointMatch ? pointMatch[1] : `p-${window.location.pathname}-${tIdx}-${rIdx}`;
+        const pid = pointMatch ? pointMatch[1] : `p-${pageId}-${tIdx}-${rIdx}`;
         
         const td = document.createElement('td');
         const cb = document.createElement('input');
@@ -97,40 +126,48 @@
     });
 
     function updatePageStats() {
-      const fresh = getStorage(QUICK_PATH_KEY);
       const checks = document.querySelectorAll('.quick-point-check');
       const onPageMastered = Array.from(checks).filter(c => c.checked).length;
       const pct = Math.round((onPageMastered / totalOnPage) * 100) || 0;
       
-      document.getElementById('quick-path-pct').textContent = pct + '%';
-      document.getElementById('quick-path-bar').style.width = pct + '%';
-      document.getElementById('quick-path-count').textContent = `${onPageMastered} of ${totalOnPage} points mastered on this page`;
+      const pctEl = document.getElementById('quick-path-pct');
+      const barEl = document.getElementById('quick-path-bar');
+      const countEl = document.getElementById('quick-path-count');
+      
+      if (pctEl) pctEl.textContent = pct + '%';
+      if (barEl) barEl.style.width = pct + '%';
+      if (countEl) countEl.textContent = `${onPageMastered} of ${totalOnPage} points mastered on this page`;
     }
 
-    // Search
-    document.getElementById('quick-page-search').addEventListener('input', (e) => {
-      const q = e.target.value.toLowerCase();
-      tables.forEach(t => {
-        t.querySelectorAll('tbody tr').forEach(r => {
-          r.style.display = r.textContent.toLowerCase().includes(q) ? '' : 'none';
+    const searchInput = document.getElementById('quick-page-search');
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        const q = e.target.value.toLowerCase();
+        tables.forEach(t => {
+          t.querySelectorAll('tbody tr').forEach(r => {
+            r.style.display = r.textContent.toLowerCase().includes(q) ? '' : 'none';
+          });
         });
       });
-    });
+    }
 
-    document.getElementById('quick-clear-page').addEventListener('click', () => {
-      if (confirm('Clear progress for this page?')) {
-        const fresh = getStorage(QUICK_PATH_KEY);
-        document.querySelectorAll('.quick-point-check').forEach(c => {
-          c.checked = false;
-          c.closest('tr').classList.remove('point-mastered');
-          const pm = c.closest('tr').cells[1]?.textContent.match(/^(\d+)/);
-          const pid = pm ? pm[1] : null;
-          if (pid) delete fresh[pid];
-        });
-        setStorage(QUICK_PATH_KEY, fresh);
-        updatePageStats();
-      }
-    });
+    const clearBtn = document.getElementById('quick-clear-page');
+    if (clearBtn) {
+      clearBtn.addEventListener('click', () => {
+        if (confirm('Clear progress for this page?')) {
+          const fresh = getStorage(QUICK_PATH_KEY);
+          document.querySelectorAll('.quick-point-check').forEach(c => {
+            c.checked = false;
+            c.closest('tr').classList.remove('point-mastered');
+            const pm = c.closest('tr').cells[1]?.textContent.match(/^(\d+)/);
+            const pid = pm ? pm[1] : null;
+            if (pid) delete fresh[pid];
+          });
+          setStorage(QUICK_PATH_KEY, fresh);
+          updatePageStats();
+        }
+      });
+    }
 
     updatePageStats();
   }
@@ -138,21 +175,22 @@
   // --- 2. GUIDED PATH LOGIC (Individual Pages) ---
   function initGuidedPath() {
     const content = document.querySelector('.md-content__inner');
-    const path = window.location.pathname;
+    const pathId = getPathId(window.location.pathname);
+    const stored = getStorage(GUIDED_PATH_KEY);
     
     // 2a. Indicators in Sidebar
-    const stored = getStorage(GUIDED_PATH_KEY);
     const navLinks = document.querySelectorAll('.md-nav__link');
-    
     navLinks.forEach(link => {
-      const linkPath = link.getAttribute('href');
-      if (!linkPath || linkPath === '/' || linkPath.includes('index.html')) return;
+      const href = link.getAttribute('href');
+      if (!href) return;
       
-      // Clean link path for matching
-      const cleanLinkPath = linkPath.replace(/^\./, '').split('#')[0];
-      const isNavDone = !!stored[cleanLinkPath] || !!stored[window.location.origin + cleanLinkPath] || !!stored[cleanLinkPath.replace('.html', '.md')];
-
-      // Remove existing check if any
+      // Resolve href against current location if it's relative
+      let absoluteLink = new URL(href, window.location.href).pathname;
+      const linkId = getPathId(absoluteLink);
+      
+      if (linkId === 'none' || linkId === 'home') return;
+      
+      const isNavDone = !!stored[linkId];
       const existing = link.querySelector('.nav-check');
       if (existing) existing.remove();
 
@@ -167,19 +205,19 @@
     });
 
     // 2b. Page Footer (Time-Gated Mark as Complete)
-    if (!content || path === '/' || path.includes('/quick/') || path.includes('index.html')) return;
+    if (!content || window.location.pathname.includes('/quick/') || pathId === 'home') return;
 
     const footerId = 'guided-completion-footer';
-    if (document.getElementById(footerId)) document.getElementById(footerId).remove();
+    const existingFooter = document.getElementById(footerId);
+    if (existingFooter) existingFooter.remove();
 
-    const isDone = !!stored[path];
+    const isDone = !!stored[pathId];
     
-    // Estimate Reading Time (200 words per minute, min 30 sec, max 5 min)
+    // Estimate Reading Time (200 words per minute, min 5 sec for testing)
     const wordCount = content.innerText.split(/\s+/).length;
     const estMinutes = wordCount / 200;
-    let waitSeconds = Math.max(30, Math.min(300, Math.round(estMinutes * 60)));
+    let waitSeconds = Math.max(5, Math.min(300, Math.round(estMinutes * 60)));
     
-    // If already done, no need to wait
     if (isDone) waitSeconds = 0;
 
     const footer = document.createElement('div');
@@ -188,43 +226,39 @@
     footer.innerHTML = `
       <div class="guided-footer-text">
         <h3>Finished this topic?</h3>
-        <p id="guided-timer-note">${isDone ? 'Topic mastered.' : 'Please take a moment to read the content before marking it as complete.'}</p>
+        <p id="guided-timer-note">${isDone ? 'Topic mastered.' : 'Take a moment to master this concept before completing.'}</p>
       </div>
       <button class="md-button ${isDone ? '' : 'md-button--primary'} guided-toggle-btn" ${!isDone && waitSeconds > 0 ? 'disabled' : ''}>
-        ${isDone ? '✓ Completed' : `Wait ${waitSeconds}s`}
+        ${isDone ? '✓ Completed' : `Unlock in ${waitSeconds}s`}
       </button>
     `;
 
     content.appendChild(footer);
 
     const btn = footer.querySelector('button');
-    let timer;
-
     if (!isDone && waitSeconds > 0) {
       let remaining = waitSeconds;
-      timer = setInterval(() => {
+      let timer = setInterval(() => {
         remaining--;
+        const timerEl = document.getElementById('guided-timer-note');
         if (remaining <= 0) {
           clearInterval(timer);
           btn.disabled = false;
           btn.textContent = 'Mark as Complete';
-          document.getElementById('guided-timer-note').textContent = 'Ready to mark as complete!';
+          if (timerEl) timerEl.textContent = 'Ready to mark as complete!';
         } else {
-          btn.textContent = `Wait ${remaining}s`;
+          btn.textContent = `Unlock in ${remaining}s`;
         }
       }, 1000);
     }
 
     btn.addEventListener('click', function() {
       const fresh = getStorage(GUIDED_PATH_KEY);
-      const isNowDone = !fresh[path];
-      if (isNowDone) fresh[path] = true; else delete fresh[path];
+      const isNowDone = !fresh[pathId];
+      if (isNowDone) fresh[pathId] = true; else delete fresh[pathId];
       setStorage(GUIDED_PATH_KEY, fresh);
       
-      this.textContent = isNowDone ? '✓ Completed' : 'Mark as Complete';
-      this.classList.toggle('md-button--primary', !isNowDone);
-      
-      // Re-run indicators to update sidebar immediately
+      // Update sidebar and dashboard
       initGuidedPath();
       if (typeof initDashboard === 'function') initDashboard();
     });
@@ -232,8 +266,7 @@
 
   // --- 3. HOMEPAGE DASHBOARD ---
   function initDashboard() {
-    const path = window.location.pathname;
-    const isHome = path === '/' || path.includes('index.html');
+    const isHome = getPathId(window.location.pathname) === 'home';
     if (!isHome) return;
 
     const dashId = 'socatlas-mastery-dashboard';
@@ -246,7 +279,7 @@
     }
 
     const quickTotal = 1200;
-    const guideTotal = 40; // Approx total pages in guide excluding home/quick
+    const guideTotal = 40;
     
     const quickMastered = Object.keys(getStorage(QUICK_PATH_KEY)).length;
     const guideMastered = Object.keys(getStorage(GUIDED_PATH_KEY)).length;
@@ -254,11 +287,8 @@
     const qPct = Math.min(100, Math.round((quickMastered / quickTotal) * 100));
     const gPct = Math.min(100, Math.round((guideMastered / guideTotal) * 100));
 
-    // Get last 3 completed for the dashboard
-    const completedList = Object.keys(getStorage(GUIDED_PATH_KEY))
-      .map(p => p.split('/').pop().replace('.html', '').replace(/_/g, ' '))
-      .filter(p => !['', 'index'].includes(p))
-      .slice(-3);
+    const completedEntries = Object.keys(getStorage(GUIDED_PATH_KEY));
+    const recent = completedEntries.slice(-3).map(id => id.split('/').pop().replace(/_/g, ' '));
 
     container.innerHTML = `
       <div class="mastery-dashboard">
@@ -271,7 +301,7 @@
             <span class="mastery-pct">${gPct}%</span>
             <div class="mastery-bar-bg"><div class="mastery-bar-fill" style="width: ${gPct}%"></div></div>
             <span class="mastery-meta">${guideMastered} of ${guideTotal} topics complete</span>
-            ${completedList.length ? `<div class="mastery-recent">Recently: ${completedList.join(', ')}</div>` : ''}
+            ${recent.length ? `<div class="mastery-recent">Recently: ${recent.join(', ')}</div>` : ''}
           </div>
         </div>
         <div class="mastery-card">
@@ -283,7 +313,7 @@
             <span class="mastery-pct">${qPct}%</span>
             <div class="mastery-bar-bg" style="--bar-color: #0abf53"><div class="mastery-bar-fill" style="width: ${qPct}%; background: #0abf53"></div></div>
             <span class="mastery-meta">${quickMastered} of ${quickTotal} points mastered</span>
-            <div class="mastery-recent">Across 12 focused domains</div>
+            <div class="mastery-recent">Active revision through 12 domains</div>
           </div>
         </div>
       </div>
@@ -302,4 +332,3 @@
     start();
   }
 })();
-
