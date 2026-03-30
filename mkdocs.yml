@@ -7,6 +7,9 @@ copyright: '&copy; 2025 SOCAtlas · Built for analysts, by analysts'
 
 theme:
   name: material
+  font:
+    text: Inter
+    code: JetBrains Mono
   features:
     - navigation.tabs
     - navigation.tabs.sticky
