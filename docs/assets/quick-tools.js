@@ -213,7 +213,7 @@
 
     const isDone = !!stored[pathId];
     
-    // Estimate Reading Time (200 words per minute, min 5 sec for testing)
+    // Estimate Reading Time (200 words per minute, min 5 sec)
     const wordCount = content.innerText.split(/\s+/).length;
     const estMinutes = wordCount / 200;
     let waitSeconds = Math.max(5, Math.min(300, Math.round(estMinutes * 60)));
@@ -226,31 +226,74 @@
     footer.innerHTML = `
       <div class="guided-footer-text">
         <h3>Finished this topic?</h3>
-        <p id="guided-timer-note">${isDone ? 'Topic mastered.' : 'Take a moment to master this concept before completing.'}</p>
+        <p id="guided-timer-note">${isDone ? 'Topic mastered.' : 'Take a moment to master this concept.'}</p>
       </div>
-      <button class="md-button ${isDone ? '' : 'md-button--primary'} guided-toggle-btn" ${!isDone && waitSeconds > 0 ? 'disabled' : ''}>
-        ${isDone ? '✓ Completed' : `Unlock in ${waitSeconds}s`}
-      </button>
+      <div class="guided-footer-controls">
+        <label class="guided-flow-toggle">
+          <input type="checkbox" id="guided-flow-checkbox">
+          <span>Guided Flow (Autoplay)</span>
+        </label>
+        <button class="md-button ${isDone ? '' : 'md-button--primary'} guided-toggle-btn" ${!isDone && waitSeconds > 0 ? 'disabled' : ''}>
+          ${isDone ? '✓ Completed' : `Unlock in ${waitSeconds}s`}
+        </button>
+      </div>
     `;
 
     content.appendChild(footer);
 
-    const btn = footer.querySelector('button');
+    const btn = footer.querySelector('.guided-toggle-btn');
+    const flowCheck = document.getElementById('guided-flow-checkbox');
+    let timer;
+    let scrollInterval;
+
+    // Load flow preference
+    if (localStorage.getItem('socatlas-flow-enabled') === 'true') {
+      flowCheck.checked = true;
+      startFlow();
+    }
+
+    function startFlow() {
+      if (isDone) return;
+      // Slower scroll for reading
+      scrollInterval = setInterval(() => {
+        window.scrollBy({ top: 1, behavior: 'auto' });
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {
+          clearInterval(scrollInterval);
+        }
+      }, 50); // 1px every 50ms = 20px per sec
+    }
+
     if (!isDone && waitSeconds > 0) {
       let remaining = waitSeconds;
-      let timer = setInterval(() => {
+      timer = setInterval(() => {
         remaining--;
         const timerEl = document.getElementById('guided-timer-note');
         if (remaining <= 0) {
           clearInterval(timer);
+          clearInterval(scrollInterval);
           btn.disabled = false;
           btn.textContent = 'Mark as Complete';
           if (timerEl) timerEl.textContent = 'Ready to mark as complete!';
+          
+          // AUTO-COMPLETE IF FLOW ENABLED
+          if (flowCheck.checked) {
+            btn.click();
+            // Find next link
+            setTimeout(() => {
+                const nextLink = document.querySelector('.md-footer__link--next');
+                if (nextLink) nextLink.click();
+            }, 1500);
+          }
         } else {
           btn.textContent = `Unlock in ${remaining}s`;
         }
       }, 1000);
     }
+
+    flowCheck.addEventListener('change', (e) => {
+      localStorage.setItem('socatlas-flow-enabled', e.target.checked);
+      if (e.target.checked) startFlow(); else clearInterval(scrollInterval);
+    });
 
     btn.addEventListener('click', function() {
       const fresh = getStorage(GUIDED_PATH_KEY);
@@ -258,7 +301,6 @@
       if (isNowDone) fresh[pathId] = true; else delete fresh[pathId];
       setStorage(GUIDED_PATH_KEY, fresh);
       
-      // Update sidebar and dashboard
       initGuidedPath();
       if (typeof initDashboard === 'function') initDashboard();
     });

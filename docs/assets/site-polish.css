@@ -43,14 +43,39 @@ tr.point-mastered { background-color: #ecfdf5 !important; }
 .guided-footer-text h3 { margin: 0; color: #334155; }
 .guided-footer-text p { margin: 0.25rem 0 0; color: #64748b; font-size: 0.9rem; }
 
+/* Guided Path Footer Controls */
+.guided-footer-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.75rem;
+}
+
+.guided-flow-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #64748b;
+  cursor: pointer;
+}
+
+.guided-flow-toggle input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--md-primary-fg-color);
+}
+
 /* Home Mastery Dashboard */
 .mastery-dashboard { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 2rem 0; }
-.mastery-card { padding: 1.5rem; background: #fff; border: 1px solid #e2e8f0; border-radius: 1.25rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+.mastery-card { padding: 1.5rem; background: #fff; border: 1px solid #e2e8f0; border-radius: 1.25rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
 .mastery-card-header { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; }
 .mastery-badge { background: #ede9fe; color: #5b21b6; padding: 0.2rem 0.5rem; border-radius: 0.4rem; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; }
 .mastery-pct { font-size: 2.2rem; font-weight: 800; color: #1e293b; }
 .mastery-bar-bg { height: 8px; background: #f1f5f9; border-radius: 99px; margin: 0.5rem 0; overflow: hidden; }
 .mastery-bar-fill { height: 100%; background: #635bff; transition: width 0.8s ease-in-out; }
+
 .mastery-meta {
   font-size: 0.8rem;
   color: #64748b;
