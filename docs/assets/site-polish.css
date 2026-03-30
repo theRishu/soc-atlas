@@ -14,16 +14,19 @@
 .md-header { background-color: var(--md-primary-fg-color); }
 h1, h2, h3 { font-weight: 800; letter-spacing: -0.02em; }
 
-/* Purge all custom UI relics including the top-bar loader */
-#soc-mastery-loader, [id^="guided-ctrl"], .mastery-dashboard, .quick-stats-card, #soc-splash-overlay, .soc-splash-overlay { 
+/* 🛡️ NUCLEAR PURGE: All Mastery, Unlocking, and Autoplay UI */
+#soc-mastery-loader, [id^="guided-ctrl"], .mastery-dashboard:not(#socatlas-mastery-dashboard), 
+.quick-stats-card, #soc-splash-overlay, .soc-splash-overlay, .guided-footer-card, .guided-top-panel { 
   display: none !important; visibility: hidden !important; height: 0 !important; width: 0 !important; 
   margin: 0 !important; padding: 0 !important; opacity: 0 !important; pointer-events: none !important;
+  z-index: -1000 !important; position: absolute !important; left: -9999px !important;
 }
 
-/* Redefine Home Page Dashboard (Cleanly) */
+/* 📊 Home Page Dashboard (The only allowed stats UI) */
 #socatlas-mastery-dashboard { 
   display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 2rem 0; 
   visibility: visible !important; display: grid !important; height: auto !important; width: auto !important;
+  position: relative !important; left: auto !important;
 }
 .mastery-card { padding: 1.5rem; background: #fff; border: 1px solid #e2e8f0; border-radius: 1.25rem; }
 .mastery-badge { background: #f5f3ff; color: #6d28d9; padding: 0.2rem 0.5rem; border-radius: 0.4rem; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; }
@@ -35,3 +38,4 @@ h1, h2, h3 { font-weight: 800; letter-spacing: -0.02em; }
 .md-typeset table:not([class]) { border-radius: 0.75rem; border: 1px solid #e2e8f0; }
 tr.point-mastered { background-color: #f0fdf4 !important; }
 .quick-point-check { transform: scale(1.2); cursor: pointer; accent-color: #0abf53; }
+.nav-check { font-weight: 800; font-size: 0.85em; margin-left: 0.4rem; }
