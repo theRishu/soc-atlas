@@ -9,11 +9,7 @@ theme:
   name: material
   features:
     - navigation.tracking
-    - navigation.sections
-    - navigation.tabs
-    - navigation.tabs.sticky
     - navigation.footer
-    - navigation.instant
     - navigation.top
 
 markdown_extensions:
