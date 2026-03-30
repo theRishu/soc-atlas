@@ -1,4 +1,4 @@
-/* --- SOCAtlas Ultimate Design System --- */
+/* --- SOCAtlas Success Engine Design (Manual Edition) --- */
 
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=JetBrains+Mono:wght@400;600&display=swap');
 
@@ -15,47 +15,9 @@
 h1, h2, h3 { font-weight: 800; letter-spacing: -0.02em; }
 
 /* Sticky Loader Bar */
-#soc-mastery-loader { position: fixed; top: 0; left: 0; height: 4px; background: #0abf53; z-index: 10000; width: 0%; transition: width 1s linear; box-shadow: 0 0 15px rgba(10,191,83,0.6); }
+#soc-mastery-loader { position: fixed; top: 0; left: 0; height: 4px; background: #0abf53; z-index: 10000; width: 0%; transition: width 1s linear; }
 
-/* --- Splash Screen --- */
-#soc-splash-overlay {
-  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-  background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(12px);
-  z-index: 20000; display: flex; align-items: center; justify-content: center;
-  animation: splashFadeIn 0.4s ease-out;
-}
-
-@keyframes splashFadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-.soc-splash-card {
-  width: 90%; max-width: 600px; padding: 3rem; background: #fff;
-  border-radius: 2rem; border: 1px solid rgba(255, 255, 255, 0.2);
-  text-align: center; box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.5);
-}
-
-.soc-splash-card h1 { font-size: 2.2rem; margin-bottom: 0.5rem; color: #1e293b; }
-.soc-splash-card p { color: #64748b; margin-bottom: 2.5rem; font-size: 1.1rem; }
-
-.soc-splash-options { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
-
-.soc-splash-btn {
-  padding: 1.5rem; background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 1.25rem;
-  cursor: pointer; transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); text-align: left;
-}
-
-.soc-splash-btn:hover { border-color: #635bff; background: #f5f3ff; transform: scale(1.03); }
-.soc-splash-btn .btn-icon { font-size: 2rem; margin-bottom: 1rem; }
-.soc-splash-btn h3 { font-size: 1.1rem; margin: 0; color: #1e293b; }
-.soc-splash-btn span { font-size: 0.8rem; color: #64748b; }
-
-.btn-secondary:hover { border-color: #0abf53 !important; background: #f0fdf4 !important; }
-
-.soc-splash-dismiss {
-  background: none; border: none; color: #94a3b8; font-weight: 700;
-  cursor: pointer; text-decoration: underline; font-size: 0.9rem;
-}
-
-/* --- Mastery Panels (Fixed Clutter) --- */
+/* Mastery Panels (Simplified No-Play Edition) */
 .guided-footer-card {
   margin: 1.5rem 0; padding: 1.25rem 1.75rem; 
   background: #fff; border: 1px solid #e2e8f0; border-radius: 1.25rem;
@@ -68,24 +30,6 @@ h1, h2, h3 { font-weight: 800; letter-spacing: -0.02em; }
 .guided-footer-left h3 { font-size: 1.1rem; margin: 0; color: #1e293b; }
 .guided-footer-left p { margin: 0; font-size: 0.85rem; color: #64748b; font-weight: 600; }
 
-.guided-footer-right { display: flex; align-items: center; gap: 1rem; }
-
-.flow-pill {
-  display: flex; align-items: center; gap: 0.75rem; background: #f1f5f9;
-  padding: 0.4rem 0.6rem; border-radius: 99px; border: 1px solid #e2e8f0;
-}
-
-.flow-play-btn {
-  width: 32px; height: 32px; border: none; border-radius: 50%;
-  background: #fff; color: #635bff; font-weight: 800; cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: all 0.2s;
-}
-
-.flow-play-btn.active { background: #0abf53; color: #fff; }
-
-.speed-slider { width: 60px; accent-color: #635bff; }
-.speed-val { font-size: 0.8rem; font-weight: 800; color: #635bff; min-width: 25px; }
-
 .guided-toggle-btn { margin: 0 !important; font-weight: 700 !important; }
 
 /* Dashboard */
@@ -97,7 +41,7 @@ h1, h2, h3 { font-weight: 800; letter-spacing: -0.02em; }
 .mastery-bar-bg { height: 8px; background: #f1f5f9; border-radius: 99px; margin-top: 0.5rem; overflow: hidden; }
 .mastery-bar-fill { height: 100%; background: #635bff; transition: width 0.8s; }
 
-/* --- Quick Table --- */
+/* Quick Table */
 .quick-stats-card { margin: 1rem 0 2rem; padding: 1.25rem; background: #fff; border: 1px solid #e2e8f0; border-radius: 1rem; }
 .quick-stats-main { display: flex; align-items: center; gap: 1.25rem; }
 .quick-stats-progress-bg { flex-grow: 1; height: 8px; background: #f1f5f9; border-radius: 9px; overflow: hidden; }
