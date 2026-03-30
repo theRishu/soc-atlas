@@ -3,7 +3,7 @@ site_url: https://socatlas.vercel.app/
 use_directory_urls: false
 site_description: SOCAtlas — 1200 interview-ready cybersecurity quick points, real SOC alert playbooks, major attack breakdowns, and complete study guides for analysts and engineers.
 site_author: SOCAtlas
-copyright: '&copy; 2025 SOCAtlas · Built for analysts, by analysts'
+copyright: '&copy; 2026 SOCAtlas (v3_Manual_Only)'
 
 theme:
   name: material

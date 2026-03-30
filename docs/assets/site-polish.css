@@ -14,8 +14,24 @@
 .md-header { background-color: var(--md-primary-fg-color); }
 h1, h2, h3 { font-weight: 800; letter-spacing: -0.02em; }
 
-/* Purge all custom UI relics */
+/* Purge all custom UI relics including the top-bar loader */
 #soc-mastery-loader, [id^="guided-ctrl"], .mastery-dashboard, .quick-stats-card, #soc-splash-overlay, .soc-splash-overlay { 
   display: none !important; visibility: hidden !important; height: 0 !important; width: 0 !important; 
   margin: 0 !important; padding: 0 !important; opacity: 0 !important; pointer-events: none !important;
 }
+
+/* Redefine Home Page Dashboard (Cleanly) */
+#socatlas-mastery-dashboard { 
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 2rem 0; 
+  visibility: visible !important; display: grid !important; height: auto !important; width: auto !important;
+}
+.mastery-card { padding: 1.5rem; background: #fff; border: 1px solid #e2e8f0; border-radius: 1.25rem; }
+.mastery-badge { background: #f5f3ff; color: #6d28d9; padding: 0.2rem 0.5rem; border-radius: 0.4rem; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; }
+.mastery-pct { font-size: 2.2rem; font-weight: 800; color: #1e293b; }
+.mastery-bar-bg { height: 8px; background: #f1f5f9; border-radius: 99px; margin-top: 0.5rem; overflow: hidden; }
+.mastery-bar-fill { height: 100%; background: #635bff; transition: width 0.8s; }
+
+/* Table Cleanup */
+.md-typeset table:not([class]) { border-radius: 0.75rem; border: 1px solid #e2e8f0; }
+tr.point-mastered { background-color: #f0fdf4 !important; }
+.quick-point-check { transform: scale(1.2); cursor: pointer; accent-color: #0abf53; }
