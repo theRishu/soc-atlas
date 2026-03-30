@@ -1,5 +1,5 @@
 (function() {
-  /* --- SOCAtlas Ultra-Premium Progress & Autoflow Engine --- */
+  /* --- SOCAtlas Ultra-Premium Progress & Autoflow Engine (Speed-Synced Timer) --- */
   
   const STORAGE_PREFIX = 'socatlas-progress-';
   const QUICK_PATH_KEY = 'quick-points';
@@ -86,6 +86,7 @@
     };
 
     let scrollInterval;
+    let timerInterval;
     const getS = () => parseInt(localStorage.getItem('socatlas-flow-speed') || '1');
     const isF = () => localStorage.getItem('socatlas-flow-enabled') === 'true';
 
@@ -99,16 +100,24 @@
     function sync() {
         const d = !!getStorage(GUIDED_PATH_KEY)[pathId];
         els.play.forEach(b => { b.classList.toggle('active', isF()); b.querySelector('.icon').textContent = isF() ? '⏸' : '▶'; if (d) b.style.display = 'none'; });
-        els.btns.forEach(b => { b.textContent = d ? '✓ Topic Mastered' : (waitSeconds > 0 ? `Unlocking... (${waitSeconds}s)` : 'Finish Lesson'); b.classList.toggle('md-button--primary', !d); b.disabled = (waitSeconds > 0 && !d); });
-        els.notes.forEach(n => n.textContent = d ? 'Concept mastered.' : (waitSeconds > 0 ? (isF() ? 'Analyzing engagement (Autoplay ON)...' : 'Study to unlock.') : 'Ready to certify.'));
+        els.btns.forEach(b => { 
+            b.textContent = d ? '✓ Topic Mastered' : (waitSeconds > 0 ? `Unlocking... (${Math.ceil(waitSeconds)}s)` : 'Finish Lesson'); 
+            b.classList.toggle('md-button--primary', !d); 
+            b.disabled = (waitSeconds > 0 && !d); 
+        });
+        els.notes.forEach(n => n.textContent = d ? 'Concept mastered.' : (waitSeconds > 0 ? (isF() ? `Analyzing engagement (${getS()}x Speed)...` : 'Study to unlock.') : 'Ready to certify.'));
         if (maxWait > 0 && !d) els.loader.style.width = Math.min(100, Math.round(((maxWait - waitSeconds) / maxWait) * 100)) + '%'; else els.loader.style.width = '0%';
     }
 
-    if (waitSeconds > 0) {
-        const timer = setInterval(() => {
-            waitSeconds--;
+    if (waitSeconds > 0 && !isDone) {
+        timerInterval = setInterval(() => {
+            // Speed affects timer decrement!
+            const reduction = isF() ? getS() : 1;
+            waitSeconds -= reduction;
+            
             if (waitSeconds <= 0) {
-                clearInterval(timer); clearInterval(scrollInterval);
+                waitSeconds = 0;
+                clearInterval(timerInterval); clearInterval(scrollInterval);
                 if (isF()) { els.btns[0].click(); setTimeout(() => { const n = document.querySelector('.md-footer__link--next'); if (n) n.click(); }, 1500); }
             }
             sync();
@@ -116,7 +125,7 @@
     }
 
     els.play.forEach(b => b.onclick = () => { localStorage.setItem('socatlas-flow-enabled', !isF()); runFlow(); sync(); });
-    els.speed.forEach(s => s.oninput = (e) => { localStorage.setItem('socatlas-flow-speed', e.target.value); els.speed.forEach(x => x.value = e.target.value); els.speedTxt.forEach(x => x.textContent = e.target.value + 'x'); if (isF()) runFlow(); });
+    els.speed.forEach(s => s.oninput = (e) => { localStorage.setItem('socatlas-flow-speed', e.target.value); els.speed.forEach(x => x.value = e.target.value); els.speedTxt.forEach(x => x.textContent = e.target.value + 'x'); if (isF()) runFlow(); sync(); });
     els.btns.forEach(b => b.onclick = () => { const fr = getStorage(GUIDED_PATH_KEY); if (!fr[pathId]) fr[pathId] = true; else delete fr[pathId]; setStorage(GUIDED_PATH_KEY, fr); sync(); updateSidebar(); if (typeof initDashboard === 'function') initDashboard(); });
 
     if (isF() && !isDone) runFlow();
