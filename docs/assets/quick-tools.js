@@ -1,5 +1,5 @@
 (function() {
-  /* --- SOCAtlas Universal Progress & Locking System --- */
+  /* --- SOCAtlas Universal Progress & Locking System (Flow & Speed Control) --- */
   
   const STORAGE_PREFIX = 'socatlas-progress-';
   const QUICK_PATH_KEY = 'quick-points';
@@ -18,68 +18,37 @@
     } catch {}
   }
 
-  // --- Universal Path Normalizer ---
-  // Converts any URL (relative or absolute) to a unique root-relative ID
-  // e.g. "/socatlas/fundamentals/introduction.html" -> "fundamentals/introduction"
   function getPathId(p) {
     if (!p) return 'none';
-    let clean = p.split('#')[0].split('?')[0];
-    
-    // 1. Remove domain/protocol if present
-    if (clean.includes('://')) clean = new URL(clean).pathname;
-    
-    // 2. Remove base path segment if it exists (e.g. /socatlas/)
-    // This is useful for github pages or subpath deployments
-    const parts = clean.split('/').filter(Boolean);
-    if (parts[0] === 'socatlas') parts.shift();
-    
-    // 3. Clean extensions and precursors
-    clean = parts.join('/');
-    clean = clean.replace(/\.html$|\.md$/g, '');
-    
-    return clean || 'home';
+    try {
+        let clean = p.split('#')[0].split('?')[0];
+        if (clean.includes('://')) clean = new URL(clean).pathname;
+        let parts = clean.split('/').filter(Boolean);
+        if (parts[0] === 'socatlas') parts.shift();
+        clean = parts.join('/');
+        clean = clean.replace(/\.html$|\.md$/g, '').replace(/\/index$/, '');
+        return clean || 'home';
+    } catch (e) {
+        return 'none';
+    }
   }
 
-  // --- 1. QUICK PATH LOGIC (Tables) ---
+  // --- 1. QUICK PATH ---
   function initQuickPath() {
     const content = document.querySelector('.md-content__inner');
     if (!content || !window.location.pathname.includes('/quick/')) return;
     const pageId = getPathId(window.location.pathname);
-
-    // Prevent duplicate injection
     if (document.getElementById('quick-stats-container')) return;
 
     const statsContainer = document.createElement('div');
     statsContainer.id = 'quick-stats-container';
     statsContainer.className = 'quick-stats-card';
-    statsContainer.innerHTML = `
-      <div class="quick-stats-main">
-        <div class="quick-stats-info">
-          <span class="quick-stats-label">Quick Path Mastery</span>
-          <h2 class="quick-stats-value" id="quick-path-pct">0%</h2>
-        </div>
-        <div class="quick-stats-progress-bg">
-          <div class="quick-stats-progress-fill" id="quick-path-bar" style="width: 0%"></div>
-        </div>
-      </div>
-      <div class="quick-stats-meta">
-        <span id="quick-path-count">0 of 0 points mastered</span>
-        <button id="quick-clear-page" class="quick-stats-btn">Reset Page</button>
-      </div>
-    `;
+    statsContainer.innerHTML = `<div class="quick-stats-main"><div class="quick-stats-info"><span class="quick-stats-label">Quick Path Mastery</span><h2 class="quick-stats-value" id="quick-path-pct">0%</h2></div><div class="quick-stats-progress-bg"><div class="quick-stats-progress-fill" id="quick-path-bar" style="width: 0%"></div></div></div><div class="quick-stats-meta"><span id="quick-path-count">0 points mastered</span><button id="quick-clear-page" class="quick-stats-btn">Reset Page</button></div>`;
     
-    const firstTable = content.querySelector('table');
-    content.insertBefore(statsContainer, firstTable || content.firstChild);
+    const target = content.querySelector('table') || content.querySelector('h1') || content.firstChild;
+    content.insertBefore(statsContainer, target);
 
-    const searchWrapper = document.createElement('div');
-    searchWrapper.className = 'quick-search-wrapper';
-    searchWrapper.innerHTML = `
-      <input type="text" id="quick-page-search" placeholder="Filter these points..." class="quick-search-input">
-      <span class="quick-search-icon">🔍</span>
-    `;
-    content.insertBefore(searchWrapper, statsContainer);
-
-    const tables = content.querySelectorAll('table');
+    const tables = document.querySelectorAll('.md-content__inner table');
     const stored = getStorage(QUICK_PATH_KEY);
     let totalOnPage = 0;
 
@@ -95,30 +64,21 @@
 
       table.querySelectorAll('tbody tr').forEach((row, rIdx) => {
         if (row.querySelector('.quick-point-check')) return;
-        
         const pointMatch = row.cells[0]?.textContent.match(/^(\d+)/);
         const pid = pointMatch ? pointMatch[1] : `p-${pageId}-${tIdx}-${rIdx}`;
-        
         const td = document.createElement('td');
         const cb = document.createElement('input');
         cb.type = 'checkbox';
         cb.className = 'quick-point-check';
         cb.checked = !!stored[pid];
         if (cb.checked) row.classList.add('point-mastered');
-
-        cb.addEventListener('change', () => {
+        cb.onchange = () => {
           const fresh = getStorage(QUICK_PATH_KEY);
-          if (cb.checked) {
-            fresh[pid] = true;
-            row.classList.add('point-mastered');
-          } else {
-            delete fresh[pid];
-            row.classList.remove('point-mastered');
-          }
+          if (cb.checked) { fresh[pid] = true; row.classList.add('point-mastered'); } 
+          else { delete fresh[pid]; row.classList.remove('point-mastered'); }
           setStorage(QUICK_PATH_KEY, fresh);
           updatePageStats();
-        });
-
+        };
         td.appendChild(cb);
         row.insertBefore(td, row.firstChild);
         totalOnPage++;
@@ -129,188 +89,155 @@
       const checks = document.querySelectorAll('.quick-point-check');
       const onPageMastered = Array.from(checks).filter(c => c.checked).length;
       const pct = Math.round((onPageMastered / totalOnPage) * 100) || 0;
-      
-      const pctEl = document.getElementById('quick-path-pct');
-      const barEl = document.getElementById('quick-path-bar');
-      const countEl = document.getElementById('quick-path-count');
-      
-      if (pctEl) pctEl.textContent = pct + '%';
-      if (barEl) barEl.style.width = pct + '%';
-      if (countEl) countEl.textContent = `${onPageMastered} of ${totalOnPage} points mastered on this page`;
+      document.getElementById('quick-path-pct').textContent = pct + '%';
+      document.getElementById('quick-path-bar').style.width = pct + '%';
+      document.getElementById('quick-path-count').textContent = `${onPageMastered} of ${totalOnPage} points mastered`;
     }
-
-    const searchInput = document.getElementById('quick-page-search');
-    if (searchInput) {
-      searchInput.addEventListener('input', (e) => {
-        const q = e.target.value.toLowerCase();
-        tables.forEach(t => {
-          t.querySelectorAll('tbody tr').forEach(r => {
-            r.style.display = r.textContent.toLowerCase().includes(q) ? '' : 'none';
-          });
-        });
-      });
-    }
-
     const clearBtn = document.getElementById('quick-clear-page');
     if (clearBtn) {
-      clearBtn.addEventListener('click', () => {
-        if (confirm('Clear progress for this page?')) {
-          const fresh = getStorage(QUICK_PATH_KEY);
-          document.querySelectorAll('.quick-point-check').forEach(c => {
-            c.checked = false;
-            c.closest('tr').classList.remove('point-mastered');
-            const pm = c.closest('tr').cells[1]?.textContent.match(/^(\d+)/);
-            const pid = pm ? pm[1] : null;
-            if (pid) delete fresh[pid];
-          });
-          setStorage(QUICK_PATH_KEY, fresh);
-          updatePageStats();
-        }
-      });
+      clearBtn.onclick = () => {
+        if (!confirm('Reset progress?')) return;
+        const fresh = getStorage(QUICK_PATH_KEY);
+        document.querySelectorAll('.quick-point-check').forEach(c => {
+          c.checked = false;
+          c.closest('tr').classList.remove('point-mastered');
+          const pm = c.closest('tr').cells[1]?.textContent.match(/^(\d+)/);
+          const pid = pm ? pm[1] : null;
+          if (pid) delete fresh[pid];
+        });
+        setStorage(QUICK_PATH_KEY, fresh);
+        updatePageStats();
+      };
     }
-
     updatePageStats();
   }
 
-  // --- 2. GUIDED PATH LOGIC (Individual Pages) ---
+  // --- 2. GUIDED PATH + AUTOFLOW ---
   function initGuidedPath() {
     const content = document.querySelector('.md-content__inner');
     const pathId = getPathId(window.location.pathname);
     const stored = getStorage(GUIDED_PATH_KEY);
     
-    // 2a. Indicators in Sidebar
-    const navLinks = document.querySelectorAll('.md-nav__link');
-    navLinks.forEach(link => {
+    // Sidebar update
+    document.querySelectorAll('.md-nav__link').forEach(link => {
       const href = link.getAttribute('href');
-      if (!href) return;
-      
-      // Resolve href against current location if it's relative
-      let absoluteLink = new URL(href, window.location.href).pathname;
-      const linkId = getPathId(absoluteLink);
-      
-      if (linkId === 'none' || linkId === 'home') return;
-      
-      const isNavDone = !!stored[linkId];
+      if (!href || href === '#' || href === '') return;
+      const absPath = new URL(href, window.location.href).pathname;
+      const id = getPathId(absPath);
       const existing = link.querySelector('.nav-check');
       if (existing) existing.remove();
-
-      if (isNavDone) {
+      if (stored[id]) {
         const check = document.createElement('span');
         check.className = 'nav-check';
         check.innerHTML = ' ✓';
         check.style.color = '#0abf53';
-        check.style.fontWeight = '800';
         link.appendChild(check);
       }
     });
 
-    // 2b. Page Footer (Time-Gated Mark as Complete)
     if (!content || window.location.pathname.includes('/quick/') || pathId === 'home') return;
-
-    const footerId = 'guided-completion-footer';
-    const existingFooter = document.getElementById(footerId);
-    if (existingFooter) existingFooter.remove();
+    if (document.getElementById('guided-completion-footer')) return;
 
     const isDone = !!stored[pathId];
-    
-    // Estimate Reading Time (200 words per minute, min 5 sec)
-    const wordCount = content.innerText.split(/\s+/).length;
-    const estMinutes = wordCount / 200;
-    let waitSeconds = Math.max(5, Math.min(300, Math.round(estMinutes * 60)));
-    
-    if (isDone) waitSeconds = 0;
+    const wordCount = content.innerText.split(/\s+/).length || 100;
+    let waitSeconds = isDone ? 0 : Math.max(5, Math.min(300, Math.round(wordCount / 200 * 60)));
 
     const footer = document.createElement('div');
-    footer.id = footerId;
+    footer.id = 'guided-completion-footer';
     footer.className = 'guided-footer-card';
     footer.innerHTML = `
-      <div class="guided-footer-text">
-        <h3>Finished this topic?</h3>
-        <p id="guided-timer-note">${isDone ? 'Topic mastered.' : 'Take a moment to master this concept.'}</p>
-      </div>
+      <div class="guided-footer-text"><h3>Learning Mastery</h3><p id="guided-timer-note"></p></div>
       <div class="guided-footer-controls">
-        <label class="guided-flow-toggle">
-          <input type="checkbox" id="guided-flow-checkbox">
-          <span>Guided Flow (Autoplay)</span>
-        </label>
-        <button class="md-button ${isDone ? '' : 'md-button--primary'} guided-toggle-btn" ${!isDone && waitSeconds > 0 ? 'disabled' : ''}>
-          ${isDone ? '✓ Completed' : `Unlock in ${waitSeconds}s`}
-        </button>
+        <div class="guided-flow-settings">
+          <label class="guided-flow-toggle"><input type="checkbox" id="guided-flow-checkbox"> <span>Guided Autoplay</span></label>
+          <div class="guided-speed-wrapper">
+            <span class="speed-label">Speed:</span>
+            <input type="range" id="guided-speed-slider" min="1" max="5" value="1" step="1">
+            <span id="speed-val">1x</span>
+          </div>
+        </div>
+        <button class="md-button guided-toggle-btn" ${waitSeconds > 0 ? 'disabled' : ''}></button>
       </div>
     `;
-
     content.appendChild(footer);
 
     const btn = footer.querySelector('.guided-toggle-btn');
+    const note = document.getElementById('guided-timer-note');
     const flowCheck = document.getElementById('guided-flow-checkbox');
-    let timer;
+    const speedSlider = document.getElementById('guided-speed-slider');
+    const speedVal = document.getElementById('speed-val');
     let scrollInterval;
 
-    // Load flow preference
-    if (localStorage.getItem('socatlas-flow-enabled') === 'true') {
-      flowCheck.checked = true;
-      startFlow();
-    }
+    // Persist flow enabled
+    if (localStorage.getItem('socatlas-flow-enabled') === 'true') flowCheck.checked = true;
+    
+    // Persist speed preference
+    const savedSpeed = localStorage.getItem('socatlas-flow-speed') || '1';
+    speedSlider.value = savedSpeed;
+    speedVal.textContent = savedSpeed + 'x';
 
     function startFlow() {
-      if (isDone) return;
-      // Slower scroll for reading
+      clearInterval(scrollInterval);
+      if (isDone || !flowCheck.checked) return;
+      const speed = parseInt(speedSlider.value) || 1;
+      // Faster scrolling = shorter interval
+      const intervalMs = Math.max(10, 60 - (speed * 10)); // 1x=50ms, 5x=10ms
       scrollInterval = setInterval(() => {
-        window.scrollBy({ top: 1, behavior: 'auto' });
-        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {
-          clearInterval(scrollInterval);
-        }
-      }, 50); // 1px every 50ms = 20px per sec
+        window.scrollBy(0, 1);
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) clearInterval(scrollInterval);
+      }, intervalMs);
     }
 
-    if (!isDone && waitSeconds > 0) {
-      let remaining = waitSeconds;
-      timer = setInterval(() => {
-        remaining--;
-        const timerEl = document.getElementById('guided-timer-note');
-        if (remaining <= 0) {
-          clearInterval(timer);
-          clearInterval(scrollInterval);
+    function updateUI() {
+      const currentDone = !!getStorage(GUIDED_PATH_KEY)[pathId];
+      btn.textContent = currentDone ? '✓ Completed' : (waitSeconds > 0 ? `Unlocking... (${waitSeconds}s)` : 'Mark as Complete');
+      btn.classList.toggle('md-button--primary', !currentDone);
+      note.textContent = currentDone ? 'Concept mastered. Moving to the next lesson...' : (waitSeconds > 0 ? 'Analyzing engagement...' : 'Ready to certify this topic.');
+    }
+
+    if (waitSeconds > 0) {
+      const timer = setInterval(() => {
+        waitSeconds--;
+        if (waitSeconds <= 0) {
+          clearInterval(timer); clearInterval(scrollInterval);
           btn.disabled = false;
-          btn.textContent = 'Mark as Complete';
-          if (timerEl) timerEl.textContent = 'Ready to mark as complete!';
-          
-          // AUTO-COMPLETE IF FLOW ENABLED
           if (flowCheck.checked) {
-            btn.click();
-            // Find next link
-            setTimeout(() => {
-                const nextLink = document.querySelector('.md-footer__link--next');
-                if (nextLink) nextLink.click();
-            }, 1500);
+              btn.click();
+              setTimeout(() => { const n = document.querySelector('.md-footer__link--next'); if (n) n.click(); }, 1500);
           }
-        } else {
-          btn.textContent = `Unlock in ${remaining}s`;
         }
+        updateUI();
       }, 1000);
     }
 
-    flowCheck.addEventListener('change', (e) => {
+    flowCheck.onchange = (e) => {
       localStorage.setItem('socatlas-flow-enabled', e.target.checked);
       if (e.target.checked) startFlow(); else clearInterval(scrollInterval);
-    });
+    };
 
-    btn.addEventListener('click', function() {
+    speedSlider.oninput = (e) => {
+      speedVal.textContent = e.target.value + 'x';
+      localStorage.setItem('socatlas-flow-speed', e.target.value);
+      if (flowCheck.checked) startFlow();
+    };
+
+    btn.onclick = () => {
       const fresh = getStorage(GUIDED_PATH_KEY);
-      const isNowDone = !fresh[pathId];
-      if (isNowDone) fresh[pathId] = true; else delete fresh[pathId];
+      if (!fresh[pathId]) fresh[pathId] = true; else delete fresh[pathId];
       setStorage(GUIDED_PATH_KEY, fresh);
-      
-      initGuidedPath();
+      updateUI();
+      initGuidedPath(); // Refesh sidebar
       if (typeof initDashboard === 'function') initDashboard();
-    });
+    };
+
+    if (flowCheck.checked && !isDone) startFlow();
+    updateUI();
   }
 
   // --- 3. HOMEPAGE DASHBOARD ---
   function initDashboard() {
     const isHome = getPathId(window.location.pathname) === 'home';
     if (!isHome) return;
-
     const dashId = 'socatlas-mastery-dashboard';
     let container = document.getElementById(dashId);
     if (!container) {
@@ -319,58 +246,25 @@
       const hero = document.querySelector('.hero-actions') || document.querySelector('h1');
       if (hero) hero.insertAdjacentElement('afterend', container);
     }
-
-    const quickTotal = 1200;
-    const guideTotal = 40;
-    
-    const quickMastered = Object.keys(getStorage(QUICK_PATH_KEY)).length;
-    const guideMastered = Object.keys(getStorage(GUIDED_PATH_KEY)).length;
-    
-    const qPct = Math.min(100, Math.round((quickMastered / quickTotal) * 100));
-    const gPct = Math.min(100, Math.round((guideMastered / guideTotal) * 100));
-
-    const completedEntries = Object.keys(getStorage(GUIDED_PATH_KEY));
-    const recent = completedEntries.slice(-3).map(id => id.split('/').pop().replace(/_/g, ' '));
-
+    if (!container) return;
+    const qCount = Object.keys(getStorage(QUICK_PATH_KEY)).length;
+    const gCount = Object.keys(getStorage(GUIDED_PATH_KEY)).length;
+    const qPct = Math.round((qCount / 1200) * 100);
+    const gPct = Math.round((gCount / 40) * 100);
+    const recent = Object.keys(getStorage(GUIDED_PATH_KEY)).slice(-2).map(id => id.split('/').pop().replace(/_/g, ' '));
     container.innerHTML = `
       <div class="mastery-dashboard">
-        <div class="mastery-card">
-          <div class="mastery-card-header">
-            <span class="mastery-badge">Guided Path</span>
-            <h3>Progress Summary</h3>
-          </div>
-          <div class="mastery-stats">
-            <span class="mastery-pct">${gPct}%</span>
-            <div class="mastery-bar-bg"><div class="mastery-bar-fill" style="width: ${gPct}%"></div></div>
-            <span class="mastery-meta">${guideMastered} of ${guideTotal} topics complete</span>
-            ${recent.length ? `<div class="mastery-recent">Recently: ${recent.join(', ')}</div>` : ''}
-          </div>
-        </div>
-        <div class="mastery-card">
-          <div class="mastery-card-header">
-            <span class="mastery-badge">Quick Points</span>
-            <h3>Progress Summary</h3>
-          </div>
-          <div class="mastery-stats">
-            <span class="mastery-pct">${qPct}%</span>
-            <div class="mastery-bar-bg" style="--bar-color: #0abf53"><div class="mastery-bar-fill" style="width: ${qPct}%; background: #0abf53"></div></div>
-            <span class="mastery-meta">${quickMastered} of ${quickTotal} points mastered</span>
-            <div class="mastery-recent">Active revision through 12 domains</div>
-          </div>
-        </div>
+        <div class="mastery-card"><div class="mastery-card-header"><span class="mastery-badge">Guided Roadmap</span><h3>Engagement Path</h3></div><div class="mastery-stats"><span class="mastery-pct">${gPct}%</span><div class="mastery-bar-bg"><div class="mastery-bar-fill" style="width: ${gPct}%"></div></div><span class="mastery-meta">${gCount} topics complete</span>${recent.length ? `<div class="mastery-recent">Latest: ${recent.join(', ')}</div>` : ''}</div></div>
+        <div class="mastery-card"><div class="mastery-card-header"><span class="mastery-badge" style="background:#d1fae5;color:#065f46">Revision Pack</span><h3>Knowledge Pack</h3></div><div class="mastery-stats"><span class="mastery-pct">${qPct}%</span><div class="mastery-bar-bg" style="background:#f0fdf4"><div class="mastery-bar-fill" style="width: ${qPct}%;background:#10b981"></div></div><span class="mastery-meta">${qCount} points mastered</span></div></div>
       </div>
     `;
   }
 
   function start() {
-    initQuickPath();
-    initGuidedPath();
-    initDashboard();
+    try { initQuickPath(); initGuidedPath(); initDashboard(); } catch (e) {}
   }
 
-  if (window.document$ && typeof window.document$.subscribe === "function") {
-    window.document$.subscribe(() => start());
-  } else {
-    start();
-  }
+  if (typeof window.document$ !== "undefined" && window.document$ !== null) { window.document$.subscribe(start); }
+  else if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', start); }
+  else { start(); }
 })();
