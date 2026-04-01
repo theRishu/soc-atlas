@@ -7,17 +7,31 @@ copyright: "&copy; 2026 SOCAtlas (v3_Manual_Only)"
 
 theme:
   name: material
+  favicon: assets/favicon.ico
   palette:
     - scheme: default
-      primary: indigo
-      accent: indigo
+      primary: teal # Try teal or deep purple for a unique look
+      accent: teal
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
     - scheme: slate
-      primary: indigo
-      accent: indigo
+      primary: teal
+      accent: teal
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
   features:
-    - navigation.tracking
-    - navigation.footer
-    - navigation.top
+    - navigation.tabs # Horizontal top nav
+    - navigation.tabs.sticky # Keeps tabs on top
+    - navigation.tracking # Updates URL on scroll
+    - navigation.sections # Better sidebar grouping
+    - navigation.top # "Back to top" button
+    - navigation.footer # Improved footer navigation
+    - search.suggest # Live search results
+    - search.highlight # Highlight searched text
+    - content.code.copy # Copy button for code blocks
+    - header.autohide # Cleaner reading experience
 
 markdown_extensions:
   - admonition
