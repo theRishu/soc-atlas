@@ -1,0 +1,47 @@
+[
+  {
+    "slug": "start-here",
+    "title": "Start Here",
+    "count": 2
+  },
+  {
+    "slug": "fundamentals",
+    "title": "\ud83c\udfdb\ufe0f Fundamentals",
+    "count": 4
+  },
+  {
+    "slug": "networking",
+    "title": "\ud83c\udf10 Networking",
+    "count": 4
+  },
+  {
+    "slug": "major-attacks-directory",
+    "title": "\ud83c\udff4\u200d\u2620\ufe0f Major Attacks Directory",
+    "count": 10
+  },
+  {
+    "slug": "detection-defense",
+    "title": "\ud83d\udee1\ufe0f Detection & Defense",
+    "count": 6
+  },
+  {
+    "slug": "governance-compliance",
+    "title": "\u2696\ufe0f Governance & Compliance",
+    "count": 4
+  },
+  {
+    "slug": "soc-alerts-scenarios",
+    "title": "\ud83d\udea8 SOC Alerts & Scenarios",
+    "count": 12
+  },
+  {
+    "slug": "1200-quick-points",
+    "title": "\u26a1 1200 Quick Points",
+    "count": 12
+  },
+  {
+    "slug": "career-roadmap",
+    "title": "\ud83d\ude80 Career & Roadmap",
+    "count": 3
+  }
+]

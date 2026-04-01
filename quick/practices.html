@@ -1,0 +1,3286 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="SOCAtlas — 1200 interview-ready cybersecurity quick points, real SOC alert playbooks, major attack breakdowns, and complete study guides for analysts and engineers.">
+      
+      
+        <meta name="author" content="SOCAtlas">
+      
+      
+        <link rel="canonical" href="https://socatlas.vercel.app/quick/practices.html">
+      
+      
+        <link rel="prev" href="tools.html">
+      
+      
+        <link rel="next" href="domains.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Security Practices (401–500) - SOCAtlas</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/pdf-builder.css">
+    
+      <link rel="stylesheet" href="../assets/mobile-overflow-fixes.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#security-practices-points-401500" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="SOCAtlas" class="md-header__button md-logo" aria-label="SOCAtlas" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SOCAtlas
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Security Practices (401–500)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../fundamentals/introduction.html" class="md-tabs__link">
+          
+  
+  
+  🏛️ Fundamentals
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../networking/basics.html" class="md-tabs__link">
+          
+  
+  
+  🌐 Networking
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../threats/vulnerabilities.html" class="md-tabs__link">
+          
+  
+  
+  🏴‍☠️ Major Attacks Directory
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../defense/ids_ips.html" class="md-tabs__link">
+          
+  
+  
+  🛡️ Detection & Defense
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../governance/compliance.html" class="md-tabs__link">
+          
+  
+  
+  ⚖️ Governance & Compliance
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../alerts/general.html" class="md-tabs__link">
+          
+  
+  
+  🚨 SOC Alerts & Scenarios
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="basics.html" class="md-tabs__link">
+          
+  
+  
+  ⚡ 1200 Quick Points
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../career/roadmap.html" class="md-tabs__link">
+          
+  
+  
+  🚀 Career & Roadmap
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../mods.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🛠️ Proposals & Staging
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="SOCAtlas" class="md-nav__button md-logo" aria-label="SOCAtlas" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    SOCAtlas
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏛️ Fundamentals
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🏛️ Fundamentals
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fundamentals/introduction.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction to Cybersecurity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fundamentals/cia_triad.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CIA Triad & Founding Principles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fundamentals/encryption.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Encryption & Key Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fundamentals/hashing.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hashing & Data Integrity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🌐 Networking
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🌐 Networking
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../networking/basics.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Networking Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../networking/osi_tcpip.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OSI & TCP/IP Models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../networking/aaa_dns_dhcp.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Identity — AAA, DNS, DHCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../networking/vpn_firewall.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security — VPN, Firewall, Proxy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏴‍☠️ Major Attacks Directory
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🏴‍☠️ Major Attacks Directory
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../threats/vulnerabilities.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vulnerabilities & Risk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../threats/cyber_threats.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cyber Threats Landscape
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../threats/social_engineering.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Social Engineering
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../attack/xss.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cross-Site Scripting (XSS)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../attack/sqli.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQL Injection (SQLi)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../attack/csrf.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cross-Site Request Forgery (CSRF)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../attack/ssrf.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Server-Side Request Forgery (SSRF)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../attack/mitm.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Man-in-the-Middle (MitM)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../attack/arp_spoofing.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ARP Spoofing (Poisoning)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../attack/dos.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Denial of Service (DoS)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🛡️ Detection & Defense
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🛡️ Detection & Defense
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../defense/ids_ips.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IDS & IPS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../defense/siem_soar.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SIEM & SOAR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../defense/soc.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SOC — Security Operations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../defense/edr_xdr.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EDR, XDR & MDR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../defense/kill_chain.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cyber Kill Chain
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../defense/incident_response.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Incident Response
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ⚖️ Governance & Compliance
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ⚖️ Governance & Compliance
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../governance/compliance.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compliance & Regulatory Floor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../frameworks.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security Frameworks (NIST & ISO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../governance/risk_threat_intel.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Risk & Threat Intelligence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../governance/ioc_ioa_mitre.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TTPs — IOC, IOA & MITRE ATT&CK
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🚨 SOC Alerts & Scenarios
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🚨 SOC Alerts & Scenarios
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../alerts/general.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    General Alert Handling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../alerts/malware.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Malware Infection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../alerts/ransomware.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ransomware Attack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../alerts/phishing.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phishing & Email
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../alerts/ddos.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DDoS Attack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../alerts/brute_force.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Brute Force & Spray
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../alerts/crowdstrike.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CrowdStrike (EDR) Alert
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../alerts/impossible_travel.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Impossible Travel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../alerts/powershell.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Suspicious PowerShell
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../alerts/data_exfil.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Exfiltration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../alerts/sqli.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQL Injection (WAF)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../alerts/priv_esc.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Privilege Escalation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ⚡ 1200 Quick Points
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ⚡ 1200 Quick Points
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="basics.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core Basics (1–100)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fundamentals.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Identity & Auth (101–200)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="attacks.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Attacker Tactics (201–300)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="tools.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools & Commands (301–400)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security Practices (401–500)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="practices.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security Practices (401–500)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#authentication-access-controls-401430" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔑 Authentication &amp; Access Controls (401–430)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#encryption-patching-and-monitoring-431470" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🛡️ Encryption, Patching, and Monitoring (431–470)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#physical-training-governance-461500" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🏢 Physical, Training &amp; Governance (461–500)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="domains.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domains & Kill Chain (501–600)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cloud.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cloud & Infrastructure (601–700)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cryptography.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cryptography (701–800)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="laws.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Laws & Global Standards (801–900)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="advanced.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Topics (901–1000)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="incident.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Incident & DR Operations (1001–1100)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="expert.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Expert Edge (1101–1200)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🚀 Career & Roadmap
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🚀 Career & Roadmap
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../career/roadmap.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SOC Career Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../career/interview_prep.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Readiness
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../career/tools_checklist.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mods.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🛠️ Proposals & Staging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#authentication-access-controls-401430" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔑 Authentication &amp; Access Controls (401–430)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#encryption-patching-and-monitoring-431470" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🛡️ Encryption, Patching, and Monitoring (431–470)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#physical-training-governance-461500" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🏢 Physical, Training &amp; Governance (461–500)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="security-practices-points-401500">⚡ Security Practices — Points 401–500</h1>
+<div class="admonition note">
+<p class="admonition-title">Format: Point &amp; Concept → Interview Answer → Example / Tool</p>
+<p>Each row gives you a clean definition you can say in an interview, plus a real-world example or tool.</p>
+</div>
+<hr />
+<h2 id="authentication-access-controls-401430">🔑 Authentication &amp; Access Controls (401–430)</h2>
+<table>
+<thead>
+<tr>
+<th>Point &amp; Concept</th>
+<th>Interview Answer</th>
+<th>Example / Tool</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>401. Strong Password Policy</td>
+<td>Enforcing length, uniqueness, and checking against breached databases to prevent credential guessing.</td>
+<td>Entra ID blocking passwords on the banned password list</td>
+</tr>
+<tr>
+<td>402. Password Complexity</td>
+<td>Requiring mixed character types to increase the mathematical difficulty of brute-core cracking.</td>
+<td>Policy requiring uppercase, lowercase, numbers, and symbols</td>
+</tr>
+<tr>
+<td>403. Password Length</td>
+<td>The most critical factor in password strength; longer passwords defeat brute-force exponentially better than complex short ones.</td>
+<td>Minimum 14 characters for admin accounts</td>
+</tr>
+<tr>
+<td>404. Password Rotation</td>
+<td>Forcing users to change passwords periodically — though modern guidelines advise against this unless a breach is suspected.</td>
+<td>NIST SP 800-63B recommends ending arbitrary 90-day rotations</td>
+</tr>
+<tr>
+<td>405. Password Hashing</td>
+<td>Storing credentials using a one-way mathematical function so the original plaintext is never saved.</td>
+<td>Argon2id, bcrypt, or PBKDF2</td>
+</tr>
+<tr>
+<td>406. Password Salting</td>
+<td>Adding random data to a password before hashing to defeat pre-computed rainbow table attacks.</td>
+<td>A unique 16-byte salt appended to each user's password before hashing</td>
+</tr>
+<tr>
+<td>407. MFA Usage</td>
+<td>Verifying identity using at least two independent factors: something you know, have, or are.</td>
+<td>Password (know) + YubiKey hardware token (have)</td>
+</tr>
+<tr>
+<td>408. Biometric Auth</td>
+<td>Using physical or behavioural characteristics to verify identity (something you are).</td>
+<td>Windows Hello face recognition or Apple Touch ID</td>
+</tr>
+<tr>
+<td>409. Token-Based Auth</td>
+<td>Issuing a short-lived digital token after login that the user presents for subsequent authentication without sending credentials again.</td>
+<td>OAuth 2.0 access token or signed JWT</td>
+</tr>
+<tr>
+<td>410. Secure Login</td>
+<td>A sign-in process protected by encryption, rate limiting, MFA, and secure session generation.</td>
+<td>Authenticating over TLS 1.3 with anti-CSRF tokens</td>
+</tr>
+<tr>
+<td>411. Account Lockout</td>
+<td>Automatically disabling an account for a set period after too many failed login attempts to stop brute-forcing.</td>
+<td>Account locked for 15 minutes after 5 bad attempts</td>
+</tr>
+<tr>
+<td>412. Session Timeout</td>
+<td>Automatically killing an active session after a period of inactivity to reduce the risk of session hijacking.</td>
+<td>Banking app logging out after 10 minutes idle</td>
+</tr>
+<tr>
+<td>413. Secure Session</td>
+<td>Protecting session identifiers so they cannot be intercepted, stolen, or replayed by attackers.</td>
+<td>Setting <code>HttpOnly</code> and <code>Secure</code> flags on session cookies</td>
+</tr>
+<tr>
+<td>414. Least Privilege</td>
+<td>Giving users and services only the absolute minimum permissions required to perform their job.</td>
+<td>Developer gets read access to logs, but no access to customer data</td>
+</tr>
+<tr>
+<td>415. Need-to-Know</td>
+<td>Restricting access to sensitive information strictly to those whose current duties require it, regardless of clearance.</td>
+<td>Only the lead investigator has access to a live forensic image</td>
+</tr>
+<tr>
+<td>416. RBAC (Role-Based)</td>
+<td>Grouping permissions into defined roles and assigning users to the roles, rather than assigning permissions directly.</td>
+<td>"Helpdesk" role has password reset rights; "Analyst" role only has read-access</td>
+</tr>
+<tr>
+<td>417. ABAC (Attribute-Based)</td>
+<td>Making access decisions based on the context of the user, device, environment, and data sensitivity.</td>
+<td>Allowing access only from a managed laptop during business hours</td>
+</tr>
+<tr>
+<td>418. MAC (Mandatory)</td>
+<td>A strict access model where the system enforces clearance levels and labels; users cannot change permissions.</td>
+<td>Top Secret data access using SELinux in government networks</td>
+</tr>
+<tr>
+<td>419. DAC (Discretionary)</td>
+<td>An access model where the creator or owner of a file decides who else is allowed to access it.</td>
+<td>Standard Windows NTFS file permissions where owner grants read/write</td>
+</tr>
+<tr>
+<td>420. Privilege Escalation Prevention</td>
+<td>Controls that stop a user or process from gaining higher-level rights than they were initially assigned.</td>
+<td>Removing local admin rights and enforcing UAC (User Account Control)</td>
+</tr>
+<tr>
+<td>421. Network Segmentation</td>
+<td>Dividing a network into separate zones isolated by firewalls to prevent lateral movement.</td>
+<td>Guest WiFi completely segregated from the corporate LAN</td>
+</tr>
+<tr>
+<td>422. Micro-segmentation</td>
+<td>Isolating workloads down to the individual host or container level, usually in cloud or virtualised environments.</td>
+<td>VMware NSX restricting a web server from talking to any other web server</td>
+</tr>
+<tr>
+<td>423. Zero Trust</td>
+<td>Removing implicit trust; every access request is authenticated and authorised regardless of network location.</td>
+<td>BeyondCorp model where enterprise apps are accessed without a VPN</td>
+</tr>
+<tr>
+<td>424. Firewall Config</td>
+<td>Defining rule sets that block all traffic by default and explicitly allow only required business traffic.</td>
+<td>Denying all inbound traffic except ports 80 and 443</td>
+</tr>
+<tr>
+<td>425. IDS Config</td>
+<td>Setting up sensors to monitor network traffic for malicious signatures or anomalous behaviour and generate alerts.</td>
+<td>Snort or Suricata inspecting traffic on a SPAN port</td>
+</tr>
+<tr>
+<td>426. IPS Config</td>
+<td>Deploying sensors inline so they can actively drop malicious packets before they reach the target.</td>
+<td>Palo Alto threat prevention dropping an exploit payload</td>
+</tr>
+<tr>
+<td>427. Secure Network Design</td>
+<td>Architecting the network with DMZs, segmentation, and choke points to isolate untrusted traffic.</td>
+<td>Placing web servers in a DMZ and databases in a locked-down internal zone</td>
+</tr>
+<tr>
+<td>428. VPN Implementation</td>
+<td>Creating an encrypted tunnel over the internet to allow remote workers secure access to internal systems.</td>
+<td>OpenVPN or WireGuard terminating at a secure gateway</td>
+</tr>
+<tr>
+<td>429. Secure WiFi Setup</td>
+<td>Protecting wireless networks using strong encryption, RADIUS authentication, and physical access controls.</td>
+<td>WPA3-Enterprise authenticating clients against Active Directory</td>
+</tr>
+<tr>
+<td>430. WPA3</td>
+<td>The latest Wi-Fi security standard using Simultaneous Authentication of Equals (SAE) to defeat offline dictionary attacks.</td>
+<td>Replacing WPA2-PSK to protect against KRACK attacks</td>
+</tr>
+</tbody>
+</table>
+<h2 id="encryption-patching-and-monitoring-431470">🛡️ Encryption, Patching, and Monitoring (431–470)</h2>
+<table>
+<thead>
+<tr>
+<th>Point &amp; Concept</th>
+<th>Interview Answer</th>
+<th>Example / Tool</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>431. Encryption at Rest</td>
+<td>Encrypting data while it is stored on disk so it cannot be read if the physical media is stolen.</td>
+<td>BitLocker for Windows laptops or AES-256 for AWS S3 buckets</td>
+</tr>
+<tr>
+<td>432. Encryption in Transit</td>
+<td>Encrypting data as it moves across a network to prevent interception and eavesdropping.</td>
+<td>TLS 1.3 protecting HTTPS traffic between browser and server</td>
+</tr>
+<tr>
+<td>433. Full Disk Encryption</td>
+<td>Encrypting the entire storage drive, including the OS, swap space, and temporary files.</td>
+<td>FileVault 2 on macOS</td>
+</tr>
+<tr>
+<td>434. File-Level Encryption</td>
+<td>Encrypting specific files or folders rather than the whole disk, allowing granular access controls.</td>
+<td>EFS (Encrypting File System) on Windows or GPG for sensitive documents</td>
+</tr>
+<tr>
+<td>435. Key Management Policy</td>
+<td>Rules governing how encryption keys are generated, stored, rotated, and destroyed securely.</td>
+<td>Requiring asymmetric keys to be rotated annually</td>
+</tr>
+<tr>
+<td>436. Secure Key Storage</td>
+<td>Storing cryptographic keys in isolated, tamper-resistant environments away from the data they encrypt.</td>
+<td>AWS KMS or an on-premise Hardware Security Module (HSM)</td>
+</tr>
+<tr>
+<td>437. PKI (Public Key Infra)</td>
+<td>The framework of hardware, software, roles, and policies needed to create, manage, and revoke digital certificates.</td>
+<td>An internal Microsoft CA issuing certificates to corporate devices</td>
+</tr>
+<tr>
+<td>438. Certificate Management</td>
+<td>Tracking the issuance and expiry of TLS certificates to prevent unexpected system outages.</td>
+<td>Using Venafi to monitor and auto-renew certificates before expiry</td>
+</tr>
+<tr>
+<td>439. Secure Communication</td>
+<td>Ensuring that endpoints verify each other's identity and encrypt their exchange securely.</td>
+<td>Mutual TLS (mTLS) where both client and server present certificates</td>
+</tr>
+<tr>
+<td>440. HTTPS Enforcement</td>
+<td>Forcing all web traffic to use secure TLS connections, preventing plaintext HTTP.</td>
+<td>HSTS (HTTP Strict Transport Security) header</td>
+</tr>
+<tr>
+<td>441. Regular Updates</td>
+<td>Applying routine software updates from vendors to quickly fix known vulnerabilities and bugs.</td>
+<td>Windows Update pushing out fixes automatically</td>
+</tr>
+<tr>
+<td>442. Patch Management</td>
+<td>A formal process of assessing, testing, and deploying updates across an enterprise without breaking applications.</td>
+<td>Using Microsoft SCCM/Intune to ring-deploy patches to test groups first</td>
+</tr>
+<tr>
+<td>443. Vuln Scan Schedule</td>
+<td>Running automated tools regularly to discover missing patches, misconfigurations, and known CVEs.</td>
+<td>Weekly authenticated Nessus scanning of the server fleet</td>
+</tr>
+<tr>
+<td>444. Pen Test Routine</td>
+<td>Hiring ethical hackers to manually exploit systems in a controlled way to find deep logical flaws scanners miss.</td>
+<td>An annual web application pentest before a major release</td>
+</tr>
+<tr>
+<td>445. Security Audit</td>
+<td>An independent evaluation of an organisation's adherence to security policies, controls, and standards.</td>
+<td>SOC 2 Type II audit reviewing access control evidence</td>
+</tr>
+<tr>
+<td>446. Compliance Verification</td>
+<td>Checking that technical settings continuously align with regulatory or framework requirements.</td>
+<td>Automated checking of AWS accounts against CIS Foundations Benchmark</td>
+</tr>
+<tr>
+<td>447. Risk Assessment</td>
+<td>Identifying assets, evaluating threats and vulnerabilities, and calculating the potential impact to the business.</td>
+<td>Analysing the risk of a ransomware attack on the core database</td>
+</tr>
+<tr>
+<td>448. Risk Mitigation</td>
+<td>Implementing security controls to reduce the likelihood or impact of a risk to an acceptable level.</td>
+<td>Deploying EDR and offline backups to mitigate ransomware risk</td>
+</tr>
+<tr>
+<td>449. Security Monitoring</td>
+<td>Continuously collecting and reviewing telemetry from across the environment to spot malicious activity.</td>
+<td>24/7 SOC analysts reviewing Splunk dashboards</td>
+</tr>
+<tr>
+<td>450. Log Management</td>
+<td>Centralising, protecting, and retaining audit logs so they are available for detection and forensic investigation.</td>
+<td>Forwarding all syslogs to a central ELK cluster</td>
+</tr>
+<tr>
+<td>451. Incident Detection</td>
+<td>Identifying the initial signals that a security breach or policy violation may have occurred.</td>
+<td>SIEM generating an alert for "Impossible Travel"</td>
+</tr>
+<tr>
+<td>452. Incident Response Plan</td>
+<td>Documented procedures defining roles, communication, and step-by-step actions during a cyber crisis.</td>
+<td>The corporate ransomware playbook</td>
+</tr>
+<tr>
+<td>453. Incident Reporting</td>
+<td>The process of notifying internal stakeholders and external regulators about a significant breach.</td>
+<td>Informing the ICO within 72 hours under GDPR requirements</td>
+</tr>
+<tr>
+<td>454. Incident Analysis</td>
+<td>Investigating the scope, root cause, and timeline of an attack to inform containment strategies.</td>
+<td>Timeline analysis of EDR logs to see what the attacker executing</td>
+</tr>
+<tr>
+<td>455. Threat Intel</td>
+<td>Actionable information about attacker motives, infrastructure, and techniques used to proactively defend networks.</td>
+<td>Ingesting a Mandiant feed of known-bad C2 IPs into the firewall</td>
+</tr>
+<tr>
+<td>456. Threat Hunting</td>
+<td>Proactively searching through telemetry to find hidden threats that bypassed automated security alerts.</td>
+<td>Searching EDR data for unusual PowerShell executions masking as legitimate admin work</td>
+</tr>
+<tr>
+<td>457. Malware Detection</td>
+<td>Identifying malicious software on a system using signatures, heuristics, or behavioural analysis.</td>
+<td>Antivirus flagging a file because its hash matches a known trojan</td>
+</tr>
+<tr>
+<td>458. Malware Prevention</td>
+<td>Controls built to stop malicious code from executing or being delivered in the first place.</td>
+<td>Application control (allow-listing) blocking all unapproved executables</td>
+</tr>
+<tr>
+<td>459. Backup Strategy</td>
+<td>Designing backups to ensure data can be recovered even if the primary storage and network are compromised.</td>
+<td>3-2-1 rule: 3 copies, 2 media types, 1 offsite/immutable</td>
+</tr>
+<tr>
+<td>460. Data Recovery Plan</td>
+<td>The technical steps required to restore systems and data from backups to resume normal operations.</td>
+<td>Restoring the payroll database from a snapshot within a 4-hour RTO</td>
+</tr>
+</tbody>
+</table>
+<h2 id="physical-training-governance-461500">🏢 Physical, Training &amp; Governance (461–500)</h2>
+<table>
+<thead>
+<tr>
+<th>Point &amp; Concept</th>
+<th>Interview Answer</th>
+<th>Example / Tool</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>461. Disaster Recovery</td>
+<td>The technical processes and systems used to restore IT infrastructure after a catastrophic failure or event.</td>
+<td>Failing over to a hot standby site in a different geographic region</td>
+</tr>
+<tr>
+<td>462. Business Continuity</td>
+<td>The overarching plan that ensures critical business functions can continue operating during a major disruption.</td>
+<td>Moving customer service calls to a backup call centre while IT is down</td>
+</tr>
+<tr>
+<td>463. Redundancy</td>
+<td>Having duplicate critical components so that if one fails, the system continues to operate without interruption.</td>
+<td>RAID 1 for hard drives; dual power supplies in a server</td>
+</tr>
+<tr>
+<td>464. Failover Systems</td>
+<td>The automatic or manual switching to a redundant system when the primary system goes offline.</td>
+<td>Active-passive database cluster switching to the passive node</td>
+</tr>
+<tr>
+<td>465. High Availability</td>
+<td>Designing a system to remain operational and accessible for an extremely high percentage of time (e.g., 99.999%).</td>
+<td>Deploying web servers behind a load balancer across three availability zones</td>
+</tr>
+<tr>
+<td>466. Physical Security</td>
+<td>Protecting facilities, hardware, and people from physical threats like theft, vandalism, or unauthorised access.</td>
+<td>Fences, locks, mantraps, and security guards</td>
+</tr>
+<tr>
+<td>467. Access Card System</td>
+<td>Using electronic badges to restrict and audit physical entry to buildings and secure zones.</td>
+<td>RFID readers logging every time an employee enters the server room</td>
+</tr>
+<tr>
+<td>468. CCTV Monitoring</td>
+<td>Using video cameras to observe, record, and deter unauthorised access to sensitive physical locations.</td>
+<td>Cameras covering the data centre entrances and loading docks</td>
+</tr>
+<tr>
+<td>469. Security Guards</td>
+<td>Personnel trained to verify identities, monitor physical perimeters, and respond to physical security alarms.</td>
+<td>24/7 security desk checking IDs before allowing building access</td>
+</tr>
+<tr>
+<td>470. Secure Data Centre</td>
+<td>A facility built specifically to house computing equipment securely, with power, cooling, and access controls.</td>
+<td>Raised floors, biometric access, fire suppression, and dual-feed power</td>
+</tr>
+<tr>
+<td>471. Security Training</td>
+<td>Educating staff on security policies and safe practices to reduce human-error risks.</td>
+<td>Annual mandatory security awareness modules for all employees</td>
+</tr>
+<tr>
+<td>472. Phishing Awareness</td>
+<td>Training users to recognise malicious emails, suspicious links, and social engineering tactics.</td>
+<td>Running simulated phishing campaigns via KnowBe4</td>
+</tr>
+<tr>
+<td>473. SE Prevention</td>
+<td>Controls designed to prevent attackers from manipulating staff into breaking security procedures.</td>
+<td>Strict policy requiring visual confirmation for any password reset</td>
+</tr>
+<tr>
+<td>474. Secure Coding</td>
+<td>Writing software in a way that inherently avoids introducing common vulnerabilities like SQL injection or buffer overflows.</td>
+<td>Following the OWASP Top 10 guidelines during development</td>
+</tr>
+<tr>
+<td>475. Input Validation</td>
+<td>Ensuring that data entered by a user exactly matches expected formats before it is processed by the application.</td>
+<td>Rejecting a username that contains special characters to prevent SQLi</td>
+</tr>
+<tr>
+<td>476. Output Encoding</td>
+<td>Converting user-supplied data into a safe format before displaying it in a browser to prevent code execution.</td>
+<td>Encoding <code>&lt;script&gt;</code> as <code>&amp;lt;script&amp;gt;</code> to prevent Cross-Site Scripting (XSS)</td>
+</tr>
+<tr>
+<td>477. Error Handling</td>
+<td>Catching application errors cleanly without displaying sensitive system details to the user.</td>
+<td>Showing a generic "An error occurred" page instead of a Java stack trace</td>
+</tr>
+<tr>
+<td>478. Code Review</td>
+<td>Another developer or security engineer evaluating source code to find bugs and vulnerabilities before release.</td>
+<td>GitHub pull request requiring approval before merging to main</td>
+</tr>
+<tr>
+<td>479. DevSecOps</td>
+<td>Integrating security testing and controls seamlessly into the continuous integration and delivery (CI/CD) pipeline.</td>
+<td>Running automated static analysis (SAST) on every code commit</td>
+</tr>
+<tr>
+<td>480. Secure SDLC</td>
+<td>Embedding security activities—like threat modelling and pentesting—into every phase of software development.</td>
+<td>Performing architecture threat modelling during the design phase</td>
+</tr>
+<tr>
+<td>481. API Security</td>
+<td>Protecting application programming interfaces from unauthorised access, data scraping, and injection attacks.</td>
+<td>Requiring OAuth 2.0 tokens and enforcing rate limits on the API Gateway</td>
+</tr>
+<tr>
+<td>482. Web App Security</td>
+<td>Defending web applications against vulnerabilities, attacks, and abuse over the internet.</td>
+<td>Deploying a Web Application Firewall (WAF) to block malicious web requests</td>
+</tr>
+<tr>
+<td>483. DB Security</td>
+<td>Securing databases against unauthorised access, exfiltration, and destructive commands.</td>
+<td>Encrypting databases at rest (TDE) and enforcing strict role-based access</td>
+</tr>
+<tr>
+<td>484. Cloud Security</td>
+<td>Protecting data, applications, and infrastructure hosted in public, private, or hybrid cloud environments.</td>
+<td>Using AWS Security Hub and enforcing secure IAM policies</td>
+</tr>
+<tr>
+<td>485. Container Security</td>
+<td>Securing the container image, runtime environment, and orchestration platform against exploitation.</td>
+<td>Scanning Docker images for vulnerabilities with Trivy before deployment</td>
+</tr>
+<tr>
+<td>486. Mobile Security</td>
+<td>Securing smartphones and tablets against data leakage, loss, and malicious applications.</td>
+<td>Using Mobile Device Management (MDM) to enforce PINs and remote wipe</td>
+</tr>
+<tr>
+<td>487. Endpoint Protection</td>
+<td>Modern security software that combines antivirus, EDR, and firewall to defend user devices and servers.</td>
+<td>Deploying SentinelOne to all corporate laptops</td>
+</tr>
+<tr>
+<td>488. Remote Access</td>
+<td>Providing a secure method for users to securely connect to the corporate network from outside locations.</td>
+<td>A VPN requiring MFA and checking the device posture before connecting</td>
+</tr>
+<tr>
+<td>489. Email Security</td>
+<td>Protecting the organisation from email-borne threats like phishing, malware attachments, and spoofing.</td>
+<td>Setting up DMARC to prevent domain spoofing and using Proofpoint for filtering</td>
+</tr>
+<tr>
+<td>490. DLP (Data Loss Prev.)</td>
+<td>Tools and processes that monitor and block sensitive data from leaving the corporate boundary.</td>
+<td>Blocking the transfer of credit card numbers to USB drives or personal webmail</td>
+</tr>
+<tr>
+<td>491. Privacy Protection</td>
+<td>Safeguarding personally identifiable information (PII) to ensure it is handled lawfully and ethically.</td>
+<td>Implementing data minimisation processes so unnecessary user data is deleted</td>
+</tr>
+<tr>
+<td>492. Data Classification</td>
+<td>Categorising data based on its sensitivity so appropriate security controls can be applied.</td>
+<td>Labelling documents as Public, Internal, Confidential, or Restricted</td>
+</tr>
+<tr>
+<td>493. Data Retention</td>
+<td>Enforcing policies that dictate exactly how long data must be kept for legal reasons, and when it must be destroyed.</td>
+<td>Deleting financial records securely after the required 7-year holding period</td>
+</tr>
+<tr>
+<td>494. Secure Disposal</td>
+<td>Permanently destroying data and physical media so it cannot be recovered by attackers or scavengers.</td>
+<td>Cryptographically wiping disks and physically shredding hard drives</td>
+</tr>
+<tr>
+<td>495. Audit Logging</td>
+<td>Generating unalterable records of critical security events, access changes, and administrative actions.</td>
+<td>Logging every time a user is added to the Domain Admins group</td>
+</tr>
+<tr>
+<td>496. Compliance Monitoring</td>
+<td>Continuously checking that IT systems adhere to internal policies and external regulatory requirements.</td>
+<td>Using CSPM tools to ensure cloud storage remains private and encrypted</td>
+</tr>
+<tr>
+<td>497. Governance Policy</td>
+<td>High-level directives from management that dictate how security will be managed and enforced in the organisation.</td>
+<td>An Acceptable Use Policy signed by all employees upon hiring</td>
+</tr>
+<tr>
+<td>498. Security Framework</td>
+<td>A structured set of guidelines and best practices used to build and measure a comprehensive security programme.</td>
+<td>Adopting the NIST Cybersecurity Framework (CSF) to organise defensive capabilities</td>
+</tr>
+<tr>
+<td>499. Continuous Monitoring</td>
+<td>The ongoing, real-time observation of the IT environment to quickly detect threats, misconfigurations, or failures.</td>
+<td>A 24/7 SOC monitoring SIEM alerts and endpoint telemetry</td>
+</tr>
+<tr>
+<td>500. Security Improvement</td>
+<td>The iterative process of learning from incidents, audits, and metrics to continually strengthen defences.</td>
+<td>Updating incident runbooks after a tabletop exercise reveals a communication gap</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2026 SOCAtlas (v3_Manual_Only)
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tracking", "navigation.sections", "navigation.top"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../assets/pdf-builder.js"></script>
+      
+        <script src="../assets/mobile-table-cards.js"></script>
+      
+    
+  </body>
+</html>

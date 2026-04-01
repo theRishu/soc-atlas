@@ -1,0 +1,1052 @@
+[
+  {
+    "id": 1,
+    "concept": "Cybersecurity",
+    "answer": "Protecting systems, networks, and data from digital attacks or theft.",
+    "example": "Critical infrastructure & privacy.",
+    "category": "Basics"
+  },
+  {
+    "id": 2,
+    "concept": "CIA Triad",
+    "answer": "Confidentiality, Integrity, and Availability.",
+    "example": "Every control must map to one of these.",
+    "category": "Basics"
+  },
+  {
+    "id": 3,
+    "concept": "Confidentiality",
+    "answer": "Ensuring information is accessible only to authorized users.",
+    "example": "AES Encryption, MFA.",
+    "category": "Basics"
+  },
+  {
+    "id": 4,
+    "concept": "Integrity",
+    "answer": "Ensuring information is accurate and has not been tampered with.",
+    "example": "Hashing (SHA-256), Digital Sigs.",
+    "category": "Basics"
+  },
+  {
+    "id": 5,
+    "concept": "Availability",
+    "answer": "Ensuring systems and data are accessible on demand.",
+    "example": "Backups, Redundancy, DDoS prot.",
+    "category": "Basics"
+  },
+  {
+    "id": 6,
+    "concept": "Vulnerability",
+    "answer": "A weakness or flaw that could be exploited.",
+    "example": "Unpatched software.",
+    "category": "Basics"
+  },
+  {
+    "id": 7,
+    "concept": "Threat",
+    "answer": "A potential event that could cause harm.",
+    "example": "Malware, Phishing.",
+    "category": "Basics"
+  },
+  {
+    "id": 8,
+    "concept": "Risk",
+    "answer": "Likelihood \u00d7 Impact. The chance of a threat hitting a vulnerability.",
+    "example": "Unpatched public server.",
+    "category": "Basics"
+  },
+  {
+    "id": 9,
+    "concept": "Asset",
+    "answer": "Anything the organization values (Money, Trust, Data).",
+    "example": "Source-code or Customer DB.",
+    "category": "Basics"
+  },
+  {
+    "id": 10,
+    "concept": "Attack",
+    "answer": "An actual attempt to exploit a weakness.",
+    "example": "SQLi or Ransomware.",
+    "category": "Basics"
+  },
+  {
+    "id": 11,
+    "concept": "AAA Framework",
+    "answer": "Authentication, Authorization, and Accounting.",
+    "example": "RADIUS, TACACS+, Azure AD.",
+    "category": "Basics"
+  },
+  {
+    "id": 12,
+    "concept": "Authentication",
+    "answer": "Verifying \"Who are you?\"",
+    "example": "Passwords, Biometrics.",
+    "category": "Basics"
+  },
+  {
+    "id": 13,
+    "concept": "Authorization",
+    "answer": "Deciding \"What are you allowed to do?\"",
+    "example": "Permissions, RBAC.",
+    "category": "Basics"
+  },
+  {
+    "id": 14,
+    "concept": "Accounting",
+    "answer": "Recording \"What did you actually do?\"",
+    "example": "Audit logs, session history.",
+    "category": "Basics"
+  },
+  {
+    "id": 15,
+    "concept": "Least Privilege",
+    "answer": "Giving only the minimum access needed for a job.",
+    "example": "HR shouldn't see network configs.",
+    "category": "Basics"
+  },
+  {
+    "id": 16,
+    "concept": "Defense in Depth",
+    "answer": "Using multiple layers of security.",
+    "example": "Firewall + EDR + MFA + Training.",
+    "category": "Basics"
+  },
+  {
+    "id": 17,
+    "concept": "Security Control",
+    "answer": "A safeguard used to reduce risk.",
+    "example": "Encryption, policies, guards.",
+    "category": "Basics"
+  },
+  {
+    "id": 18,
+    "concept": "Physical Control",
+    "answer": "Barriers like fences, locks, and cameras.",
+    "example": "Data center security.",
+    "category": "Basics"
+  },
+  {
+    "id": 19,
+    "concept": "Technical Control",
+    "answer": "Software/Hardware measures like firewalls.",
+    "example": "SIEM, AV, Encryption.",
+    "category": "Basics"
+  },
+  {
+    "id": 20,
+    "concept": "Admin Control",
+    "answer": "Policies and procedures.",
+    "example": "Incident Response Plan, AUP.",
+    "category": "Basics"
+  },
+  {
+    "id": 21,
+    "concept": "Preventive",
+    "answer": "Stops incidents before they happen.",
+    "example": "Firewall, MFA.",
+    "category": "Basics"
+  },
+  {
+    "id": 22,
+    "concept": "Detective",
+    "answer": "Finds incidents after they occur.",
+    "example": "SIEM, logs, motion sensors.",
+    "category": "Basics"
+  },
+  {
+    "id": 23,
+    "concept": "Corrective",
+    "answer": "Fixes damage after an incident.",
+    "example": "Backups, patching.",
+    "category": "Basics"
+  },
+  {
+    "id": 24,
+    "concept": "Deterrent",
+    "answer": "Discourages attackers (raising the cost of failure).",
+    "example": "Warning signs, cameras.",
+    "category": "Basics"
+  },
+  {
+    "id": 25,
+    "concept": "Compensating",
+    "answer": "An alternative control used when the primary isn't possible.",
+    "example": "VLAN isolation for unpatched legacy gear.",
+    "category": "Basics"
+  },
+  {
+    "id": 26,
+    "concept": "OSI Model",
+    "answer": "Layers 1-7 (Physical to Application).",
+    "example": "Troubleshooting a web connection.",
+    "category": "Basics"
+  },
+  {
+    "id": 27,
+    "concept": "TCP/IP Model",
+    "answer": "4 layers: Link, Internet, Transport, Application.",
+    "example": "Underlying protocol of the internet.",
+    "category": "Basics"
+  },
+  {
+    "id": 28,
+    "concept": "IP Address",
+    "answer": "Unique identifier for a device on a network.",
+    "example": "IPv4 and IPv6.",
+    "category": "Basics"
+  },
+  {
+    "id": 29,
+    "concept": "MAC Address",
+    "answer": "Physical unique address (burned into the NIC).",
+    "example": "Hardware identification.",
+    "category": "Basics"
+  },
+  {
+    "id": 30,
+    "concept": "Port",
+    "answer": "A logical endpoint for a specific service.",
+    "example": "Port 80 (HTTP), 443 (HTTPS), 22 (SSH).",
+    "category": "Basics"
+  },
+  {
+    "id": 31,
+    "concept": "Firewall",
+    "answer": "Filters traffic based on rules.",
+    "example": "Palo Alto, Fortinet.",
+    "category": "Basics"
+  },
+  {
+    "id": 32,
+    "concept": "VPN",
+    "answer": "Encrypted tunnel over an untrusted network.",
+    "example": "Safe remote work.",
+    "category": "Basics"
+  },
+  {
+    "id": 33,
+    "concept": "Proxy",
+    "answer": "Intermediary server between client and destination.",
+    "example": "Filtering web content.",
+    "category": "Basics"
+  },
+  {
+    "id": 34,
+    "concept": "IDS",
+    "answer": "Passive intrusion detection and alerting.",
+    "example": "Snort, Zeek.",
+    "category": "Basics"
+  },
+  {
+    "id": 35,
+    "concept": "IPS",
+    "answer": "Active intrusion prevention and blocking.",
+    "example": "Cisco Firepower.",
+    "category": "Basics"
+  },
+  {
+    "id": 36,
+    "concept": "DMZ",
+    "answer": "Isolated segment for public-facing servers.",
+    "example": "Protecting the internal network from web servers.",
+    "category": "Basics"
+  },
+  {
+    "id": 37,
+    "concept": "VLAN",
+    "answer": "Logical network separation.",
+    "example": "Separating Guest Wi-Fi from Prod.",
+    "category": "Basics"
+  },
+  {
+    "id": 38,
+    "concept": "NAC",
+    "answer": "Ensures only authorized/healthy devices connect.",
+    "example": "Port security on switches.",
+    "category": "Basics"
+  },
+  {
+    "id": 39,
+    "concept": "Air Gap",
+    "answer": "Physical isolation from the internet.",
+    "example": "Nuclear or military control systems.",
+    "category": "Basics"
+  },
+  {
+    "id": 40,
+    "concept": "DNS",
+    "answer": "Translates names to IP addresses.",
+    "example": "google.com to 142.250...",
+    "category": "Basics"
+  },
+  {
+    "id": 41,
+    "concept": "DHCP",
+    "answer": "Automatically assigns IP addresses to devices.",
+    "example": "DORA process.",
+    "category": "Basics"
+  },
+  {
+    "id": 42,
+    "concept": "Default Gateway",
+    "answer": "The router that traffic takes to leave the subnet.",
+    "example": "Routing traffic to the internet.",
+    "category": "Basics"
+  },
+  {
+    "id": 43,
+    "concept": "Subnet Mask",
+    "answer": "Defines which part of an IP is the network vs host.",
+    "example": "255.255.255.0.",
+    "category": "Basics"
+  },
+  {
+    "id": 44,
+    "concept": "ICMP",
+    "answer": "Protocol used for diagnostics (ping/traceroute).",
+    "example": "Troubleshooting network connectivity.",
+    "category": "Basics"
+  },
+  {
+    "id": 45,
+    "concept": "SSL/TLS",
+    "answer": "Standard for encrypting web traffic.",
+    "example": "HTTPS.",
+    "category": "Basics"
+  },
+  {
+    "id": 46,
+    "concept": "HTTP/HTTPS",
+    "answer": "Protocol for web communication.",
+    "example": "Ports 80 and 443.",
+    "category": "Basics"
+  },
+  {
+    "id": 47,
+    "concept": "SSH",
+    "answer": "Secure remote command-line access.",
+    "example": "Managing Linux servers remotely.",
+    "category": "Basics"
+  },
+  {
+    "id": 48,
+    "concept": "RDP",
+    "answer": "Remote desktop protocol for Windows.",
+    "example": "Port 3389.",
+    "category": "Basics"
+  },
+  {
+    "id": 49,
+    "concept": "FTP/SFTP",
+    "answer": "File transfer protocol (Symmetric/Secure).",
+    "example": "Ports 21 and 22.",
+    "category": "Basics"
+  },
+  {
+    "id": 50,
+    "concept": "SNMP",
+    "answer": "Managing and monitoring network devices.",
+    "example": "Getting status from a router.",
+    "category": "Basics"
+  },
+  {
+    "id": 51,
+    "concept": "Malware",
+    "answer": "General \"Malicious Software.\"",
+    "example": "Viruses, Worms, Trojans.",
+    "category": "Basics"
+  },
+  {
+    "id": 52,
+    "concept": "Virus",
+    "answer": "Replicates only when a user runs the file.",
+    "example": "Attaches to an .exe.",
+    "category": "Basics"
+  },
+  {
+    "id": 53,
+    "concept": "Worm",
+    "answer": "Self-replicates and spreads automatically across networks.",
+    "example": "WannaCry.",
+    "category": "Basics"
+  },
+  {
+    "id": 54,
+    "concept": "Trojan",
+    "answer": "Disguises itself as useful software to trick users.",
+    "example": "Zeus banking trojan.",
+    "category": "Basics"
+  },
+  {
+    "id": 55,
+    "concept": "Ransomware",
+    "answer": "Encrypts files for a payout.",
+    "example": "Colonial Pipeline breach.",
+    "category": "Basics"
+  },
+  {
+    "id": 56,
+    "concept": "Spyware",
+    "answer": "Secretly monitors user activity.",
+    "example": "Keyloggers, screen monitors.",
+    "category": "Basics"
+  },
+  {
+    "id": 57,
+    "concept": "Rootkit",
+    "answer": "Hides deep in the OS to maintain admin access.",
+    "example": "Hiding from Task Manager.",
+    "category": "Basics"
+  },
+  {
+    "id": 58,
+    "concept": "Botnet",
+    "answer": "Network of infected \"zombie\" computers.",
+    "example": "Mirai botnet.",
+    "category": "Basics"
+  },
+  {
+    "id": 59,
+    "concept": "Phishing",
+    "answer": "Social engineering via deceptive electronic messages.",
+    "example": "Fake password reset emails.",
+    "category": "Basics"
+  },
+  {
+    "id": 60,
+    "concept": "Smishing/Vishing",
+    "answer": "Phishing via SMS or Voice/Phone calls.",
+    "example": "\"Your bank account is locked\" SMS.",
+    "category": "Basics"
+  },
+  {
+    "id": 61,
+    "concept": "Social Engineering",
+    "answer": "Attacking the \"Human element\" to gain access.",
+    "example": "Pretexting, tailgating.",
+    "category": "Basics"
+  },
+  {
+    "id": 62,
+    "concept": "SQL Injection",
+    "answer": "Inserting malicious SQL code into web forms.",
+    "example": "Bypassing a database login.",
+    "category": "Basics"
+  },
+  {
+    "id": 63,
+    "concept": "XSS",
+    "answer": "Injecting client-side scripts into web pages.",
+    "example": "Stealing session cookies.",
+    "category": "Basics"
+  },
+  {
+    "id": 64,
+    "concept": "CSRF",
+    "answer": "Forcing a user to perform an unwanted action.",
+    "example": "Attacker \"clicks\" a delete button for you.",
+    "category": "Basics"
+  },
+  {
+    "id": 65,
+    "concept": "DDoS",
+    "answer": "Overwhelming a target with massive traffic.",
+    "example": "Flooding a server to take it offline.",
+    "category": "Basics"
+  },
+  {
+    "id": 66,
+    "concept": "Man-in-the-Middle",
+    "answer": "Intercepting data between two parties.",
+    "example": "ARP poisoning on public Wi-Fi.",
+    "category": "Basics"
+  },
+  {
+    "id": 67,
+    "concept": "Brute Force",
+    "answer": "Trying every password combination.",
+    "example": "Script guessing a 4-digit PIN.",
+    "category": "Basics"
+  },
+  {
+    "id": 68,
+    "concept": "Dictionary Attack",
+    "answer": "Brute force using a list of common words.",
+    "example": "rockyou.txt wordlist.",
+    "category": "Basics"
+  },
+  {
+    "id": 69,
+    "concept": "Rainbow Table",
+    "answer": "Pre-computed hash table to crack passwords fast.",
+    "example": "Cracking weak MD5 hashes.",
+    "category": "Basics"
+  },
+  {
+    "id": 70,
+    "concept": "Salt",
+    "answer": "Adding random data to passwords before hashing.",
+    "example": "Preventing rainbow table attacks.",
+    "category": "Basics"
+  },
+  {
+    "id": 71,
+    "concept": "Zero-Day",
+    "answer": "Exploiting a flaw before a patch exists.",
+    "example": "Log4Shell.",
+    "category": "Basics"
+  },
+  {
+    "id": 72,
+    "concept": "Exploit",
+    "answer": "The code or method used to take advantage of a flaw.",
+    "example": "Script used to gain access.",
+    "category": "Basics"
+  },
+  {
+    "id": 73,
+    "concept": "Payload",
+    "answer": "The \"part\" of the exploit that performs the harm.",
+    "example": "The ransomware that runs after access.",
+    "category": "Basics"
+  },
+  {
+    "id": 74,
+    "concept": "Backdoor",
+    "answer": "A hidden method of bypassing security.",
+    "example": "SSH access the attacker leaves behind.",
+    "category": "Basics"
+  },
+  {
+    "id": 75,
+    "concept": "Logic Bomb",
+    "answer": "Malicious code triggered by a specific event/time.",
+    "example": "Admin deleting files if they get fired.",
+    "category": "Basics"
+  },
+  {
+    "id": 76,
+    "concept": "SIEM",
+    "answer": "Centralized log correlation and alerting platform.",
+    "example": "Splunk, QRadar.",
+    "category": "Basics"
+  },
+  {
+    "id": 77,
+    "concept": "SOC",
+    "answer": "Team that monitors and responds to alerts.",
+    "example": "Triage and investigation.",
+    "category": "Basics"
+  },
+  {
+    "id": 78,
+    "concept": "EDR",
+    "answer": "Monitoring and responding to behavior on hosts.",
+    "example": "CrowdStrike, SentinelOne.",
+    "category": "Basics"
+  },
+  {
+    "id": 79,
+    "concept": "DLP",
+    "answer": "Preventing sensitive data leaks.",
+    "example": "Blocking credit card uploads.",
+    "category": "Basics"
+  },
+  {
+    "id": 80,
+    "concept": "IAM",
+    "answer": "Managing digital identities and permissions.",
+    "example": "Okta, Azure AD.",
+    "category": "Basics"
+  },
+  {
+    "id": 81,
+    "concept": "SSO",
+    "answer": "Single login for multiple apps.",
+    "example": "Logging in once for HR and Email.",
+    "category": "Basics"
+  },
+  {
+    "id": 82,
+    "concept": "MFA",
+    "answer": "Password + something you have/are.",
+    "example": "Duo, YubiKey.",
+    "category": "Basics"
+  },
+  {
+    "id": 83,
+    "concept": "Vulnerability Mgmt",
+    "answer": "Identifying, prioritizing, and fixing flaws.",
+    "example": "Nessus, Qualys.",
+    "category": "Basics"
+  },
+  {
+    "id": 84,
+    "concept": "Patch Mgmt",
+    "answer": "Updating software to fix vulnerabilities.",
+    "example": "WSUS, Jamf.",
+    "category": "Basics"
+  },
+  {
+    "id": 85,
+    "concept": "Incident Response",
+    "answer": "Lifecycle of handling a security breach.",
+    "example": "PICERL model (SANS).",
+    "category": "Basics"
+  },
+  {
+    "id": 86,
+    "concept": "Forensic Image",
+    "answer": "Bit-for-bit copy of a storage device for evidence.",
+    "example": "Magnet AXIOM, EnCase.",
+    "category": "Basics"
+  },
+  {
+    "id": 87,
+    "concept": "Honeypot",
+    "answer": "Decoy system to distract/study attackers.",
+    "example": "T-Pot modern honeypot.",
+    "category": "Basics"
+  },
+  {
+    "id": 88,
+    "concept": "BCP",
+    "answer": "Keeping the business running during disasters.",
+    "example": "Disaster recovery plan.",
+    "category": "Basics"
+  },
+  {
+    "id": 89,
+    "concept": "RTO",
+    "answer": "Goal for how fast a system returns to normal.",
+    "example": "\"Back up in 2 hours.\"",
+    "category": "Basics"
+  },
+  {
+    "id": 90,
+    "concept": "RPO",
+    "answer": "Goal for how much data loss is acceptable.",
+    "example": "\"Lose no more than 1 hour.\"",
+    "category": "Basics"
+  },
+  {
+    "id": 91,
+    "concept": "SOC 2",
+    "answer": "Trust report for service organizations.",
+    "example": "Type I vs Type II.",
+    "category": "Basics"
+  },
+  {
+    "id": 92,
+    "concept": "ISO 27001",
+    "answer": "International standard for security systems.",
+    "example": "Maturity through certification.",
+    "category": "Basics"
+  },
+  {
+    "id": 93,
+    "concept": "NIST CSF",
+    "answer": "Voluntary framework for managing security risk.",
+    "example": "Identify, Protect, Detect...",
+    "category": "Basics"
+  },
+  {
+    "id": 94,
+    "concept": "GDPR",
+    "answer": "EU privacy and data protection regulation.",
+    "example": "Users can request data deletion.",
+    "category": "Basics"
+  },
+  {
+    "id": 95,
+    "concept": "HIPAA",
+    "answer": "US health data protection law.",
+    "example": "Protecting medical records.",
+    "category": "Basics"
+  },
+  {
+    "id": 96,
+    "concept": "PCI DSS",
+    "answer": "Standard for payment card security.",
+    "example": "Encrypting card data.",
+    "category": "Basics"
+  },
+  {
+    "id": 97,
+    "concept": "Blue Team",
+    "answer": "Internal defensive security group.",
+    "example": "SOC Analysts.",
+    "category": "Basics"
+  },
+  {
+    "id": 98,
+    "concept": "Red Team",
+    "answer": "Internal/External offensive group (simulation).",
+    "example": "Pentesting.",
+    "category": "Basics"
+  },
+  {
+    "id": 99,
+    "concept": "Purple Team",
+    "answer": "Collaborative Red + Blue engagement.",
+    "example": "Tuning SIEM based on attacks.",
+    "category": "Basics"
+  },
+  {
+    "id": 100,
+    "concept": "Security Architecture",
+    "answer": "Building security into the foundation.",
+    "example": "Zero Trust, SASE.",
+    "category": "Basics"
+  },
+  {
+    "id": 751,
+    "concept": "**Cyber law**",
+    "answer": "Body of law governing digital activity, online crime, electronic evidence, privacy, and technology-enabled transactions.",
+    "example": "Computer Fraud and Abuse Act (CFAA), Computer Misuse Act (UK)",
+    "category": "Laws"
+  },
+  {
+    "id": 752,
+    "concept": "**IT law**",
+    "answer": "Legal rules covering software, networks, digital contracts, data handling, and online services.",
+    "example": "E-commerce law, software licensing agreements, SaaS contracts",
+    "category": "Laws"
+  },
+  {
+    "id": 753,
+    "concept": "**Data protection law**",
+    "answer": "Legal requirements for collecting, processing, storing, and deleting personal or sensitive data.",
+    "example": "GDPR (EU), CCPA (California), PDPA (Singapore)",
+    "category": "Laws"
+  },
+  {
+    "id": 754,
+    "concept": "**Privacy law**",
+    "answer": "Rules defining how organizations may collect, use, share, and secure personal information with individual rights.",
+    "example": "Right to access, right to erasure (GDPR Article 17)",
+    "category": "Laws"
+  },
+  {
+    "id": 755,
+    "concept": "**Digital signature law**",
+    "answer": "Legal recognition of cryptographic signatures as valid, enforceable evidence of intent and authenticity.",
+    "example": "eIDAS (EU), ESIGN Act (US), DocuSign contracts",
+    "category": "Laws"
+  },
+  {
+    "id": 756,
+    "concept": "**Electronic transaction law**",
+    "answer": "Laws making electronic records, contracts, and payments legally valid under defined conditions.",
+    "example": "UETA (US), online purchase agreements, digital invoices",
+    "category": "Laws"
+  },
+  {
+    "id": 757,
+    "concept": "**Cybercrime law**",
+    "answer": "Statutes criminalizing unauthorized access, malware deployment, fraud, identity theft, and related digital offenses.",
+    "example": "CFAA prosecution for unauthorized computer access",
+    "category": "Laws"
+  },
+  {
+    "id": 758,
+    "concept": "**Intellectual property law**",
+    "answer": "Legal framework protecting software, designs, source code, and brand assets from unauthorized use or theft.",
+    "example": "Copyright on source code, patent on encryption method",
+    "category": "Laws"
+  },
+  {
+    "id": 759,
+    "concept": "**Copyright law**",
+    "answer": "Rules protecting original creative works including code, documentation, and media \u2014 automatic upon creation.",
+    "example": "Unauthorized copying of proprietary software = infringement",
+    "category": "Laws"
+  },
+  {
+    "id": 760,
+    "concept": "**Trademark law**",
+    "answer": "Rules protecting names, logos, and branding that identify a product or organization in commerce.",
+    "example": "Fake site impersonating a brand = trademark infringement",
+    "category": "Laws"
+  },
+  {
+    "id": 761,
+    "concept": "**Patent law**",
+    "answer": "Rules protecting novel inventions and processes \u2014 requires registration and has a time limit.",
+    "example": "Patented cryptographic hardware design (20-year protection)",
+    "category": "Laws"
+  },
+  {
+    "id": 762,
+    "concept": "**Data breach notification law**",
+    "answer": "Requirements for notifying regulators, customers, or partners when protected data is exposed.",
+    "example": "GDPR: 72-hour regulator notification; 50 US state breach laws",
+    "category": "Laws"
+  },
+  {
+    "id": 763,
+    "concept": "**GDPR**",
+    "answer": "EU regulation defining lawful processing bases, individual privacy rights, breach obligations, and cross-border transfer rules.",
+    "example": "Data subject access requests, right to erasure, DPO appointment",
+    "category": "Laws"
+  },
+  {
+    "id": 764,
+    "concept": "**HIPAA**",
+    "answer": "US healthcare regulation protecting Protected Health Information (PHI) with administrative, technical, and physical safeguards.",
+    "example": "Access controls and audit logs for electronic patient records",
+    "category": "Laws"
+  },
+  {
+    "id": 765,
+    "concept": "**PCI DSS**",
+    "answer": "Payment Card Industry Data Security Standard \u2014 12 requirements protecting cardholder data environments.",
+    "example": "Network segmentation, tokenization, and quarterly vulnerability scans",
+    "category": "Laws"
+  },
+  {
+    "id": 766,
+    "concept": "**ISO 27001**",
+    "answer": "International standard for establishing, implementing, maintaining, and continually improving an ISMS.",
+    "example": "Formal risk assessment, ISMS scope, certification audit",
+    "category": "Laws"
+  },
+  {
+    "id": 767,
+    "concept": "**ISO 27002**",
+    "answer": "Supplementary control guidance for ISO 27001 providing a catalog of 93 security controls with implementation guidance.",
+    "example": "Reference for specific control selection and implementation",
+    "category": "Laws"
+  },
+  {
+    "id": 768,
+    "concept": "**NIST CSF**",
+    "answer": "Voluntary risk-based framework (Identify, Protect, Detect, Respond, Recover) for managing cybersecurity risk at any scale.",
+    "example": "Gap assessment against CSF tiers; sector-specific profiles",
+    "category": "Laws"
+  },
+  {
+    "id": 769,
+    "concept": "**COBIT**",
+    "answer": "Governance framework aligning IT controls, assurance, and business objectives with management and technical layers.",
+    "example": "Board-level oversight of IT security investment and controls",
+    "category": "Laws"
+  },
+  {
+    "id": 770,
+    "concept": "**ITIL**",
+    "answer": "Service management framework covering incident, change, problem, and service processes that support security operations.",
+    "example": "Change Advisory Board process before production changes",
+    "category": "Laws"
+  },
+  {
+    "id": 771,
+    "concept": "**Security governance**",
+    "answer": "Oversight structure assigning ownership, approving policy, and tracking accountability for security decisions at all levels.",
+    "example": "Security steering committee reviews risk register quarterly",
+    "category": "Laws"
+  },
+  {
+    "id": 772,
+    "concept": "**Security compliance**",
+    "answer": "Demonstrating that security requirements from laws, standards, contracts, or internal policy are being met with evidence.",
+    "example": "Control attestations, evidence packages, audit readiness",
+    "category": "Laws"
+  },
+  {
+    "id": 773,
+    "concept": "**Regulatory compliance**",
+    "answer": "Satisfying obligations imposed by statutory bodies or government regulators specific to an industry or jurisdiction.",
+    "example": "Financial services: FCA rules; Healthcare: CQC/CMS oversight",
+    "category": "Laws"
+  },
+  {
+    "id": 774,
+    "concept": "**Risk management framework**",
+    "answer": "Structured process for identifying, assessing, treating, monitoring, and reporting on risk across an organization.",
+    "example": "NIST RMF (categorize\u2192select\u2192implement\u2192assess\u2192authorize\u2192monitor)",
+    "category": "Laws"
+  },
+  {
+    "id": 775,
+    "concept": "**Audit requirements**",
+    "answer": "Evidence and process expectations that must be satisfied during internal or external security and compliance audits.",
+    "example": "Log retention, policy records signed off annually, control testing",
+    "category": "Laws"
+  },
+  {
+    "id": 776,
+    "concept": "**Security policies**",
+    "answer": "High-level mandatory rules defining expected behavior, accountability, and control objectives \u2014 signed by leadership.",
+    "example": "Acceptable use policy, password policy, remote access policy",
+    "category": "Laws"
+  },
+  {
+    "id": 777,
+    "concept": "**Security procedures**",
+    "answer": "Step-by-step operational instructions showing how staff carry out policy requirements in practice.",
+    "example": "User offboarding checklist, incident escalation procedure",
+    "category": "Laws"
+  },
+  {
+    "id": 778,
+    "concept": "**Security guidelines**",
+    "answer": "Recommended practices helping teams apply policy without always being mandatory \u2014 provide flexibility.",
+    "example": "Secure coding guideline, mobile device configuration guide",
+    "category": "Laws"
+  },
+  {
+    "id": 779,
+    "concept": "**Security standards**",
+    "answer": "Baseline technical or process requirements all systems must meet \u2014 more specific than policies.",
+    "example": "CIS Benchmarks, enterprise hardening baseline (e.g., Windows 10 L1)",
+    "category": "Laws"
+  },
+  {
+    "id": 780,
+    "concept": "**Legal compliance**",
+    "answer": "Operating in full accordance with applicable laws, regulations, and contractual obligations with documented evidence.",
+    "example": "Controls mapped to legal obligations in a compliance register",
+    "category": "Laws"
+  },
+  {
+    "id": 781,
+    "concept": "**Data privacy protection**",
+    "answer": "Controls and legal practices keeping personal data confidential, lawful, and limited to its stated collection purpose.",
+    "example": "Consent management platform, retention limits, privacy-by-default",
+    "category": "Laws"
+  },
+  {
+    "id": 782,
+    "concept": "**Data classification**",
+    "answer": "Mandatory categorization of data by sensitivity and regulatory status to determine handling requirements.",
+    "example": "Public / Internal / Confidential / Restricted classification scheme",
+    "category": "Laws"
+  },
+  {
+    "id": 783,
+    "concept": "**Data retention law**",
+    "answer": "Rules defining how long specific records must be kept and when they must be securely deleted.",
+    "example": "Tax records: 7 years; healthcare: varies by jurisdiction",
+    "category": "Laws"
+  },
+  {
+    "id": 784,
+    "concept": "**Data transfer law**",
+    "answer": "Legal restrictions and safeguards that apply when data is shared with a third party, processor, or another country.",
+    "example": "Data Processing Agreements (DPAs), Standard Contractual Clauses",
+    "category": "Laws"
+  },
+  {
+    "id": 785,
+    "concept": "**Cross-border data transfer**",
+    "answer": "Sending personal data across national borders where each country may have different protection requirements.",
+    "example": "EU-US Data Privacy Framework, SCCs for GDPR transfers outside EEA",
+    "category": "Laws"
+  },
+  {
+    "id": 786,
+    "concept": "**Cyber liability**",
+    "answer": "Legal and financial exposure an organization faces after security failures, privacy violations, or service disruption.",
+    "example": "Cyber insurance policy, contractual indemnity clauses",
+    "category": "Laws"
+  },
+  {
+    "id": 787,
+    "concept": "**Legal risk management**",
+    "answer": "Identifying, tracking, and reducing legal exposure tied to security decisions, data handling, and breach scenarios.",
+    "example": "Legal review of incident response plan; breach simulation with counsel",
+    "category": "Laws"
+  },
+  {
+    "id": 788,
+    "concept": "**Incident reporting law**",
+    "answer": "Laws or sector rules requiring certain incidents to be formally reported to regulators or affected individuals within defined windows.",
+    "example": "GDPR: 72 hours to supervisory authority; US: state-specific timelines",
+    "category": "Laws"
+  },
+  {
+    "id": 789,
+    "concept": "**Digital evidence law**",
+    "answer": "Rules governing how electronic evidence is collected, preserved, authenticated, and presented to remain admissible in court.",
+    "example": "Forensic imaging with hash verification and documented chain of custody",
+    "category": "Laws"
+  },
+  {
+    "id": 790,
+    "concept": "**Cyber forensics law**",
+    "answer": "Legal requirements governing cyber investigations including evidence handling, examiner authority, and lawful access.",
+    "example": "Search warrant scope for device seizure; ACPO principles (UK)",
+    "category": "Laws"
+  },
+  {
+    "id": 791,
+    "concept": "**Ethical hacking law**",
+    "answer": "Legal boundaries for authorized security testing \u2014 requires explicit written authorization and defined scope.",
+    "example": "Signed rules of engagement and statement of work before any test",
+    "category": "Laws"
+  },
+  {
+    "id": 792,
+    "concept": "**Penetration testing law**",
+    "answer": "Legal and contractual rules determining what testing is allowed, on what systems, and with whose written consent.",
+    "example": "Cloud provider permission (AWS pen-test policy) before testing",
+    "category": "Laws"
+  },
+  {
+    "id": 793,
+    "concept": "**Bug bounty policy**",
+    "answer": "Published program terms defining what researchers may test, how to report vulnerabilities, and what safe harbor applies.",
+    "example": "HackerOne or Bugcrowd program policies; in-scope asset definitions",
+    "category": "Laws"
+  },
+  {
+    "id": 794,
+    "concept": "**Responsible disclosure**",
+    "answer": "The practice of reporting vulnerabilities privately to the owner and giving them time to patch before public disclosure.",
+    "example": "90-day disclosure deadline standard (Google Project Zero)",
+    "category": "Laws"
+  },
+  {
+    "id": 795,
+    "concept": "**Security audit compliance**",
+    "answer": "Meeting all audit expectations for control documentation, evidence, and remediation tracking within required timelines.",
+    "example": "Passing ISO 27001 surveillance audit or SOC 2 Type II examination",
+    "category": "Laws"
+  },
+  {
+    "id": 796,
+    "concept": "**Third-party compliance**",
+    "answer": "Verifying that vendors and partners also meet the security and privacy obligations required by your organization or regulators.",
+    "example": "Annual vendor security questionnaires, right-to-audit clauses",
+    "category": "Laws"
+  },
+  {
+    "id": 797,
+    "concept": "**Vendor risk compliance**",
+    "answer": "Applying compliance and risk requirements to suppliers that process your data or provide critical services.",
+    "example": "Security clauses in procurement contracts; vendor tier risk ratings",
+    "category": "Laws"
+  },
+  {
+    "id": 798,
+    "concept": "**Security certification**",
+    "answer": "Formal recognition that a person, process, or product has met a defined security standard through independent assessment.",
+    "example": "ISO 27001 cert, SOC 2 report, CISSP certification",
+    "category": "Laws"
+  },
+  {
+    "id": 799,
+    "concept": "**Compliance monitoring**",
+    "answer": "Ongoing review confirming controls continue to meet legal, regulatory, and contractual duties between formal audits.",
+    "example": "Continuous control monitoring dashboard; quarterly self-assessments",
+    "category": "Laws"
+  },
+  {
+    "id": 800,
+    "concept": "**Legal enforcement**",
+    "answer": "Actions taken by regulators, courts, or counterparties when security or privacy obligations are violated.",
+    "example": "GDPR fines (up to 4% global turnover), FTC enforcement orders",
+    "category": "Laws"
+  }
+]

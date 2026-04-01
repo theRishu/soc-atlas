@@ -1,0 +1,7 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "buildCommand": "",
+  "installCommand": "",
+  "ignoreCommand": "echo \"Skipping Vercel deploy for gh-pages\"; exit 0"
+}
