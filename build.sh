@@ -8,18 +8,26 @@ PUBLIC_DIR="$ROOT_DIR/public"
 
 cd "$ROOT_DIR"
 
+if command -v python3.14 &> /dev/null; then
+    PYTHON_CMD="python3.14"
+    PIP_ARGS="--break-system-packages"
+else
+    PYTHON_CMD="python3"
+    PIP_ARGS=""
+fi
+
 echo "🛡️  Compiling SOCAtlas into ultra-fast HTML..."
 
-if ! python3.14 -m mkdocs --version &> /dev/null; then
+if ! "$PYTHON_CMD" -m mkdocs --version &> /dev/null; then
     echo "📦 Installing build dependencies..."
-    python3.14 -m pip install -r deps.txt --break-system-packages
+    "$PYTHON_CMD" -m pip install -r deps.txt $PIP_ARGS
 fi
 
 echo "📚 Generating complete guide export..."
-python3.14 scripts/generate_complete_guide.py
+"$PYTHON_CMD" scripts/generate_complete_guide.py
 
 echo "🏗️  Building with MkDocs Material..."
-python3.14 -m mkdocs build -f mkdocs.yml -d "$SITE_DIR"
+"$PYTHON_CMD" -m mkdocs build -f mkdocs.yml -d "$SITE_DIR"
 
 # Standard Static Build - No redirection or flattening
 

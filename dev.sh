@@ -9,14 +9,21 @@ PORT="${PORT:-8087}"
 cd "$ROOT_DIR"
 echo "🛡️  Starting SOCAtlas Hot-Reloading Development Server..."
 
-# Check dependencies
-if ! python3.14 -m mkdocs --version &> /dev/null; then
+if command -v python3.14 &> /dev/null; then
+    PYTHON_CMD="python3.14"
+    PIP_ARGS="--break-system-packages"
+else
+    PYTHON_CMD="python3"
+    PIP_ARGS=""
+fi
+
+if ! "$PYTHON_CMD" -m mkdocs --version &> /dev/null; then
     echo "📦 Installing development dependencies..."
-    python3.14 -m pip install -r deps.txt --break-system-packages
+    "$PYTHON_CMD" -m pip install -r deps.txt $PIP_ARGS
 fi
 
 echo "📚 Generating complete guide export..."
-python3.14 scripts/generate_complete_guide.py
+"$PYTHON_CMD" scripts/generate_complete_guide.py
 
 # Release port
 if command -v lsof &> /dev/null; then
@@ -27,4 +34,4 @@ echo "🌐 Development server starting at: http://127.0.0.1:$PORT"
 echo "──────────────────────────────────────────"
 
 # Run mkdocs serve using the project config
-python3.14 -m mkdocs serve -f mkdocs.yml -a 127.0.0.1:$PORT
+"$PYTHON_CMD" -m mkdocs serve -f mkdocs.yml -a 127.0.0.1:$PORT
